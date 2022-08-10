@@ -1,5 +1,5 @@
 # schema_hackathon
 
-my awesome datamodel is for awesome things
+A sandbox for NMDC team members to hack the schema
 
 
