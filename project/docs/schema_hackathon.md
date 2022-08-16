@@ -1,5 +1,5 @@
 
-# my_datamodel
+# nmdc_hackathon_schema
 
 
 **metamodel version:** 1.7.0
@@ -7,57 +7,26 @@
 **version:** None
 
 
-Enter a detailed description of your project here
+A sandbox for NMDC team members to hack the schema
 
 
 ### Classes
 
- * [Address](Address.md)
- * [NamedThing](NamedThing.md) - A generic grouping for any identifiable entity
-     * [Organization](Organization.md) - An organization such as a company or university
-     * [Person](Person.md) - A person (alive, dead, undead, or fictional).
- * [Registry](Registry.md) - Top level data container
- * [Relationship](Relationship.md)
-     * [FamilialRelationship](FamilialRelationship.md)
+ * [Mammal](Mammal.md)
+     * [Human](Human.md)
 
 ### Mixins
 
- * [HasAliases](HasAliases.md) - A mixin applied to any class that can have aliases/alternateNames
 
 ### Slots
 
- * [age_in_years](age_in_years.md)
- * [birth_date](birth_date.md)
- * [city](city.md)
- * [current_address](current_address.md) - The address at which a person currently lives
- * [description](description.md)
- * [employed_at](employed_at.md)
- * [ended_at_time](ended_at_time.md)
- * [founding_date](founding_date.md)
- * [➞aliases](hasAliases__aliases.md)
- * [has_familial_relationships](has_familial_relationships.md)
- * [id](id.md)
- * [image](image.md)
- * [is_current](is_current.md)
- * [mission_statement](mission_statement.md)
- * [name](name.md)
- * [postal_code](postal_code.md)
- * [primary_email](primary_email.md)
-     * [Person➞primary_email](Person_primary_email.md)
- * [➞organizations](registry__organizations.md)
- * [➞persons](registry__persons.md)
- * [related to](related_to.md)
-     * [FamilialRelationship➞related to](FamilialRelationship_related_to.md)
- * [related_to](related_to.md)
- * [started_at_time](started_at_time.md)
- * [street](street.md)
- * [type](type.md)
-     * [FamilialRelationship➞type](FamilialRelationship_type.md)
+ * [eye_color](eye_color.md)
+     * [Mammal➞eye_color](Mammal_eye_color.md)
+ * [human_full_name](human_full_name.md) - The word, words or phrase that the human's mother uses or used to get the attention of the human
+     * [Human➞human_full_name](Human_human_full_name.md)
 
 ### Enums
 
- * [FamilialRelationshipType](FamilialRelationshipType.md)
- * [PersonStatus](PersonStatus.md)
 
 ### Subsets
 

@@ -31,7 +31,7 @@
    },
    "$id": "http://example.com/hackschema",
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "additionalProperties": true,
+   "additionalProperties": false,
    "metamodel_version": "1.7.0",
    "properties": {},
    "required": [],
@@ -39,3 +39,4 @@
    "type": "object",
    "version": null
 }
+

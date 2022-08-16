@@ -1,76 +1,8 @@
 {
-   "_comments": "Auto generated from schema_hackathon.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-08-10T09:08:51\n    Schema: my_datamodel\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: https://w3id.org/my_org/my_datamodel\n    description: Enter a detailed description of your project here\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
+   "_comments": "Auto generated from schema_hackathon.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-08-16T10:33:59\n    Schema: nmdc_hackathon_schema\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://example.com/hackschema\n    description: A sandbox for NMDC team members to hack the schema\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
    "@context": {
-      "PATO": {
-         "@id": "http://purl.obolibrary.org/obo/PATO_",
-         "@prefix": true
-      },
-      "biolink": "https://w3id.org/biolink/",
-      "famrel": "http://example.org/famrel/",
+      "hackschema": "http://example.com/hackschema/",
       "linkml": "https://w3id.org/linkml/",
-      "my_datamodel": {
-         "@id": "https://w3id.org/my_org/my_datamodel",
-         "@prefix": true
-      },
-      "prov": "http://www.w3.org/ns/prov#",
-      "schema": "http://schema.org/",
-      "@vocab": "https://w3id.org/my_org/my_datamodel",
-      "age_in_years": {
-         "@type": "xsd:integer"
-      },
-      "birth_date": {
-         "@id": "schema:birthDate"
-      },
-      "current_address": {
-         "@type": "@id"
-      },
-      "description": {
-         "@id": "schema:description"
-      },
-      "employed_at": {
-         "@type": "@id"
-      },
-      "ended_at_time": {
-         "@type": "xsd:date",
-         "@id": "prov:endedAtTime"
-      },
-      "has_familial_relationships": {
-         "@type": "@id"
-      },
-      "id": "@id",
-      "image": {
-         "@id": "schema:image"
-      },
-      "is_current": {
-         "@type": "xsd:boolean"
-      },
-      "name": {
-         "@id": "schema:name"
-      },
-      "primary_email": {
-         "@id": "schema:email"
-      },
-      "organizations": {
-         "@type": "@id"
-      },
-      "persons": {
-         "@type": "@id"
-      },
-      "related_to": {
-         "@type": "@id"
-      },
-      "started_at_time": {
-         "@type": "xsd:date",
-         "@id": "prov:startedAtTime"
-      },
-      "Address": {
-         "@id": "schema:PostalAddress"
-      },
-      "Organization": {
-         "@id": "schema:Organization"
-      },
-      "Person": {
-         "@id": "schema:Person"
-      }
+      "@vocab": "http://example.com/hackschema/"
    }
 }
