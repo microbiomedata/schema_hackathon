@@ -1,6 +1,6 @@
 # schema_hackathon
 
-A sandbox for NMDC team members to hack the schema
+A sandbox for NMDC team members to hack a schema, especially with schemasheets
 
 brought to you by `linkml-ws new`
 
