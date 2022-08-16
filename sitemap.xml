@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://my-org.github.io/my-datamodel/</loc>
+         <loc>https://microbiomedata.github.io/schema_hackathon/</loc>
          <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://my-org.github.io/my-datamodel/Human/</loc>
+         <loc>https://microbiomedata.github.io/schema_hackathon/Human/</loc>
          <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://my-org.github.io/my-datamodel/Mammal/</loc>
+         <loc>https://microbiomedata.github.io/schema_hackathon/Mammal/</loc>
          <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://my-org.github.io/my-datamodel/READEME/</loc>
+         <loc>https://microbiomedata.github.io/schema_hackathon/READEME/</loc>
          <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://my-org.github.io/my-datamodel/about/</loc>
+         <loc>https://microbiomedata.github.io/schema_hackathon/about/</loc>
          <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://my-org.github.io/my-datamodel/eye_color/</loc>
+         <loc>https://microbiomedata.github.io/schema_hackathon/eye_color/</loc>
          <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://my-org.github.io/my-datamodel/human_full_name/</loc>
+         <loc>https://microbiomedata.github.io/schema_hackathon/human_full_name/</loc>
          <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://my-org.github.io/my-datamodel/nmdc_hackathon_schema/</loc>
+         <loc>https://microbiomedata.github.io/schema_hackathon/nmdc_hackathon_schema/</loc>
          <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://my-org.github.io/my-datamodel/types/</loc>
+         <loc>https://microbiomedata.github.io/schema_hackathon/types/</loc>
          <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
