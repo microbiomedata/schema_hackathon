@@ -2,6 +2,11 @@
 
 FORCE_DIR_MSG="forces creation of this directory"
 
+DOCDIR = docs
+SRC = src
+RUN=poetry run
+SOURCE_SCHEMA_PATH = $(shell sh ./utils/get-value.sh source_schema_path)
+
 .PHONY: sheets_all sheets_clean
 
 sheets_all: sheets_clean src/linkml/schema_hackathon.yaml
@@ -9,17 +14,18 @@ sheets_all: sheets_clean src/linkml/schema_hackathon.yaml
 sheets_clean:
 	rm -rf schemasheets-related/output/nmdc_hackathon_schema.yaml
 	rm -rf assets/*
+	rm -rf assets/*
 	mkdir -p assets
-	echo $(FORCE_DIR_MSG) > assets/READEME.md
+	echo $(FORCE_DIR_MSG) > assets/README.md
 	rm -rf downloads/*
 	mkdir -p downloads
-	echo $(FORCE_DIR_MSG) > downloads/READEME.md
+	echo $(FORCE_DIR_MSG) > downloads/README.md
 	rm -rf src/linkml/schema_hackathon.yaml
 	mkdir -p src/linkml
-	echo $(FORCE_DIR_MSG) > src/linkml/READEME.md
+	echo $(FORCE_DIR_MSG) > src/linkml/README.md
 	rm -rf docs/*
 	mkdir -p docs
-	echo $(FORCE_DIR_MSG) > docs/READEME.md
+	echo $(FORCE_DIR_MSG) > docs/README.md
 
 src/linkml/schema_hackathon.yaml:
 	# --unique-slots / --no-unique-slots (default)
@@ -60,3 +66,13 @@ downloads/mls_curated_nmdc_class_slot_sheet_pop.csv:
 highlight_curations: assets/NMDC_schema_slot_class_merged_with_filtered_rels.csv downloads/mls_curated_nmdc_class_slot_sheet_pop.csv
 	csvdiff $^ --primary-key  1,2 --format word-diff
 	# (rowmark|json|legacy-json|diff|word-diff|color-words) (default "diff")
+
+# Sujay and Mark experimenting with explicit Jinja2 templates
+
+$(DOCDIR):
+	mkdir -p $@
+
+# todo parameterize the templates directory ?
+gendoc: $(DOCDIR)
+	cp $(SRC)/docs/*md $(DOCDIR) ; \
+	$(RUN) gen-doc -d $(DOCDIR) --template-directory doc_templates $(SOURCE_SCHEMA_PATH)

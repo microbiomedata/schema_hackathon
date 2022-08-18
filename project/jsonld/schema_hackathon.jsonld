@@ -283,7 +283,7 @@
   "source_file": "schema_hackathon.yaml",
   "source_file_date": "2022-08-16T09:53:58",
   "source_file_size": 1067,
-  "generation_date": "2022-08-16T10:34:00",
+  "generation_date": "2022-08-16T10:52:22",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/schema_hackathon.context.jsonld",

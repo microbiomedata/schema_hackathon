@@ -1,5 +1,5 @@
 {
-   "_comments": "Auto generated from schema_hackathon.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-08-16T10:33:59\n    Schema: nmdc_hackathon_schema\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://example.com/hackschema\n    description: A sandbox for NMDC team members to hack the schema\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
+   "_comments": "Auto generated from schema_hackathon.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-08-16T10:52:22\n    Schema: nmdc_hackathon_schema\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://example.com/hackschema\n    description: A sandbox for NMDC team members to hack the schema\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
    "@context": {
       "hackschema": "http://example.com/hackschema/",
       "linkml": "https://w3id.org/linkml/",

@@ -1,5 +1,5 @@
 # Auto generated from schema_hackathon.yaml by pythongen.py version: 0.9.0
-# Generation date: 2022-08-16T10:34:04
+# Generation date: 2022-08-16T10:52:27
 # Schema: nmdc_hackathon_schema
 #
 # id: http://example.com/hackschema

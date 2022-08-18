@@ -11,7 +11,7 @@
     rdfs:label "nmdc_hackathon_schema" ;
     IAO:0000700 hackschema:Mammal ;
     dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
-    linkml:generation_date "2022-08-16T10:34:01" ;
+    linkml:generation_date "2022-08-16T10:52:23" ;
     linkml:metamodel_version "1.7.0" ;
     linkml:source_file "schema_hackathon.yaml" ;
     linkml:source_file_date "2022-08-16T09:53:58" ;
