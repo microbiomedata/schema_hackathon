@@ -2,47 +2,92 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://microbiomedata.github.io/schema_hackathon/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://microbiomedata.github.io/schema_hackathon/Human/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://microbiomedata.github.io/schema_hackathon/MatSampProc/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://microbiomedata.github.io/schema_hackathon/Mammal/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://microbiomedata.github.io/schema_hackathon/MaterialContainer/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://microbiomedata.github.io/schema_hackathon/READEME/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://microbiomedata.github.io/schema_hackathon/MaterialEntity/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/NamedThing/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/QuantityValue/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://microbiomedata.github.io/schema_hackathon/about/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://microbiomedata.github.io/schema_hackathon/eye_color/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://microbiomedata.github.io/schema_hackathon/amount/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://microbiomedata.github.io/schema_hackathon/human_full_name/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://microbiomedata.github.io/schema_hackathon/collected_into/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://microbiomedata.github.io/schema_hackathon/nmdc_hackathon_schema/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://microbiomedata.github.io/schema_hackathon/container_type/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/has_unit/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/has_value/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/id/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/material_input/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/material_output/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/monet_schema/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/size/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://microbiomedata.github.io/schema_hackathon/types/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
