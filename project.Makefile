@@ -47,21 +47,21 @@ src/linkml/schema_hackathon.yaml:
 		--output $@ \
 		--unique-slots \
 		--no-repair \
-		monet monet_schema monet_prefixes
+		monet \
+		monet_enums \
+		monet_prefixes \
+		monet_schema
 
 src/linkml/schema_hackathon_generated.yaml: src/linkml/schema_hackathon.yaml
 	$(RUN) gen-linkml \
 		--format yaml \
 		--no-materialize-attributes $< > $@
 
-#src/data/examples/weighing_data.json: src/data/examples/weighing_data.yaml
-#	$(RUN) linkml-convert -s src/linkml/schema_hackathon_generated.yaml -C TestClass $< -o $@
-
-#src/data/examples/test_data.json: src/data/examples/test_data.yaml
-#	$(RUN) linkml-convert -s src/linkml/schema_hackathon_generated.yaml -C TestClass $< -o $@
-
 src/data/examples/weighing_data.json: src/data/examples/weighing_data.yaml src/linkml/schema_hackathon_generated.yaml
 	$(RUN) linkml-convert -s src/linkml/schema_hackathon_generated.yaml -C MatSampProc $< -o $@
+
+src/data/examples/dissolving_data.json: src/data/examples/dissolving_data.yaml src/linkml/schema_hackathon_generated.yaml
+	$(RUN) linkml-convert -s src/linkml/schema_hackathon_generated.yaml -C Dissolving $< -o $@
 
 
 schemasheets-related/output/nmdc_hackathon_schema.schema.json: schemasheets-related/output/nmdc_hackathon_schema.yaml

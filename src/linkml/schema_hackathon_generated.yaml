@@ -10,6 +10,12 @@ prefixes:
   OBI:
     prefix_prefix: OBI
     prefix_reference: http://purl.obolibrary.org/obo/OBI_
+  CHMO:
+    prefix_prefix: CHMO
+    prefix_reference: http://purl.obolibrary.org/obo/CHMO_
+  CHEBI:
+    prefix_prefix: CHEBI
+    prefix_reference: http://purl.obolibrary.org/obo/CHEBI_
   linkml:
     prefix_prefix: linkml
     prefix_reference: https://w3id.org/linkml/
@@ -130,37 +136,68 @@ types:
     base: NodeIdentifier
     uri: shex:nonLiteral
     repr: str
+enums:
+  SolventEnum:
+    name: SolventEnum
+    title: Solvent enumeration
+    from_schema: http://example.com/monet_schema
+    permissible_values:
+      deionized_water:
+        text: deionized_water
+        title: Deionized water
+        broad_mappings:
+        - CHEBI:15377
+  ContainerTypeEnum:
+    name: ContainerTypeEnum
+    title: Container type enumeration
+    from_schema: http://example.com/monet_schema
+    permissible_values:
+      screw_top_conical:
+        text: screw_top_conical
+        title: Screw top conical tube
+        aliases:
+        - falcon tube
+  ShakerTypeEnum:
+    name: ShakerTypeEnum
+    title: Shaker type enumeration
+    from_schema: http://example.com/monet_schema
+    permissible_values:
+      orbital:
+        text: orbital
+        title: Orbital
 slots:
   container_type:
     name: container_type
     title: container type
     from_schema: http://example.com/monet_schema
-    range: string
+    range: ContainerTypeEnum
     required: true
-  size:
-    name: size
-    title: size
+  has_value:
+    name: has_value
+    title: has value
     from_schema: http://example.com/monet_schema
-    range: QuantityValue
+    range: float
     required: true
-    inlined_as_list: true
-  amount:
-    name: amount
-    title: amount
-    from_schema: http://example.com/monet_schema
-    range: QuantityValue
-    required: true
-    inlined_as_list: true
   collected_into:
     name: collected_into
     title: collected into
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - weighing-activity.contanier
+    range: MaterialContainer
+    required: true
+    inlined_as_list: true
+  container:
+    name: container
     from_schema: http://example.com/monet_schema
     range: MaterialContainer
     required: true
     inlined_as_list: true
   material_input:
     name: material_input
+    title: material input
     examples:
+    - value: somextract:6
     - value: soil:1
     from_schema: http://example.com/monet_schema
     aliases:
@@ -170,7 +207,9 @@ slots:
     inlined_as_list: true
   material_output:
     name: material_output
+    title: material output
     examples:
+    - value: somextract:7
     - value: somextract:6
     from_schema: http://example.com/monet_schema
     aliases:
@@ -178,10 +217,51 @@ slots:
     range: NamedThing
     required: true
     inlined_as_list: true
-  id:
-    name: id
+  amount:
+    name: amount
+    title: amount
     from_schema: http://example.com/monet_schema
-    identifier: true
+    aliases:
+    - weighing-activity.weight
+    range: QuantityValue
+    required: true
+    inlined_as_list: true
+  shake_speed:
+    name: shake_speed
+    title: shake speed
+    from_schema: http://example.com/monet_schema
+    range: QuantityValue
+  shake_time:
+    name: shake_time
+    title: shake time
+    from_schema: http://example.com/monet_schema
+    range: QuantityValue
+  size:
+    name: size
+    title: size
+    from_schema: http://example.com/monet_schema
+    range: QuantityValue
+    required: true
+    inlined_as_list: true
+  volume:
+    name: volume
+    title: volume
+    from_schema: http://example.com/monet_schema
+    range: QuantityValue
+    required: true
+    inlined_as_list: true
+  shaker_selection:
+    name: shaker_selection
+    title: shaker selection
+    from_schema: http://example.com/monet_schema
+    range: Shaker
+    required: true
+    inlined_as_list: true
+  solvent:
+    name: solvent
+    title: solvent
+    from_schema: http://example.com/monet_schema
+    range: SolventEnum
     required: true
   has_unit:
     name: has_unit
@@ -189,25 +269,24 @@ slots:
     from_schema: http://example.com/monet_schema
     range: string
     required: true
-  has_value:
-    name: has_value
-    title: has value
+  shaker_type:
+    name: shaker_type
+    title: shaker type
     from_schema: http://example.com/monet_schema
-    range: float
+    range: ShakerTypeEnum
+  id:
+    name: id
+    from_schema: http://example.com/monet_schema
+    identifier: true
     required: true
 classes:
-  MaterialContainer:
-    name: MaterialContainer
-    title: Material container
+  QuantityValue:
+    name: QuantityValue
+    title: Quantity value
     from_schema: http://example.com/monet_schema
     slots:
-    - container_type
-    - size
-  MaterialEntity:
-    name: MaterialEntity
-    title: Material entity
-    from_schema: http://example.com/monet_schema
-    is_a: NamedThing
+    - has_value
+    - has_unit
   MatSampProc:
     name: MatSampProc
     title: Material sampling process
@@ -215,22 +294,49 @@ classes:
     aliases:
     - weighing-activity
     slots:
-    - amount
     - collected_into
     - material_input
     - material_output
+    - amount
     class_uri: OBI:0000744
+  Dissolving:
+    name: Dissolving
+    title: Dissolving
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - dissolution-activity
+    slots:
+    - material_input
+    - material_output
+    - container
+    - shaker_selection
+    - solvent
+    - volume
+    class_uri: CHMO:0002773
+  MaterialContainer:
+    name: MaterialContainer
+    title: Material container
+    from_schema: http://example.com/monet_schema
+    slots:
+    - container_type
+    - size
   NamedThing:
     name: NamedThing
     from_schema: http://example.com/monet_schema
     slots:
     - id
-  QuantityValue:
-    name: QuantityValue
-    title: Quantity value
+  Shaker:
+    name: Shaker
+    title: Shaker
     from_schema: http://example.com/monet_schema
     slots:
-    - has_unit
-    - has_value
+    - shake_speed
+    - shake_time
+    - shaker_type
+  MaterialEntity:
+    name: MaterialEntity
+    title: Material entity
+    from_schema: http://example.com/monet_schema
+    is_a: NamedThing
 source_file: src/linkml/schema_hackathon.yaml
 

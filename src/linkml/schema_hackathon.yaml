@@ -12,38 +12,72 @@ prefixes:
   OBI:
     prefix_prefix: OBI
     prefix_reference: http://purl.obolibrary.org/obo/OBI_
+  CHMO:
+    prefix_prefix: CHMO
+    prefix_reference: http://purl.obolibrary.org/obo/CHMO_
+  CHEBI:
+    prefix_prefix: CHEBI
+    prefix_reference: http://purl.obolibrary.org/obo/CHEBI_
   linkml:
     prefix_prefix: linkml
     prefix_reference: https://w3id.org/linkml/
 default_prefix: monet_schema
 default_range: string
+enums:
+  SolventEnum:
+    name: SolventEnum
+    title: Solvent enumeration
+    permissible_values:
+      deionized_water:
+        text: deionized_water
+        title: Deionized water
+        broad_mappings:
+        - CHEBI:15377
+  ContainerTypeEnum:
+    name: ContainerTypeEnum
+    title: Container type enumeration
+    permissible_values:
+      screw_top_conical:
+        text: screw_top_conical
+        title: Screw top conical tube
+        aliases:
+        - falcon tube
+  ShakerTypeEnum:
+    name: ShakerTypeEnum
+    title: Shaker type enumeration
+    permissible_values:
+      orbital:
+        text: orbital
+        title: Orbital
 slots:
   container_type:
     name: container_type
     title: container type
-    range: string
+    range: ContainerTypeEnum
     required: true
-  size:
-    name: size
-    title: size
-    range: QuantityValue
+  has_value:
+    name: has_value
+    title: has value
+    range: float
     required: true
-    inlined_as_list: true
-  amount:
-    name: amount
-    title: amount
-    range: QuantityValue
-    required: true
-    inlined_as_list: true
   collected_into:
     name: collected_into
     title: collected into
+    aliases:
+    - weighing-activity.contanier
+    range: MaterialContainer
+    required: true
+    inlined_as_list: true
+  container:
+    name: container
     range: MaterialContainer
     required: true
     inlined_as_list: true
   material_input:
     name: material_input
+    title: material input
     examples:
+    - value: somextract:6
     - value: soil:1
     aliases:
     - weighing-activity.source_material
@@ -52,56 +86,116 @@ slots:
     inlined_as_list: true
   material_output:
     name: material_output
+    title: material output
     examples:
+    - value: somextract:7
     - value: somextract:6
     aliases:
     - weighing-activity.id
     range: NamedThing
     required: true
     inlined_as_list: true
-  id:
-    name: id
-    identifier: true
+  amount:
+    name: amount
+    title: amount
+    aliases:
+    - weighing-activity.weight
+    range: QuantityValue
+    required: true
+    inlined_as_list: true
+  shake_speed:
+    name: shake_speed
+    title: shake speed
+    range: QuantityValue
+  shake_time:
+    name: shake_time
+    title: shake time
+    range: QuantityValue
+  size:
+    name: size
+    title: size
+    range: QuantityValue
+    required: true
+    inlined_as_list: true
+  volume:
+    name: volume
+    title: volume
+    range: QuantityValue
+    required: true
+    inlined_as_list: true
+  shaker_selection:
+    name: shaker_selection
+    title: shaker selection
+    range: Shaker
+    required: true
+    inlined_as_list: true
+  solvent:
+    name: solvent
+    title: solvent
+    range: SolventEnum
     required: true
   has_unit:
     name: has_unit
     title: has unit
     range: string
     required: true
-  has_value:
-    name: has_value
-    title: has value
-    range: float
+  shaker_type:
+    name: shaker_type
+    title: shaker type
+    range: ShakerTypeEnum
+  id:
+    name: id
+    identifier: true
     required: true
 classes:
-  MaterialContainer:
-    name: MaterialContainer
-    title: Material container
+  QuantityValue:
+    name: QuantityValue
+    title: Quantity value
     slots:
-    - container_type
-    - size
-  MaterialEntity:
-    name: MaterialEntity
-    title: Material entity
-    is_a: NamedThing
+    - has_value
+    - has_unit
   MatSampProc:
     name: MatSampProc
     title: Material sampling process
     aliases:
     - weighing-activity
     slots:
-    - amount
     - collected_into
     - material_input
     - material_output
+    - amount
     class_uri: OBI:0000744
+  Dissolving:
+    name: Dissolving
+    title: Dissolving
+    aliases:
+    - dissolution-activity
+    slots:
+    - material_input
+    - material_output
+    - container
+    - shaker_selection
+    - solvent
+    - volume
+    class_uri: CHMO:0002773
+  MaterialContainer:
+    name: MaterialContainer
+    title: Material container
+    slots:
+    - container_type
+    - size
   NamedThing:
     name: NamedThing
     slots:
     - id
-  QuantityValue:
-    name: QuantityValue
-    title: Quantity value
+  Shaker:
+    name: Shaker
+    title: Shaker
     slots:
-    - has_unit
-    - has_value
+    - shake_speed
+    - shake_time
+    - shaker_type
+  MaterialEntity:
+    name: MaterialEntity
+    title: Material entity
+    is_a: NamedThing

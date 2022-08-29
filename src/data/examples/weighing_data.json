@@ -1,13 +1,9 @@
 {
-  "amount": {
-    "has_unit": "grams",
-    "has_value": 6.0
-  },
   "collected_into": {
-    "container_type": "falcon tube",
+    "container_type": "screw_top_conical",
     "size": {
-      "has_unit": "mL",
-      "has_value": 50.0
+      "has_value": 50.0,
+      "has_unit": "mL"
     }
   },
   "material_input": {
@@ -15,6 +11,10 @@
   },
   "material_output": {
     "id": "somextract:6"
+  },
+  "amount": {
+    "has_value": 6.0,
+    "has_unit": "grams"
   },
   "@type": "MatSampProc"
 }

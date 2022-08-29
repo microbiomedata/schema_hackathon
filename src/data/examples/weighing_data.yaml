@@ -2,7 +2,7 @@ collected_into:
   size:
     has_value: 50
     has_unit: mL
-  container_type: falcon tube
+  container_type: screw_top_conical
 amount:
   has_value: 6
   has_unit: grams
