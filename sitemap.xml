@@ -6,6 +6,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/ContainerTypeEnum/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/Dissolving/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://microbiomedata.github.io/schema_hackathon/MatSampProc/</loc>
          <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
@@ -31,6 +41,21 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/Shaker/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/ShakerTypeEnum/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/SolventEnum/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://microbiomedata.github.io/schema_hackathon/about/</loc>
          <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
@@ -42,6 +67,11 @@
     </url>
     <url>
          <loc>https://microbiomedata.github.io/schema_hackathon/collected_into/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/container/</loc>
          <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -81,12 +111,42 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/shake_speed/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/shake_time/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/shaker_selection/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/shaker_type/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://microbiomedata.github.io/schema_hackathon/size/</loc>
          <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/solvent/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://microbiomedata.github.io/schema_hackathon/types/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://microbiomedata.github.io/schema_hackathon/volume/</loc>
          <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
