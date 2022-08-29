@@ -19,6 +19,14 @@
       "prefix_reference": "http://purl.obolibrary.org/obo/OBI_"
     },
     {
+      "prefix_prefix": "CHMO",
+      "prefix_reference": "http://purl.obolibrary.org/obo/CHMO_"
+    },
+    {
+      "prefix_prefix": "CHEBI",
+      "prefix_reference": "http://purl.obolibrary.org/obo/CHEBI_"
+    },
+    {
       "prefix_prefix": "linkml",
       "prefix_reference": "https://w3id.org/linkml/"
     }
@@ -196,6 +204,50 @@
       "@type": "TypeDefinition"
     }
   ],
+  "enums": [
+    {
+      "name": "SolventEnum",
+      "definition_uri": "http://example.com/monet_schema/SolventEnum",
+      "title": "Solvent enumeration",
+      "from_schema": "http://example.com/monet_schema",
+      "permissible_values": [
+        {
+          "text": "deionized_water",
+          "title": "Deionized water",
+          "broad_mappings": [
+            "CHEBI:15377"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ContainerTypeEnum",
+      "definition_uri": "http://example.com/monet_schema/ContainerTypeEnum",
+      "title": "Container type enumeration",
+      "from_schema": "http://example.com/monet_schema",
+      "permissible_values": [
+        {
+          "text": "screw_top_conical",
+          "title": "Screw top conical tube",
+          "aliases": [
+            "falcon tube"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ShakerTypeEnum",
+      "definition_uri": "http://example.com/monet_schema/ShakerTypeEnum",
+      "title": "Shaker type enumeration",
+      "from_schema": "http://example.com/monet_schema",
+      "permissible_values": [
+        {
+          "text": "orbital",
+          "title": "Orbital"
+        }
+      ]
+    }
+  ],
   "slots": [
     {
       "name": "container_type",
@@ -207,8 +259,163 @@
       "domain_of": [
         "MaterialContainer"
       ],
-      "range": "string",
+      "range": "ContainerTypeEnum",
       "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "has_value",
+      "definition_uri": "http://example.com/monet_schema/has_value",
+      "title": "has value",
+      "from_schema": "http://example.com/monet_schema",
+      "slot_uri": "http://example.com/monet_schema/has_value",
+      "owner": "QuantityValue",
+      "domain_of": [
+        "QuantityValue"
+      ],
+      "range": "float",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "collected_into",
+      "definition_uri": "http://example.com/monet_schema/collected_into",
+      "title": "collected into",
+      "from_schema": "http://example.com/monet_schema",
+      "aliases": [
+        "weighing-activity.contanier"
+      ],
+      "slot_uri": "http://example.com/monet_schema/collected_into",
+      "owner": "MatSampProc",
+      "domain_of": [
+        "MatSampProc"
+      ],
+      "range": "MaterialContainer",
+      "required": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "container",
+      "definition_uri": "http://example.com/monet_schema/container",
+      "from_schema": "http://example.com/monet_schema",
+      "slot_uri": "http://example.com/monet_schema/container",
+      "owner": "Dissolving",
+      "domain_of": [
+        "Dissolving"
+      ],
+      "range": "MaterialContainer",
+      "required": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "material_input",
+      "definition_uri": "http://example.com/monet_schema/material_input",
+      "title": "material input",
+      "examples": [
+        {
+          "value": "somextract:6",
+          "@type": "Example"
+        },
+        {
+          "value": "soil:1",
+          "@type": "Example"
+        }
+      ],
+      "from_schema": "http://example.com/monet_schema",
+      "aliases": [
+        "weighing-activity.source_material"
+      ],
+      "slot_uri": "http://example.com/monet_schema/material_input",
+      "owner": "Dissolving",
+      "domain_of": [
+        "MatSampProc",
+        "Dissolving"
+      ],
+      "range": "NamedThing",
+      "required": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "material_output",
+      "definition_uri": "http://example.com/monet_schema/material_output",
+      "title": "material output",
+      "examples": [
+        {
+          "value": "somextract:7",
+          "@type": "Example"
+        },
+        {
+          "value": "somextract:6",
+          "@type": "Example"
+        }
+      ],
+      "from_schema": "http://example.com/monet_schema",
+      "aliases": [
+        "weighing-activity.id"
+      ],
+      "slot_uri": "http://example.com/monet_schema/material_output",
+      "owner": "Dissolving",
+      "domain_of": [
+        "MatSampProc",
+        "Dissolving"
+      ],
+      "range": "NamedThing",
+      "required": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "amount",
+      "definition_uri": "http://example.com/monet_schema/amount",
+      "title": "amount",
+      "from_schema": "http://example.com/monet_schema",
+      "aliases": [
+        "weighing-activity.weight"
+      ],
+      "slot_uri": "http://example.com/monet_schema/amount",
+      "owner": "MatSampProc",
+      "domain_of": [
+        "MatSampProc"
+      ],
+      "range": "QuantityValue",
+      "required": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "shake_speed",
+      "definition_uri": "http://example.com/monet_schema/shake_speed",
+      "title": "shake speed",
+      "from_schema": "http://example.com/monet_schema",
+      "slot_uri": "http://example.com/monet_schema/shake_speed",
+      "owner": "Shaker",
+      "domain_of": [
+        "Shaker"
+      ],
+      "range": "QuantityValue",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "shake_time",
+      "definition_uri": "http://example.com/monet_schema/shake_time",
+      "title": "shake time",
+      "from_schema": "http://example.com/monet_schema",
+      "slot_uri": "http://example.com/monet_schema/shake_time",
+      "owner": "Shaker",
+      "domain_of": [
+        "Shaker"
+      ],
+      "range": "QuantityValue",
+      "inlined": true,
       "@type": "SlotDefinition"
     },
     {
@@ -228,14 +435,14 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "amount",
-      "definition_uri": "http://example.com/monet_schema/amount",
-      "title": "amount",
+      "name": "volume",
+      "definition_uri": "http://example.com/monet_schema/volume",
+      "title": "volume",
       "from_schema": "http://example.com/monet_schema",
-      "slot_uri": "http://example.com/monet_schema/amount",
-      "owner": "MatSampProc",
+      "slot_uri": "http://example.com/monet_schema/volume",
+      "owner": "Dissolving",
       "domain_of": [
-        "MatSampProc"
+        "Dissolving"
       ],
       "range": "QuantityValue",
       "required": true,
@@ -244,80 +451,32 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "collected_into",
-      "definition_uri": "http://example.com/monet_schema/collected_into",
-      "title": "collected into",
+      "name": "shaker_selection",
+      "definition_uri": "http://example.com/monet_schema/shaker_selection",
+      "title": "shaker selection",
       "from_schema": "http://example.com/monet_schema",
-      "slot_uri": "http://example.com/monet_schema/collected_into",
-      "owner": "MatSampProc",
+      "slot_uri": "http://example.com/monet_schema/shaker_selection",
+      "owner": "Dissolving",
       "domain_of": [
-        "MatSampProc"
+        "Dissolving"
       ],
-      "range": "MaterialContainer",
+      "range": "Shaker",
       "required": true,
       "inlined": true,
       "inlined_as_list": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "material_input",
-      "definition_uri": "http://example.com/monet_schema/material_input",
-      "examples": [
-        {
-          "value": "soil:1",
-          "@type": "Example"
-        }
-      ],
+      "name": "solvent",
+      "definition_uri": "http://example.com/monet_schema/solvent",
+      "title": "solvent",
       "from_schema": "http://example.com/monet_schema",
-      "aliases": [
-        "weighing-activity.source_material"
-      ],
-      "slot_uri": "http://example.com/monet_schema/material_input",
-      "owner": "MatSampProc",
+      "slot_uri": "http://example.com/monet_schema/solvent",
+      "owner": "Dissolving",
       "domain_of": [
-        "MatSampProc"
+        "Dissolving"
       ],
-      "range": "NamedThing",
-      "required": true,
-      "inlined": true,
-      "inlined_as_list": true,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "material_output",
-      "definition_uri": "http://example.com/monet_schema/material_output",
-      "examples": [
-        {
-          "value": "somextract:6",
-          "@type": "Example"
-        }
-      ],
-      "from_schema": "http://example.com/monet_schema",
-      "aliases": [
-        "weighing-activity.id"
-      ],
-      "slot_uri": "http://example.com/monet_schema/material_output",
-      "owner": "MatSampProc",
-      "domain_of": [
-        "MatSampProc"
-      ],
-      "range": "NamedThing",
-      "required": true,
-      "inlined": true,
-      "inlined_as_list": true,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "id",
-      "definition_uri": "http://example.com/monet_schema/id",
-      "from_schema": "http://example.com/monet_schema",
-      "slot_uri": "http://example.com/monet_schema/id",
-      "identifier": true,
-      "owner": "NamedThing",
-      "domain_of": [
-        "NamedThing"
-      ],
-      "range": "string",
+      "range": "SolventEnum",
       "required": true,
       "@type": "SlotDefinition"
     },
@@ -336,45 +495,45 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "has_value",
-      "definition_uri": "http://example.com/monet_schema/has_value",
-      "title": "has value",
+      "name": "shaker_type",
+      "definition_uri": "http://example.com/monet_schema/shaker_type",
+      "title": "shaker type",
       "from_schema": "http://example.com/monet_schema",
-      "slot_uri": "http://example.com/monet_schema/has_value",
-      "owner": "QuantityValue",
+      "slot_uri": "http://example.com/monet_schema/shaker_type",
+      "owner": "Shaker",
       "domain_of": [
-        "QuantityValue"
+        "Shaker"
       ],
-      "range": "float",
+      "range": "ShakerTypeEnum",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "id",
+      "definition_uri": "http://example.com/monet_schema/id",
+      "from_schema": "http://example.com/monet_schema",
+      "slot_uri": "http://example.com/monet_schema/id",
+      "identifier": true,
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "string",
       "required": true,
       "@type": "SlotDefinition"
     }
   ],
   "classes": [
     {
-      "name": "MaterialContainer",
-      "definition_uri": "http://example.com/monet_schema/MaterialContainer",
-      "title": "Material container",
+      "name": "QuantityValue",
+      "definition_uri": "http://example.com/monet_schema/QuantityValue",
+      "title": "Quantity value",
       "from_schema": "http://example.com/monet_schema",
       "slots": [
-        "container_type",
-        "size"
+        "has_value",
+        "has_unit"
       ],
       "slot_usage": {},
-      "class_uri": "http://example.com/monet_schema/MaterialContainer",
-      "@type": "ClassDefinition"
-    },
-    {
-      "name": "MaterialEntity",
-      "definition_uri": "http://example.com/monet_schema/MaterialEntity",
-      "title": "Material entity",
-      "from_schema": "http://example.com/monet_schema",
-      "is_a": "NamedThing",
-      "slots": [
-        "id"
-      ],
-      "slot_usage": {},
-      "class_uri": "http://example.com/monet_schema/MaterialEntity",
+      "class_uri": "http://example.com/monet_schema/QuantityValue",
       "@type": "ClassDefinition"
     },
     {
@@ -389,13 +548,49 @@
         "OBI:0000744"
       ],
       "slots": [
-        "amount",
         "collected_into",
         "material_input",
-        "material_output"
+        "material_output",
+        "amount"
       ],
       "slot_usage": {},
       "class_uri": "http://purl.obolibrary.org/obo/OBI_0000744",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Dissolving",
+      "definition_uri": "http://example.com/monet_schema/Dissolving",
+      "title": "Dissolving",
+      "from_schema": "http://example.com/monet_schema",
+      "aliases": [
+        "dissolution-activity"
+      ],
+      "mappings": [
+        "CHMO:0002773"
+      ],
+      "slots": [
+        "material_input",
+        "material_output",
+        "container",
+        "shaker_selection",
+        "solvent",
+        "volume"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://purl.obolibrary.org/obo/CHMO_0002773",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "MaterialContainer",
+      "definition_uri": "http://example.com/monet_schema/MaterialContainer",
+      "title": "Material container",
+      "from_schema": "http://example.com/monet_schema",
+      "slots": [
+        "container_type",
+        "size"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://example.com/monet_schema/MaterialContainer",
       "@type": "ClassDefinition"
     },
     {
@@ -410,24 +605,38 @@
       "@type": "ClassDefinition"
     },
     {
-      "name": "QuantityValue",
-      "definition_uri": "http://example.com/monet_schema/QuantityValue",
-      "title": "Quantity value",
+      "name": "Shaker",
+      "definition_uri": "http://example.com/monet_schema/Shaker",
+      "title": "Shaker",
       "from_schema": "http://example.com/monet_schema",
       "slots": [
-        "has_unit",
-        "has_value"
+        "shake_speed",
+        "shake_time",
+        "shaker_type"
       ],
       "slot_usage": {},
-      "class_uri": "http://example.com/monet_schema/QuantityValue",
+      "class_uri": "http://example.com/monet_schema/Shaker",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "MaterialEntity",
+      "definition_uri": "http://example.com/monet_schema/MaterialEntity",
+      "title": "Material entity",
+      "from_schema": "http://example.com/monet_schema",
+      "is_a": "NamedThing",
+      "slots": [
+        "id"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://example.com/monet_schema/MaterialEntity",
       "@type": "ClassDefinition"
     }
   ],
   "metamodel_version": "1.7.0",
   "source_file": "schema_hackathon.yaml",
-  "source_file_date": "2022-08-29T17:47:29",
-  "source_file_size": 2307,
-  "generation_date": "2022-08-29T17:52:06",
+  "source_file_date": "2022-08-29T18:38:35",
+  "source_file_size": 4392,
+  "generation_date": "2022-08-29T18:40:11",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/schema_hackathon.context.jsonld",

@@ -40,6 +40,8 @@ URI: [monet_schema:NamedThing](http://example.com/monet_schema/NamedThing)
 | ---  | --- | --- | --- |
 | [MatSampProc](MatSampProc.md) | [material_input](material_input.md) | range | NamedThing |
 | [MatSampProc](MatSampProc.md) | [material_output](material_output.md) | range | NamedThing |
+| [Dissolving](Dissolving.md) | [material_input](material_input.md) | range | NamedThing |
+| [Dissolving](Dissolving.md) | [material_output](material_output.md) | range | NamedThing |
 
 
 

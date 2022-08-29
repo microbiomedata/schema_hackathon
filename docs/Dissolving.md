@@ -1,20 +1,22 @@
-# Class: MatSampProc
+# Class: Dissolving
 
 
 
 
-URI: [OBI:0000744](http://purl.obolibrary.org/obo/OBI_0000744)
+URI: [CHMO:0002773](http://purl.obolibrary.org/obo/CHMO_0002773)
 
 
 
 
 ```mermaid
  classDiagram
-    class MatSampProc
-      MatSampProc : amount
-      MatSampProc : collected_into
-      MatSampProc : material_input
-      MatSampProc : material_output
+    class Dissolving
+      Dissolving : container
+      Dissolving : material_input
+      Dissolving : material_output
+      Dissolving : shaker_selection
+      Dissolving : solvent
+      Dissolving : volume
       
 ```
 
@@ -28,10 +30,12 @@ URI: [OBI:0000744](http://purl.obolibrary.org/obo/OBI_0000744)
 
 | Name | Cardinality and Range  | Description  |
 | ---  | ---  | --- |
-| [collected_into](collected_into.md) | 1..1 <br/> [MaterialContainer](MaterialContainer.md)  |   |
 | [material_input](material_input.md) | 1..1 <br/> [NamedThing](NamedThing.md)  |   |
 | [material_output](material_output.md) | 1..1 <br/> [NamedThing](NamedThing.md)  |   |
-| [amount](amount.md) | 1..1 <br/> [QuantityValue](QuantityValue.md)  |   |
+| [container](container.md) | 1..1 <br/> [MaterialContainer](MaterialContainer.md)  |   |
+| [shaker_selection](shaker_selection.md) | 1..1 <br/> [Shaker](Shaker.md)  |   |
+| [solvent](solvent.md) | 1..1 <br/> [SolventEnum](SolventEnum.md)  |   |
+| [volume](volume.md) | 1..1 <br/> [QuantityValue](QuantityValue.md)  |   |
 
 
 ## Usages
@@ -61,8 +65,8 @@ URI: [OBI:0000744](http://purl.obolibrary.org/obo/OBI_0000744)
 
 | Mapping Type | Mapped Value |
 | ---  | ---  |
-| self | ['OBI:0000744'] |
-| native | ['monet_schema:MatSampProc'] |
+| self | ['CHMO:0002773'] |
+| native | ['monet_schema:Dissolving'] |
 
 
 ## LinkML Specification
@@ -73,18 +77,20 @@ URI: [OBI:0000744](http://purl.obolibrary.org/obo/OBI_0000744)
 
 <details>
 ```yaml
-name: MatSampProc
-title: Material sampling process
+name: Dissolving
+title: Dissolving
 from_schema: http://example.com/monet_schema
 aliases:
-- weighing-activity
+- dissolution-activity
 rank: 1000
 slots:
-- collected_into
 - material_input
 - material_output
-- amount
-class_uri: OBI:0000744
+- container
+- shaker_selection
+- solvent
+- volume
+class_uri: CHMO:0002773
 
 ```
 </details>
@@ -93,28 +99,13 @@ class_uri: OBI:0000744
 
 <details>
 ```yaml
-name: MatSampProc
-title: Material sampling process
+name: Dissolving
+title: Dissolving
 from_schema: http://example.com/monet_schema
 aliases:
-- weighing-activity
+- dissolution-activity
 rank: 1000
 attributes:
-  collected_into:
-    name: collected_into
-    title: collected into
-    from_schema: http://example.com/monet_schema
-    aliases:
-    - weighing-activity.contanier
-    rank: 1000
-    alias: collected_into
-    owner: MatSampProc
-    domain_of:
-    - MatSampProc
-    range: MaterialContainer
-    required: true
-    inlined: true
-    inlined_as_list: true
   material_input:
     name: material_input
     title: material input
@@ -126,7 +117,7 @@ attributes:
     - weighing-activity.source_material
     rank: 1000
     alias: material_input
-    owner: MatSampProc
+    owner: Dissolving
     domain_of:
     - MatSampProc
     - Dissolving
@@ -145,7 +136,7 @@ attributes:
     - weighing-activity.id
     rank: 1000
     alias: material_output
-    owner: MatSampProc
+    owner: Dissolving
     domain_of:
     - MatSampProc
     - Dissolving
@@ -153,22 +144,56 @@ attributes:
     required: true
     inlined: true
     inlined_as_list: true
-  amount:
-    name: amount
-    title: amount
+  container:
+    name: container
     from_schema: http://example.com/monet_schema
-    aliases:
-    - weighing-activity.weight
     rank: 1000
-    alias: amount
-    owner: MatSampProc
+    alias: container
+    owner: Dissolving
     domain_of:
-    - MatSampProc
+    - Dissolving
+    range: MaterialContainer
+    required: true
+    inlined: true
+    inlined_as_list: true
+  shaker_selection:
+    name: shaker_selection
+    title: shaker selection
+    from_schema: http://example.com/monet_schema
+    rank: 1000
+    alias: shaker_selection
+    owner: Dissolving
+    domain_of:
+    - Dissolving
+    range: Shaker
+    required: true
+    inlined: true
+    inlined_as_list: true
+  solvent:
+    name: solvent
+    title: solvent
+    from_schema: http://example.com/monet_schema
+    rank: 1000
+    alias: solvent
+    owner: Dissolving
+    domain_of:
+    - Dissolving
+    range: SolventEnum
+    required: true
+  volume:
+    name: volume
+    title: volume
+    from_schema: http://example.com/monet_schema
+    rank: 1000
+    alias: volume
+    owner: Dissolving
+    domain_of:
+    - Dissolving
     range: QuantityValue
     required: true
     inlined: true
     inlined_as_list: true
-class_uri: OBI:0000744
+class_uri: CHMO:0002773
 
 ```
 </details>

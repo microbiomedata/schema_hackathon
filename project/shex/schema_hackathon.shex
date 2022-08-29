@@ -34,8 +34,20 @@ linkml:Objectidentifier IRI
 
 linkml:Nodeidentifier NONLITERAL
 
+<Dissolving> CLOSED {
+    (  $<Dissolving_tes> (  <material_input> @<NamedThing> ;
+          <material_output> @<NamedThing> ;
+          <container> @<MaterialContainer> ;
+          <shaker_selection> @<Shaker> ;
+          <solvent> @<SolventEnum> ;
+          <volume> @<QuantityValue>
+       ) ;
+       rdf:type [ <http://purl.obolibrary.org/obo/CHMO_0002773> ] ?
+    )
+}
+
 <MaterialContainer> CLOSED {
-    (  $<MaterialContainer_tes> (  <container_type> @linkml:String ;
+    (  $<MaterialContainer_tes> (  <container_type> @<ContainerTypeEnum> ;
           <size> @<QuantityValue>
        ) ;
        rdf:type [ <MaterialContainer> ] ?
@@ -51,10 +63,10 @@ linkml:Nodeidentifier NONLITERAL
 }
 
 <MatSampProc> CLOSED {
-    (  $<MatSampProc_tes> (  <amount> @<QuantityValue> ;
-          <collected_into> @<MaterialContainer> ;
+    (  $<MatSampProc_tes> (  <collected_into> @<MaterialContainer> ;
           <material_input> @<NamedThing> ;
-          <material_output> @<NamedThing>
+          <material_output> @<NamedThing> ;
+          <amount> @<QuantityValue>
        ) ;
        rdf:type [ <http://purl.obolibrary.org/obo/OBI_0000744> ] ?
     )
@@ -69,10 +81,19 @@ linkml:Nodeidentifier NONLITERAL
 )
 
 <QuantityValue> CLOSED {
-    (  $<QuantityValue_tes> (  <has_unit> @linkml:String ;
-          <has_value> @linkml:Float
+    (  $<QuantityValue_tes> (  <has_value> @linkml:Float ;
+          <has_unit> @linkml:String
        ) ;
        rdf:type [ <QuantityValue> ] ?
+    )
+}
+
+<Shaker> CLOSED {
+    (  $<Shaker_tes> (  <shake_speed> @<QuantityValue> ? ;
+          <shake_time> @<QuantityValue> ? ;
+          <shaker_type> @<ShakerTypeEnum> ?
+       ) ;
+       rdf:type [ <Shaker> ] ?
     )
 }
 

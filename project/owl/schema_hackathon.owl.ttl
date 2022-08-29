@@ -1,26 +1,30 @@
+@prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
 @prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
 @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix linkml: <https://w3id.org/linkml/> .
 @prefix monet_schema: <http://example.com/monet_schema/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://example.com/monet_schema> a owl:Ontology ;
     rdfs:label "monet_schema" ;
-    IAO:0000700 monet_schema:MatSampProc,
+    IAO:0000700 monet_schema:Dissolving,
+        monet_schema:MatSampProc,
         monet_schema:MaterialContainer,
         monet_schema:NamedThing,
-        monet_schema:QuantityValue ;
+        monet_schema:QuantityValue,
+        monet_schema:Shaker ;
     dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
     rdfs:seeAlso "https://gitlab.pnnl.gov/MoNET/analytical-processes/-/blob/main/organicmatterextraction.toml" ;
-    linkml:generation_date "2022-08-29T17:52:08" ;
+    linkml:generation_date "2022-08-29T18:40:12" ;
     linkml:metamodel_version "1.7.0" ;
     linkml:source_file "schema_hackathon.yaml" ;
-    linkml:source_file_date "2022-08-29T17:47:29" ;
-    linkml:source_file_size 2307 .
+    linkml:source_file_date "2022-08-29T18:38:35" ;
+    linkml:source_file_size 4392 .
 
 monet_schema:MaterialEntity a owl:Class,
         linkml:ClassDefinition ;
@@ -37,21 +41,52 @@ linkml:TypeDefinition a owl:Class ;
 linkml:topValue a owl:DatatypeProperty ;
     rdfs:label "value" .
 
+monet_schema:Dissolving a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Dissolving" ;
+    dcterms:title "Dissolving" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass monet_schema:SolventEnum ;
+            owl:onProperty monet_schema:solvent ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass monet_schema:MaterialContainer ;
+            owl:onProperty monet_schema:container ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass monet_schema:Shaker ;
+            owl:onProperty monet_schema:shaker_selection ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass monet_schema:QuantityValue ;
+            owl:onProperty monet_schema:volume ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass monet_schema:NamedThing ;
+            owl:onProperty monet_schema:material_output ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass monet_schema:NamedThing ;
+            owl:onProperty monet_schema:material_input ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:altLabel "dissolution-activity" ;
+    skos:exactMatch CHMO:0002773 .
+
 monet_schema:MatSampProc a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "MatSampProc" ;
     dcterms:title "Material sampling process" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass monet_schema:NamedThing ;
+            owl:onProperty monet_schema:material_output ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
             owl:onClass monet_schema:QuantityValue ;
             owl:onProperty monet_schema:amount ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:onClass monet_schema:NamedThing ;
             owl:onProperty monet_schema:material_input ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass monet_schema:NamedThing ;
-            owl:onProperty monet_schema:material_output ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:onClass monet_schema:MaterialContainer ;
@@ -64,19 +99,26 @@ monet_schema:amount a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "amount" ;
     dcterms:title "amount" ;
-    rdfs:range monet_schema:QuantityValue .
+    rdfs:range monet_schema:QuantityValue ;
+    skos:altLabel "weighing-activity.weight" .
 
 monet_schema:collected_into a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "collected_into" ;
     dcterms:title "collected into" ;
+    rdfs:range monet_schema:MaterialContainer ;
+    skos:altLabel "weighing-activity.contanier" .
+
+monet_schema:container a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "container" ;
     rdfs:range monet_schema:MaterialContainer .
 
 monet_schema:container_type a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "container_type" ;
     dcterms:title "container type" ;
-    rdfs:range linkml:String .
+    rdfs:range monet_schema:ContainerTypeEnum .
 
 monet_schema:has_unit a owl:ObjectProperty,
         linkml:SlotDefinition ;
@@ -95,19 +137,29 @@ monet_schema:id a owl:ObjectProperty,
     rdfs:label "id" ;
     rdfs:range linkml:String .
 
-monet_schema:material_input a owl:ObjectProperty,
+monet_schema:shake_speed a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "material_input" ;
-    rdfs:range monet_schema:NamedThing ;
-    skos:altLabel "weighing-activity.source_material" ;
-    linkml:examples "Example(value='soil:1', description=None)" .
+    rdfs:label "shake_speed" ;
+    dcterms:title "shake speed" ;
+    rdfs:range monet_schema:QuantityValue .
 
-monet_schema:material_output a owl:ObjectProperty,
+monet_schema:shake_time a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "material_output" ;
-    rdfs:range monet_schema:NamedThing ;
-    skos:altLabel "weighing-activity.id" ;
-    linkml:examples "Example(value='somextract:6', description=None)" .
+    rdfs:label "shake_time" ;
+    dcterms:title "shake time" ;
+    rdfs:range monet_schema:QuantityValue .
+
+monet_schema:shaker_selection a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "shaker_selection" ;
+    dcterms:title "shaker selection" ;
+    rdfs:range monet_schema:Shaker .
+
+monet_schema:shaker_type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "shaker_type" ;
+    dcterms:title "shaker type" ;
+    rdfs:range monet_schema:ShakerTypeEnum .
 
 monet_schema:size a owl:ObjectProperty,
         linkml:SlotDefinition ;
@@ -115,17 +167,111 @@ monet_schema:size a owl:ObjectProperty,
     dcterms:title "size" ;
     rdfs:range monet_schema:QuantityValue .
 
+monet_schema:solvent a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "solvent" ;
+    dcterms:title "solvent" ;
+    rdfs:range monet_schema:SolventEnum .
+
+monet_schema:volume a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "volume" ;
+    dcterms:title "volume" ;
+    rdfs:range monet_schema:QuantityValue .
+
+<http://example.com/monet_schema/ContainerTypeEnum#screw_top_conical> a monet_schema:ContainerTypeEnum,
+        owl:Class ;
+    rdfs:label "screw_top_conical" ;
+    dcterms:title "Screw top conical tube" .
+
+<http://example.com/monet_schema/ShakerTypeEnum#orbital> a monet_schema:ShakerTypeEnum,
+        owl:Class ;
+    rdfs:label "orbital" ;
+    dcterms:title "Orbital" .
+
+<http://example.com/monet_schema/SolventEnum#deionized_water> a monet_schema:SolventEnum,
+        owl:Class ;
+    rdfs:label "deionized_water" ;
+    dcterms:title "Deionized water" .
+
+monet_schema:material_input a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "material_input" ;
+    dcterms:title "material input" ;
+    rdfs:range monet_schema:NamedThing ;
+    skos:altLabel "weighing-activity.source_material" ;
+    linkml:examples "Example(value='soil:1', description=None)",
+        "Example(value='somextract:6', description=None)" .
+
+monet_schema:material_output a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "material_output" ;
+    dcterms:title "material output" ;
+    rdfs:range monet_schema:NamedThing ;
+    skos:altLabel "weighing-activity.id" ;
+    linkml:examples "Example(value='somextract:6', description=None)",
+        "Example(value='somextract:7', description=None)" .
+
+monet_schema:ContainerTypeEnum a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "ContainerTypeEnum" ;
+    dcterms:title "Container type enumeration" ;
+    owl:unionOf ( <http://example.com/monet_schema/ContainerTypeEnum#screw_top_conical> ) ;
+    linkml:permissible_values <http://example.com/monet_schema/ContainerTypeEnum#screw_top_conical> .
+
+monet_schema:Shaker a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Shaker" ;
+    dcterms:title "Shaker" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass monet_schema:QuantityValue ;
+            owl:onProperty monet_schema:shake_speed ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass monet_schema:ShakerTypeEnum ;
+            owl:onProperty monet_schema:shaker_type ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass monet_schema:QuantityValue ;
+            owl:onProperty monet_schema:shake_time ] .
+
+monet_schema:ShakerTypeEnum a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "ShakerTypeEnum" ;
+    dcterms:title "Shaker type enumeration" ;
+    owl:unionOf ( <http://example.com/monet_schema/ShakerTypeEnum#orbital> ) ;
+    linkml:permissible_values <http://example.com/monet_schema/ShakerTypeEnum#orbital> .
+
+monet_schema:SolventEnum a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "SolventEnum" ;
+    dcterms:title "Solvent enumeration" ;
+    owl:unionOf ( <http://example.com/monet_schema/SolventEnum#deionized_water> ) ;
+    linkml:permissible_values <http://example.com/monet_schema/SolventEnum#deionized_water> .
+
 monet_schema:MaterialContainer a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "MaterialContainer" ;
     dcterms:title "Material container" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass linkml:String ;
-            owl:onProperty monet_schema:container_type ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
             owl:onClass monet_schema:QuantityValue ;
             owl:onProperty monet_schema:size ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass monet_schema:ContainerTypeEnum ;
+            owl:onProperty monet_schema:container_type ;
+            owl:qualifiedCardinality 1 ] .
+
+linkml:ClassDefinition a owl:Class ;
+    rdfs:label "class_definition" .
+
+monet_schema:NamedThing a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "NamedThing" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty monet_schema:id ;
             owl:qualifiedCardinality 1 ] .
 
 monet_schema:QuantityValue a owl:Class,
@@ -139,17 +285,6 @@ monet_schema:QuantityValue a owl:Class,
         [ a owl:Restriction ;
             owl:onClass linkml:Float ;
             owl:onProperty monet_schema:has_value ;
-            owl:qualifiedCardinality 1 ] .
-
-linkml:ClassDefinition a owl:Class ;
-    rdfs:label "class_definition" .
-
-monet_schema:NamedThing a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "NamedThing" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass linkml:String ;
-            owl:onProperty monet_schema:id ;
             owl:qualifiedCardinality 1 ] .
 
 linkml:SlotDefinition a owl:Class ;

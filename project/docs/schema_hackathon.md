@@ -12,11 +12,13 @@ A sandbox for modeling MONET sample processing activities
 
 ### Classes
 
+ * [Dissolving](Dissolving.md)
  * [MatSampProc](MatSampProc.md)
  * [MaterialContainer](MaterialContainer.md)
  * [NamedThing](NamedThing.md)
      * [MaterialEntity](MaterialEntity.md)
  * [QuantityValue](QuantityValue.md)
+ * [Shaker](Shaker.md)
 
 ### Mixins
 
@@ -25,16 +27,26 @@ A sandbox for modeling MONET sample processing activities
 
  * [amount](amount.md)
  * [collected_into](collected_into.md)
+ * [container](container.md)
  * [container_type](container_type.md)
  * [has_unit](has_unit.md)
  * [has_value](has_value.md)
  * [id](id.md)
  * [material_input](material_input.md)
  * [material_output](material_output.md)
+ * [shake_speed](shake_speed.md)
+ * [shake_time](shake_time.md)
+ * [shaker_selection](shaker_selection.md)
+ * [shaker_type](shaker_type.md)
  * [size](size.md)
+ * [solvent](solvent.md)
+ * [volume](volume.md)
 
 ### Enums
 
+ * [ContainerTypeEnum](ContainerTypeEnum.md)
+ * [ShakerTypeEnum](ShakerTypeEnum.md)
+ * [SolventEnum](SolventEnum.md)
 
 ### Subsets
 

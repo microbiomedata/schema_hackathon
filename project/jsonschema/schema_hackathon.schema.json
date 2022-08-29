@@ -1,5 +1,47 @@
 {
    "$defs": {
+      "ContainerTypeEnum": {
+         "description": "",
+         "enum": [
+            "screw_top_conical"
+         ],
+         "title": "ContainerTypeEnum",
+         "type": "string"
+      },
+      "Dissolving": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "container": {
+               "$ref": "#/$defs/MaterialContainer"
+            },
+            "material_input": {
+               "$ref": "#/$defs/NamedThing"
+            },
+            "material_output": {
+               "$ref": "#/$defs/NamedThing"
+            },
+            "shaker_selection": {
+               "$ref": "#/$defs/Shaker"
+            },
+            "solvent": {
+               "$ref": "#/$defs/SolventEnum"
+            },
+            "volume": {
+               "$ref": "#/$defs/QuantityValue"
+            }
+         },
+         "required": [
+            "material_input",
+            "material_output",
+            "container",
+            "shaker_selection",
+            "solvent",
+            "volume"
+         ],
+         "title": "Dissolving",
+         "type": "object"
+      },
       "MatSampProc": {
          "additionalProperties": false,
          "description": "",
@@ -18,10 +60,10 @@
             }
          },
          "required": [
-            "amount",
             "collected_into",
             "material_input",
-            "material_output"
+            "material_output",
+            "amount"
          ],
          "title": "MatSampProc",
          "type": "object"
@@ -31,7 +73,7 @@
          "description": "",
          "properties": {
             "container_type": {
-               "type": "string"
+               "$ref": "#/$defs/ContainerTypeEnum"
             },
             "size": {
                "$ref": "#/$defs/QuantityValue"
@@ -84,11 +126,45 @@
             }
          },
          "required": [
-            "has_unit",
-            "has_value"
+            "has_value",
+            "has_unit"
          ],
          "title": "QuantityValue",
          "type": "object"
+      },
+      "Shaker": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "shake_speed": {
+               "$ref": "#/$defs/QuantityValue"
+            },
+            "shake_time": {
+               "$ref": "#/$defs/QuantityValue"
+            },
+            "shaker_type": {
+               "$ref": "#/$defs/ShakerTypeEnum"
+            }
+         },
+         "required": [],
+         "title": "Shaker",
+         "type": "object"
+      },
+      "ShakerTypeEnum": {
+         "description": "",
+         "enum": [
+            "orbital"
+         ],
+         "title": "ShakerTypeEnum",
+         "type": "string"
+      },
+      "SolventEnum": {
+         "description": "",
+         "enum": [
+            "deionized_water"
+         ],
+         "title": "SolventEnum",
+         "type": "string"
       }
    },
    "$id": "http://example.com/monet_schema",

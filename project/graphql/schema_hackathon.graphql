@@ -1,6 +1,16 @@
+type Dissolving
+  {
+    materialInput: NamedThing!
+    materialOutput: NamedThing!
+    container: MaterialContainer!
+    shakerSelection: Shaker!
+    solvent: SolventEnum!
+    volume: QuantityValue!
+  }
+
 type MaterialContainer
   {
-    containerType: String!
+    containerType: ContainerTypeEnum!
     size: QuantityValue!
   }
 
@@ -11,10 +21,10 @@ type MaterialEntity
 
 type MatSampProc
   {
-    amount: QuantityValue!
     collectedInto: MaterialContainer!
     materialInput: NamedThing!
     materialOutput: NamedThing!
+    amount: QuantityValue!
   }
 
 type NamedThing
@@ -24,7 +34,14 @@ type NamedThing
 
 type QuantityValue
   {
-    hasUnit: String!
     hasValue: Float!
+    hasUnit: String!
+  }
+
+type Shaker
+  {
+    shakeSpeed: QuantityValue
+    shakeTime: QuantityValue
+    shakerType: ShakerTypeEnum
   }
 

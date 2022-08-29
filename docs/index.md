@@ -9,11 +9,13 @@ Name: monet_schema
 
 | Class | Description |
 | --- | --- |
+| [Dissolving](Dissolving.md) |  |
 | [MaterialContainer](MaterialContainer.md) |  |
 | [MaterialEntity](MaterialEntity.md) |  |
 | [MatSampProc](MatSampProc.md) |  |
 | [NamedThing](NamedThing.md) |  |
 | [QuantityValue](QuantityValue.md) |  |
+| [Shaker](Shaker.md) |  |
 
 
 ## Slots
@@ -22,19 +24,29 @@ Name: monet_schema
 | --- | --- |
 | [amount](amount.md) |  |
 | [collected_into](collected_into.md) |  |
+| [container](container.md) |  |
 | [container_type](container_type.md) |  |
 | [has_unit](has_unit.md) |  |
 | [has_value](has_value.md) |  |
 | [id](id.md) |  |
 | [material_input](material_input.md) |  |
 | [material_output](material_output.md) |  |
+| [shake_speed](shake_speed.md) |  |
+| [shake_time](shake_time.md) |  |
+| [shaker_selection](shaker_selection.md) |  |
+| [shaker_type](shaker_type.md) |  |
 | [size](size.md) |  |
+| [solvent](solvent.md) |  |
+| [volume](volume.md) |  |
 
 
 ## Enumerations
 
 | Enumeration | Description |
 | --- | --- |
+| [ContainerTypeEnum](ContainerTypeEnum.md) |  |
+| [ShakerTypeEnum](ShakerTypeEnum.md) |  |
+| [SolventEnum](SolventEnum.md) |  |
 
 
 ## Types

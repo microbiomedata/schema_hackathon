@@ -20,3 +20,10 @@ None &#8594;  <sub>1..1</sub> [QuantityValue](QuantityValue.md)
 ## Used by
 
  * [MatSampProc](MatSampProc.md)
+
+## Other properties
+
+|  |  |  |
+| --- | --- | --- |
+| **Aliases:** | | weighing-activity.weight |
+

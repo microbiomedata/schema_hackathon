@@ -19,6 +19,7 @@ None &#8594;  <sub>1..1</sub> [NamedThing](NamedThing.md)
 
 ## Used by
 
+ * [Dissolving](Dissolving.md)
  * [MatSampProc](MatSampProc.md)
 
 ## Other properties
@@ -26,5 +27,6 @@ None &#8594;  <sub>1..1</sub> [NamedThing](NamedThing.md)
 |  |  |  |
 | --- | --- | --- |
 | **Aliases:** | | weighing-activity.source_material |
-| **Examples:** | | Example(value='soil:1', description=None) |
+| **Examples:** | | Example(value='somextract:6', description=None) |
+|  | | Example(value='soil:1', description=None) |
 

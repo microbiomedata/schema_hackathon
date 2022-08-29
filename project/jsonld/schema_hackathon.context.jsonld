@@ -1,18 +1,38 @@
 {
-   "_comments": "Auto generated from schema_hackathon.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-08-29T17:52:06\n    Schema: monet_schema\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://example.com/monet_schema\n    description: A sandbox for modeling MONET sample processing activities\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
+   "_comments": "Auto generated from schema_hackathon.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-08-29T18:40:10\n    Schema: monet_schema\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://example.com/monet_schema\n    description: A sandbox for modeling MONET sample processing activities\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
    "@context": {
+      "CHEBI": {
+         "@id": "http://purl.obolibrary.org/obo/CHEBI_",
+         "@prefix": true
+      },
+      "CHMO": {
+         "@id": "http://purl.obolibrary.org/obo/CHMO_",
+         "@prefix": true
+      },
       "OBI": {
          "@id": "http://purl.obolibrary.org/obo/OBI_",
          "@prefix": true
       },
       "linkml": "https://w3id.org/linkml/",
       "monet_schema": "http://example.com/monet_schema/",
+      "skos": "http://www.w3.org/2004/02/skos/core#",
       "@vocab": "http://example.com/monet_schema/",
       "amount": {
          "@type": "@id"
       },
       "collected_into": {
          "@type": "@id"
+      },
+      "container": {
+         "@type": "@id"
+      },
+      "container_type": {
+         "@context": {
+            "@vocab": "@null",
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         }
       },
       "has_value": {
          "@type": "xsd:float"
@@ -24,8 +44,39 @@
       "material_output": {
          "@type": "@id"
       },
+      "shake_speed": {
+         "@type": "@id"
+      },
+      "shake_time": {
+         "@type": "@id"
+      },
+      "shaker_selection": {
+         "@type": "@id"
+      },
+      "shaker_type": {
+         "@context": {
+            "@vocab": "@null",
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         }
+      },
       "size": {
          "@type": "@id"
+      },
+      "solvent": {
+         "@context": {
+            "@vocab": "@null",
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         }
+      },
+      "volume": {
+         "@type": "@id"
+      },
+      "Dissolving": {
+         "@id": "CHMO:0002773"
       },
       "MatSampProc": {
          "@id": "OBI:0000744"

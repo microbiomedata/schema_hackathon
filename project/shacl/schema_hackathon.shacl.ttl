@@ -1,3 +1,4 @@
+@prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
 @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix monet_schema: <http://example.com/monet_schema/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -14,6 +15,52 @@ monet_schema:MaterialEntity a sh:NodeShape ;
             sh:path monet_schema:id ] ;
     sh:targetClass monet_schema:MaterialEntity .
 
+CHMO:0002773 a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:name "Dissolving" ;
+    sh:property [ sh:in ( "deionized_water" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "solvent" ;
+            sh:order 4 ;
+            sh:path monet_schema:solvent ],
+        [ sh:class monet_schema:MaterialContainer ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 2 ;
+            sh:path monet_schema:container ],
+        [ sh:class monet_schema:NamedThing ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "material input" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path monet_schema:material_input ],
+        [ sh:class monet_schema:QuantityValue ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "volume" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 5 ;
+            sh:path monet_schema:volume ],
+        [ sh:class monet_schema:NamedThing ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "material output" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path monet_schema:material_output ],
+        [ sh:class monet_schema:Shaker ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "shaker selection" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 3 ;
+            sh:path monet_schema:shaker_selection ] ;
+    sh:targetClass CHMO:0002773 .
+
 OBI:0000744 a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -21,47 +68,73 @@ OBI:0000744 a sh:NodeShape ;
     sh:property [ sh:class monet_schema:NamedThing ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
+            sh:name "material output" ;
             sh:nodeKind sh:IRI ;
             sh:order 2 ;
-            sh:path monet_schema:material_input ],
-        [ sh:class monet_schema:MaterialContainer ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:name "collected into" ;
-            sh:nodeKind sh:BlankNode ;
-            sh:order 1 ;
-            sh:path monet_schema:collected_into ],
-        [ sh:class monet_schema:NamedThing ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 3 ;
             sh:path monet_schema:material_output ],
         [ sh:class monet_schema:QuantityValue ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "amount" ;
             sh:nodeKind sh:BlankNode ;
+            sh:order 3 ;
+            sh:path monet_schema:amount ],
+        [ sh:class monet_schema:MaterialContainer ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "collected into" ;
+            sh:nodeKind sh:BlankNode ;
             sh:order 0 ;
-            sh:path monet_schema:amount ] ;
+            sh:path monet_schema:collected_into ],
+        [ sh:class monet_schema:NamedThing ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "material input" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path monet_schema:material_input ] ;
     sh:targetClass OBI:0000744 .
+
+monet_schema:Shaker a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:name "Shaker" ;
+    sh:property [ sh:class monet_schema:QuantityValue ;
+            sh:maxCount 1 ;
+            sh:name "shake speed" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 0 ;
+            sh:path monet_schema:shake_speed ],
+        [ sh:class monet_schema:QuantityValue ;
+            sh:maxCount 1 ;
+            sh:name "shake time" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 1 ;
+            sh:path monet_schema:shake_time ],
+        [ sh:in ( "orbital" ) ;
+            sh:maxCount 1 ;
+            sh:name "shaker type" ;
+            sh:order 2 ;
+            sh:path monet_schema:shaker_type ] ;
+    sh:targetClass monet_schema:Shaker .
 
 monet_schema:MaterialContainer a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Material container" ;
-    sh:property [ sh:class monet_schema:QuantityValue ;
+    sh:property [ sh:in ( "screw_top_conical" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "container type" ;
+            sh:order 0 ;
+            sh:path monet_schema:container_type ],
+        [ sh:class monet_schema:QuantityValue ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "size" ;
             sh:nodeKind sh:BlankNode ;
             sh:order 1 ;
-            sh:path monet_schema:size ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:name "container type" ;
-            sh:order 0 ;
-            sh:path monet_schema:container_type ] ;
+            sh:path monet_schema:size ] ;
     sh:targetClass monet_schema:MaterialContainer .
 
 monet_schema:NamedThing a sh:NodeShape ;
@@ -80,12 +153,12 @@ monet_schema:QuantityValue a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "has value" ;
-            sh:order 1 ;
+            sh:order 0 ;
             sh:path monet_schema:has_value ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "has unit" ;
-            sh:order 0 ;
+            sh:order 1 ;
             sh:path monet_schema:has_unit ] ;
     sh:targetClass monet_schema:QuantityValue .
 

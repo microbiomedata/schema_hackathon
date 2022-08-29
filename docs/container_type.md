@@ -9,7 +9,7 @@ URI: [http://example.com/monet_schema/container_type](http://example.com/monet_s
 
 ## Properties
 
- * Range: [xsd:string](xsd:string)
+ * Range: [ContainerTypeEnum](ContainerTypeEnum.md)
 
 
 

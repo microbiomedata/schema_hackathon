@@ -26,7 +26,7 @@ URI: [monet_schema:MaterialContainer](http://example.com/monet_schema/MaterialCo
 
 | Name | Cardinality and Range  | Description  |
 | ---  | ---  | --- |
-| [container_type](container_type.md) | 1..1 <br/> [xsd:string](xsd:string)  |   |
+| [container_type](container_type.md) | 1..1 <br/> [ContainerTypeEnum](ContainerTypeEnum.md)  |   |
 | [size](size.md) | 1..1 <br/> [QuantityValue](QuantityValue.md)  |   |
 
 
@@ -36,6 +36,7 @@ URI: [monet_schema:MaterialContainer](http://example.com/monet_schema/MaterialCo
 | used by | used in | type | used |
 | ---  | --- | --- | --- |
 | [MatSampProc](MatSampProc.md) | [collected_into](collected_into.md) | range | MaterialContainer |
+| [Dissolving](Dissolving.md) | [container](container.md) | range | MaterialContainer |
 
 
 
@@ -103,7 +104,7 @@ attributes:
     owner: MaterialContainer
     domain_of:
     - MaterialContainer
-    range: string
+    range: ContainerTypeEnum
     required: true
   size:
     name: size
@@ -116,6 +117,7 @@ attributes:
     - MaterialContainer
     range: QuantityValue
     required: true
+    inlined: true
     inlined_as_list: true
 
 ```

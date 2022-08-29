@@ -26,8 +26,8 @@ URI: [monet_schema:QuantityValue](http://example.com/monet_schema/QuantityValue)
 
 | Name | Cardinality and Range  | Description  |
 | ---  | ---  | --- |
-| [has_unit](has_unit.md) | 1..1 <br/> [xsd:string](xsd:string)  |   |
 | [has_value](has_value.md) | 1..1 <br/> [xsd:float](xsd:float)  |   |
+| [has_unit](has_unit.md) | 1..1 <br/> [xsd:string](xsd:string)  |   |
 
 
 ## Usages
@@ -35,8 +35,11 @@ URI: [monet_schema:QuantityValue](http://example.com/monet_schema/QuantityValue)
 
 | used by | used in | type | used |
 | ---  | --- | --- | --- |
-| [MaterialContainer](MaterialContainer.md) | [size](size.md) | range | QuantityValue |
 | [MatSampProc](MatSampProc.md) | [amount](amount.md) | range | QuantityValue |
+| [Dissolving](Dissolving.md) | [volume](volume.md) | range | QuantityValue |
+| [MaterialContainer](MaterialContainer.md) | [size](size.md) | range | QuantityValue |
+| [Shaker](Shaker.md) | [shake_speed](shake_speed.md) | range | QuantityValue |
+| [Shaker](Shaker.md) | [shake_time](shake_time.md) | range | QuantityValue |
 
 
 
@@ -80,8 +83,8 @@ title: Quantity value
 from_schema: http://example.com/monet_schema
 rank: 1000
 slots:
-- has_unit
 - has_value
+- has_unit
 
 ```
 </details>
@@ -95,17 +98,6 @@ title: Quantity value
 from_schema: http://example.com/monet_schema
 rank: 1000
 attributes:
-  has_unit:
-    name: has_unit
-    title: has unit
-    from_schema: http://example.com/monet_schema
-    rank: 1000
-    alias: has_unit
-    owner: QuantityValue
-    domain_of:
-    - QuantityValue
-    range: string
-    required: true
   has_value:
     name: has_value
     title: has value
@@ -116,6 +108,17 @@ attributes:
     domain_of:
     - QuantityValue
     range: float
+    required: true
+  has_unit:
+    name: has_unit
+    title: has unit
+    from_schema: http://example.com/monet_schema
+    rank: 1000
+    alias: has_unit
+    owner: QuantityValue
+    domain_of:
+    - QuantityValue
+    range: string
     required: true
 
 ```

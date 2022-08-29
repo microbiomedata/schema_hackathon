@@ -7,7 +7,7 @@
 URI: [monet_schema:NamedThing](http://example.com/monet_schema/NamedThing)
 
 
-[![img](https://yuml.me/diagram/nofunky;dir:TB/class/[MatSampProc]++-%20material_input%201..1>[NamedThing&#124;id:string],[MatSampProc]++-%20material_output%201..1>[NamedThing],[NamedThing]^-[MaterialEntity],[MaterialEntity],[MatSampProc])](https://yuml.me/diagram/nofunky;dir:TB/class/[MatSampProc]++-%20material_input%201..1>[NamedThing&#124;id:string],[MatSampProc]++-%20material_output%201..1>[NamedThing],[NamedThing]^-[MaterialEntity],[MaterialEntity],[MatSampProc])
+[![img](https://yuml.me/diagram/nofunky;dir:TB/class/[MatSampProc]++-%20material_input%201..1>[NamedThing&#124;id:string],[Dissolving]++-%20material_input%201..1>[NamedThing],[MatSampProc]++-%20material_output%201..1>[NamedThing],[Dissolving]++-%20material_output%201..1>[NamedThing],[NamedThing]^-[MaterialEntity],[MaterialEntity],[MatSampProc],[Dissolving])](https://yuml.me/diagram/nofunky;dir:TB/class/[MatSampProc]++-%20material_input%201..1>[NamedThing&#124;id:string],[Dissolving]++-%20material_input%201..1>[NamedThing],[MatSampProc]++-%20material_output%201..1>[NamedThing],[Dissolving]++-%20material_output%201..1>[NamedThing],[NamedThing]^-[MaterialEntity],[MaterialEntity],[MatSampProc],[Dissolving])
 
 ## Children
 
