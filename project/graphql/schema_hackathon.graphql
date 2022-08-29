@@ -1,11 +1,30 @@
-type Human
+type MaterialContainer
   {
-    eyeColor: String
-    humanFullName: String
+    containerType: String!
+    size: QuantityValue!
   }
 
-type Mammal
+type MaterialEntity
   {
-    eyeColor: String
+    id: String!
+  }
+
+type MatSampProc
+  {
+    amount: QuantityValue!
+    collectedInto: MaterialContainer!
+    materialInput: NamedThing!
+    materialOutput: NamedThing!
+  }
+
+type NamedThing
+  {
+    id: String!
+  }
+
+type QuantityValue
+  {
+    hasUnit: String!
+    hasValue: Float!
   }
 

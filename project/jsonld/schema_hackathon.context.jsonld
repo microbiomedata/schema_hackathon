@@ -1,8 +1,34 @@
 {
-   "_comments": "Auto generated from schema_hackathon.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-08-16T10:52:22\n    Schema: nmdc_hackathon_schema\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://example.com/hackschema\n    description: A sandbox for NMDC team members to hack the schema\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
+   "_comments": "Auto generated from schema_hackathon.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-08-29T17:52:06\n    Schema: monet_schema\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://example.com/monet_schema\n    description: A sandbox for modeling MONET sample processing activities\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
    "@context": {
-      "hackschema": "http://example.com/hackschema/",
+      "OBI": {
+         "@id": "http://purl.obolibrary.org/obo/OBI_",
+         "@prefix": true
+      },
       "linkml": "https://w3id.org/linkml/",
-      "@vocab": "http://example.com/hackschema/"
+      "monet_schema": "http://example.com/monet_schema/",
+      "@vocab": "http://example.com/monet_schema/",
+      "amount": {
+         "@type": "@id"
+      },
+      "collected_into": {
+         "@type": "@id"
+      },
+      "has_value": {
+         "@type": "xsd:float"
+      },
+      "id": "@id",
+      "material_input": {
+         "@type": "@id"
+      },
+      "material_output": {
+         "@type": "@id"
+      },
+      "size": {
+         "@type": "@id"
+      },
+      "MatSampProc": {
+         "@id": "OBI:0000744"
+      }
    }
 }

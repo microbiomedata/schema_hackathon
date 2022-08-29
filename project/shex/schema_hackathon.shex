@@ -1,4 +1,4 @@
-BASE <http://example.com/hackschema/>
+BASE <http://example.com/monet_schema/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
@@ -34,21 +34,46 @@ linkml:Objectidentifier IRI
 
 linkml:Nodeidentifier NONLITERAL
 
-<Human> CLOSED {
-    (  $<Human_tes> (  &<Mammal_tes> ;
-          rdf:type [ <Mammal> ] ? ;
-          <human_full_name> @linkml:String ?
+<MaterialContainer> CLOSED {
+    (  $<MaterialContainer_tes> (  <container_type> @linkml:String ;
+          <size> @<QuantityValue>
        ) ;
-       rdf:type [ <Human> ] ?
+       rdf:type [ <MaterialContainer> ] ?
     )
 }
 
-<Mammal>  (
+<MaterialEntity> CLOSED {
+    (  $<MaterialEntity_tes> (  &<NamedThing_tes> ;
+          rdf:type [ <NamedThing> ] ?
+       ) ;
+       rdf:type [ <MaterialEntity> ]
+    )
+}
+
+<MatSampProc> CLOSED {
+    (  $<MatSampProc_tes> (  <amount> @<QuantityValue> ;
+          <collected_into> @<MaterialContainer> ;
+          <material_input> @<NamedThing> ;
+          <material_output> @<NamedThing>
+       ) ;
+       rdf:type [ <http://purl.obolibrary.org/obo/OBI_0000744> ] ?
+    )
+}
+
+<NamedThing>  (
     CLOSED {
-       (  $<Mammal_tes> <eye_color> @linkml:String ? ;
-          rdf:type [ <Mammal> ] ?
+       (  $<NamedThing_tes> rdf:type . * ;
+          rdf:type [ <NamedThing> ]
        )
-    } OR @<Human>
+    } OR @<MaterialEntity>
 )
+
+<QuantityValue> CLOSED {
+    (  $<QuantityValue_tes> (  <has_unit> @linkml:String ;
+          <has_value> @linkml:Float
+       ) ;
+       rdf:type [ <QuantityValue> ] ?
+    )
+}
 
 

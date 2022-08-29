@@ -4,7 +4,7 @@
 
 
 
-URI: [my_datamodel:id](https://w3id.org/my_org/my_datamodelid)
+URI: [monet_schema:id](http://example.com/monet_schema/id)
 
 
 ## Domain and Range
@@ -19,13 +19,5 @@ None &#8594;  <sub>1..1</sub> [String](types/String.md)
 
 ## Used by
 
+ * [MaterialEntity](MaterialEntity.md)
  * [NamedThing](NamedThing.md)
- * [Organization](Organization.md)
- * [Person](Person.md)
-
-## Other properties
-
-|  |  |  |
-| --- | --- | --- |
-| **Mappings:** | | schema:identifier |
-

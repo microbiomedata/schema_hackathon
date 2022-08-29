@@ -2,20 +2,21 @@
 # Class: NamedThing
 
 
-A generic grouping for any identifiable entity
-
-URI: [my_datamodel:NamedThing](https://w3id.org/my_org/my_datamodelNamedThing)
 
 
-[![img](https://yuml.me/diagram/nofunky;dir:TB/class/[Person],[Organization],[NamedThing&#124;id:string;name:string%20%3F;description:string%20%3F;image:string%20%3F]^-[Person],[NamedThing]^-[Organization])](https://yuml.me/diagram/nofunky;dir:TB/class/[Person],[Organization],[NamedThing&#124;id:string;name:string%20%3F;description:string%20%3F;image:string%20%3F]^-[Person],[NamedThing]^-[Organization])
+URI: [monet_schema:NamedThing](http://example.com/monet_schema/NamedThing)
+
+
+[![img](https://yuml.me/diagram/nofunky;dir:TB/class/[MatSampProc]++-%20material_input%201..1>[NamedThing&#124;id:string],[MatSampProc]++-%20material_output%201..1>[NamedThing],[NamedThing]^-[MaterialEntity],[MaterialEntity],[MatSampProc])](https://yuml.me/diagram/nofunky;dir:TB/class/[MatSampProc]++-%20material_input%201..1>[NamedThing&#124;id:string],[MatSampProc]++-%20material_output%201..1>[NamedThing],[NamedThing]^-[MaterialEntity],[MaterialEntity],[MatSampProc])
 
 ## Children
 
- * [Organization](Organization.md) - An organization such as a company or university
- * [Person](Person.md) - A person (alive, dead, undead, or fictional).
+ * [MaterialEntity](MaterialEntity.md)
 
 ## Referenced by Class
 
+ *  **None** *[material_input](material_input.md)*  <sub>1..1</sub>  **[NamedThing](NamedThing.md)**
+ *  **None** *[material_output](material_output.md)*  <sub>1..1</sub>  **[NamedThing](NamedThing.md)**
 
 ## Attributes
 
@@ -24,16 +25,3 @@ URI: [my_datamodel:NamedThing](https://w3id.org/my_org/my_datamodelNamedThing)
 
  * [id](id.md)  <sub>1..1</sub>
      * Range: [String](types/String.md)
- * [name](name.md)  <sub>0..1</sub>
-     * Range: [String](types/String.md)
- * [description](description.md)  <sub>0..1</sub>
-     * Range: [String](types/String.md)
- * [image](image.md)  <sub>0..1</sub>
-     * Range: [String](types/String.md)
-
-## Other properties
-
-|  |  |  |
-| --- | --- | --- |
-| **Close Mappings:** | | schema:Thing |
-

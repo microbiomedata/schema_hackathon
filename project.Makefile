@@ -45,7 +45,24 @@ src/linkml/schema_hackathon.yaml:
 	$(RUN) sheets2linkml \
 		--gsheet-id 1sYpMyhCMzL6-JyvA6qlczf_vtNWybmuPvwoeqMUUiNo \
 		--output $@ \
-		schema prefixes classes_slots
+		--unique-slots \
+		--no-repair \
+		monet monet_schema monet_prefixes
+
+src/linkml/schema_hackathon_generated.yaml: src/linkml/schema_hackathon.yaml
+	$(RUN) gen-linkml \
+		--format yaml \
+		--no-materialize-attributes $< > $@
+
+#src/data/examples/weighing_data.json: src/data/examples/weighing_data.yaml
+#	$(RUN) linkml-convert -s src/linkml/schema_hackathon_generated.yaml -C TestClass $< -o $@
+
+#src/data/examples/test_data.json: src/data/examples/test_data.yaml
+#	$(RUN) linkml-convert -s src/linkml/schema_hackathon_generated.yaml -C TestClass $< -o $@
+
+src/data/examples/weighing_data.json: src/data/examples/weighing_data.yaml src/linkml/schema_hackathon_generated.yaml
+	$(RUN) linkml-convert -s src/linkml/schema_hackathon_generated.yaml -C MatSampProc $< -o $@
+
 
 schemasheets-related/output/nmdc_hackathon_schema.schema.json: schemasheets-related/output/nmdc_hackathon_schema.yaml
 	$(RUN) gen-json-schema \
@@ -69,10 +86,10 @@ highlight_curations: assets/NMDC_schema_slot_class_merged_with_filtered_rels.csv
 
 # Sujay and Mark experimenting with explicit Jinja2 templates
 
-$(DOCDIR):
-	mkdir -p $@
+#$(DOCDIR):
+#	mkdir -p $@
 
 # todo parameterize the templates directory ?
-gendoc: $(DOCDIR)
+templated_gendoc: $(DOCDIR)
 	cp $(SRC)/docs/*md $(DOCDIR) ; \
 	$(RUN) gen-doc -d $(DOCDIR) --template-directory doc_templates $(SOURCE_SCHEMA_PATH)

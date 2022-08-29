@@ -1,5 +1,5 @@
 
-# nmdc_hackathon_schema
+# monet_schema
 
 
 **metamodel version:** 1.7.0
@@ -7,23 +7,31 @@
 **version:** None
 
 
-A sandbox for NMDC team members to hack the schema
+A sandbox for modeling MONET sample processing activities
 
 
 ### Classes
 
- * [Mammal](Mammal.md)
-     * [Human](Human.md)
+ * [MatSampProc](MatSampProc.md)
+ * [MaterialContainer](MaterialContainer.md)
+ * [NamedThing](NamedThing.md)
+     * [MaterialEntity](MaterialEntity.md)
+ * [QuantityValue](QuantityValue.md)
 
 ### Mixins
 
 
 ### Slots
 
- * [eye_color](eye_color.md)
-     * [Mammal➞eye_color](Mammal_eye_color.md)
- * [human_full_name](human_full_name.md) - The word, words or phrase that the human's mother uses or used to get the attention of the human
-     * [Human➞human_full_name](Human_human_full_name.md)
+ * [amount](amount.md)
+ * [collected_into](collected_into.md)
+ * [container_type](container_type.md)
+ * [has_unit](has_unit.md)
+ * [has_value](has_value.md)
+ * [id](id.md)
+ * [material_input](material_input.md)
+ * [material_output](material_output.md)
+ * [size](size.md)
 
 ### Enums
 

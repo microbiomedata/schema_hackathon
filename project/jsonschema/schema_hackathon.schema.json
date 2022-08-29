@@ -1,41 +1,103 @@
 {
    "$defs": {
-      "Human": {
+      "MatSampProc": {
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "eye_color": {
-               "type": "string"
+            "amount": {
+               "$ref": "#/$defs/QuantityValue"
             },
-            "human_full_name": {
-               "description": "The word, words or phrase that the human's mother uses or used to get the attention of the human",
-               "type": "string"
+            "collected_into": {
+               "$ref": "#/$defs/MaterialContainer"
+            },
+            "material_input": {
+               "$ref": "#/$defs/NamedThing"
+            },
+            "material_output": {
+               "$ref": "#/$defs/NamedThing"
             }
          },
-         "required": [],
-         "title": "Human",
+         "required": [
+            "amount",
+            "collected_into",
+            "material_input",
+            "material_output"
+         ],
+         "title": "MatSampProc",
          "type": "object"
       },
-      "Mammal": {
+      "MaterialContainer": {
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "eye_color": {
+            "container_type": {
+               "type": "string"
+            },
+            "size": {
+               "$ref": "#/$defs/QuantityValue"
+            }
+         },
+         "required": [
+            "container_type",
+            "size"
+         ],
+         "title": "MaterialContainer",
+         "type": "object"
+      },
+      "MaterialEntity": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "id": {
                "type": "string"
             }
          },
-         "required": [],
-         "title": "Mammal",
+         "required": [
+            "id"
+         ],
+         "title": "MaterialEntity",
+         "type": "object"
+      },
+      "NamedThing": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "id": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "id"
+         ],
+         "title": "NamedThing",
+         "type": "object"
+      },
+      "QuantityValue": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "has_unit": {
+               "type": "string"
+            },
+            "has_value": {
+               "type": "number"
+            }
+         },
+         "required": [
+            "has_unit",
+            "has_value"
+         ],
+         "title": "QuantityValue",
          "type": "object"
       }
    },
-   "$id": "http://example.com/hackschema",
+   "$id": "http://example.com/monet_schema",
    "$schema": "http://json-schema.org/draft-07/schema#",
    "additionalProperties": true,
    "metamodel_version": "1.7.0",
    "properties": {},
    "required": [],
-   "title": "nmdc_hackathon_schema",
+   "title": "monet_schema",
    "type": "object",
    "version": null
 }

@@ -1,0 +1,236 @@
+name: monet_schema
+description: A sandbox for modeling MONET sample processing activities
+see_also:
+- https://gitlab.pnnl.gov/MoNET/analytical-processes/-/blob/main/organicmatterextraction.toml
+id: http://example.com/monet_schema
+prefixes:
+  monet_schema:
+    prefix_prefix: monet_schema
+    prefix_reference: http://example.com/monet_schema/
+  OBI:
+    prefix_prefix: OBI
+    prefix_reference: http://purl.obolibrary.org/obo/OBI_
+  linkml:
+    prefix_prefix: linkml
+    prefix_reference: https://w3id.org/linkml/
+  xsd:
+    prefix_prefix: xsd
+    prefix_reference: http://www.w3.org/2001/XMLSchema#
+  shex:
+    prefix_prefix: shex
+    prefix_reference: http://www.w3.org/ns/shex#
+default_prefix: monet_schema
+default_range: string
+types:
+  string:
+    name: string
+    description: A character string
+    from_schema: https://w3id.org/linkml/types
+    base: str
+    uri: xsd:string
+  integer:
+    name: integer
+    description: An integer
+    from_schema: https://w3id.org/linkml/types
+    base: int
+    uri: xsd:integer
+  boolean:
+    name: boolean
+    description: A binary (true or false) value
+    from_schema: https://w3id.org/linkml/types
+    base: Bool
+    uri: xsd:boolean
+    repr: bool
+  float:
+    name: float
+    description: A real number that conforms to the xsd:float specification
+    from_schema: https://w3id.org/linkml/types
+    base: float
+    uri: xsd:float
+  double:
+    name: double
+    description: A real number that conforms to the xsd:double specification
+    from_schema: https://w3id.org/linkml/types
+    base: float
+    uri: xsd:double
+  decimal:
+    name: decimal
+    description: A real number with arbitrary precision that conforms to the xsd:decimal
+      specification
+    from_schema: https://w3id.org/linkml/types
+    base: Decimal
+    uri: xsd:decimal
+  time:
+    name: time
+    description: A time object represents a (local) time of day, independent of any
+      particular day
+    notes:
+    - URI is dateTime because OWL reasoners do not work with straight date or time
+    from_schema: https://w3id.org/linkml/types
+    base: XSDTime
+    uri: xsd:dateTime
+    repr: str
+  date:
+    name: date
+    description: a date (year, month and day) in an idealized calendar
+    notes:
+    - URI is dateTime because OWL reasoners don't work with straight date or time
+    from_schema: https://w3id.org/linkml/types
+    base: XSDDate
+    uri: xsd:date
+    repr: str
+  datetime:
+    name: datetime
+    description: The combination of a date and time
+    from_schema: https://w3id.org/linkml/types
+    base: XSDDateTime
+    uri: xsd:dateTime
+    repr: str
+  date_or_datetime:
+    name: date_or_datetime
+    description: Either a date or a datetime
+    from_schema: https://w3id.org/linkml/types
+    base: str
+    uri: linkml:DateOrDatetime
+    repr: str
+  uriorcurie:
+    name: uriorcurie
+    description: a URI or a CURIE
+    from_schema: https://w3id.org/linkml/types
+    base: URIorCURIE
+    uri: xsd:anyURI
+    repr: str
+  uri:
+    name: uri
+    description: a complete URI
+    from_schema: https://w3id.org/linkml/types
+    base: URI
+    uri: xsd:anyURI
+    repr: str
+  ncname:
+    name: ncname
+    description: Prefix part of CURIE
+    from_schema: https://w3id.org/linkml/types
+    base: NCName
+    uri: xsd:string
+    repr: str
+  objectidentifier:
+    name: objectidentifier
+    description: A URI or CURIE that represents an object in the model.
+    comments:
+    - Used for inheritence and type checking
+    from_schema: https://w3id.org/linkml/types
+    base: ElementIdentifier
+    uri: shex:iri
+    repr: str
+  nodeidentifier:
+    name: nodeidentifier
+    description: A URI, CURIE or BNODE that represents a node in a model.
+    from_schema: https://w3id.org/linkml/types
+    base: NodeIdentifier
+    uri: shex:nonLiteral
+    repr: str
+slots:
+  container_type:
+    name: container_type
+    title: container type
+    from_schema: http://example.com/monet_schema
+    range: string
+    required: true
+  size:
+    name: size
+    title: size
+    from_schema: http://example.com/monet_schema
+    range: QuantityValue
+    required: true
+    inlined_as_list: true
+  amount:
+    name: amount
+    title: amount
+    from_schema: http://example.com/monet_schema
+    range: QuantityValue
+    required: true
+    inlined_as_list: true
+  collected_into:
+    name: collected_into
+    title: collected into
+    from_schema: http://example.com/monet_schema
+    range: MaterialContainer
+    required: true
+    inlined_as_list: true
+  material_input:
+    name: material_input
+    examples:
+    - value: soil:1
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - weighing-activity.source_material
+    range: NamedThing
+    required: true
+    inlined_as_list: true
+  material_output:
+    name: material_output
+    examples:
+    - value: somextract:6
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - weighing-activity.id
+    range: NamedThing
+    required: true
+    inlined_as_list: true
+  id:
+    name: id
+    from_schema: http://example.com/monet_schema
+    identifier: true
+    required: true
+  has_unit:
+    name: has_unit
+    title: has unit
+    from_schema: http://example.com/monet_schema
+    range: string
+    required: true
+  has_value:
+    name: has_value
+    title: has value
+    from_schema: http://example.com/monet_schema
+    range: float
+    required: true
+classes:
+  MaterialContainer:
+    name: MaterialContainer
+    title: Material container
+    from_schema: http://example.com/monet_schema
+    slots:
+    - container_type
+    - size
+  MaterialEntity:
+    name: MaterialEntity
+    title: Material entity
+    from_schema: http://example.com/monet_schema
+    is_a: NamedThing
+  MatSampProc:
+    name: MatSampProc
+    title: Material sampling process
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - weighing-activity
+    slots:
+    - amount
+    - collected_into
+    - material_input
+    - material_output
+    class_uri: OBI:0000744
+  NamedThing:
+    name: NamedThing
+    from_schema: http://example.com/monet_schema
+    slots:
+    - id
+  QuantityValue:
+    name: QuantityValue
+    title: Quantity value
+    from_schema: http://example.com/monet_schema
+    slots:
+    - has_unit
+    - has_value
+source_file: src/linkml/schema_hackathon.yaml
+

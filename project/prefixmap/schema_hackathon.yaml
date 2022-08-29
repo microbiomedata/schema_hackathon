@@ -1,4 +1,8 @@
 {
-   "hackschema": "http://example.com/hackschema/",
-   "linkml": "https://w3id.org/linkml/"
+   "OBI": "http://purl.obolibrary.org/obo/OBI_",
+   "linkml": "https://w3id.org/linkml/",
+   "monet_schema": "http://example.com/monet_schema/",
+   "MatSampProc": {
+      "@id": "OBI:0000744"
+   }
 }

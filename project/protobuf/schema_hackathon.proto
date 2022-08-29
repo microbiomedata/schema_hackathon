@@ -1,9 +1,25 @@
-message Human
+message MaterialContainer
  {
-  string eyeColor = 0
-  string humanFullName = 0
+  string containerType = 0
+  quantityValue size = 0
  }
-message Mammal
+message MaterialEntity
  {
-  string eyeColor = 0
+  string id = 0
+ }
+message MatSampProc
+ {
+  quantityValue amount = 0
+  materialContainer collectedInto = 0
+  namedThing materialInput = 0
+  namedThing materialOutput = 0
+ }
+message NamedThing
+ {
+  string id = 0
+ }
+message QuantityValue
+ {
+  string hasUnit = 0
+  float hasValue = 0
  }
