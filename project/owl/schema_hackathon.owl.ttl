@@ -21,7 +21,7 @@
         monet_schema:ReactionActivity ;
     dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
     rdfs:seeAlso "https://gitlab.pnnl.gov/MoNET/analytical-processes/-/blob/main/organicmatterextraction.toml" ;
-    linkml:generation_date "2022-09-07T12:05:44" ;
+    linkml:generation_date "2022-09-07T12:06:18" ;
     linkml:metamodel_version "1.7.0" ;
     linkml:source_file "schema_hackathon.yaml" ;
     linkml:source_file_date "2022-09-07T12:05:25" ;
@@ -32,17 +32,17 @@ monet_schema:Database a owl:Class,
     rdfs:label "Database" ;
     dcterms:title "database" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom monet_schema:MaterialSample ;
-            owl:onProperty monet_schema:material_sample_set ],
-        [ a owl:Restriction ;
             owl:allValuesFrom monet_schema:DissolvingProcess ;
             owl:onProperty monet_schema:dissolving_process_set ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom monet_schema:MaterialSamplingProcess ;
+            owl:onProperty monet_schema:material_sampling_process_set ],
         [ a owl:Restriction ;
             owl:allValuesFrom monet_schema:ReactionActivity ;
             owl:onProperty monet_schema:reaction_activity_set ],
         [ a owl:Restriction ;
-            owl:allValuesFrom monet_schema:MaterialSamplingProcess ;
-            owl:onProperty monet_schema:material_sampling_process_set ],
+            owl:allValuesFrom monet_schema:MaterialSample ;
+            owl:onProperty monet_schema:material_sample_set ],
         monet_schema:NamedThing .
 
 linkml:SubsetDefinition a owl:Class ;
@@ -241,12 +241,8 @@ monet_schema:DissolvingProcess a owl:Class,
     dcterms:title "Dissolving process" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass monet_schema:SolventEnum ;
-            owl:onProperty monet_schema:dissolution_reagent ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass monet_schema:MaterialSample ;
-            owl:onProperty monet_schema:material_output ],
+            owl:onClass monet_schema:MaterialContainer ;
+            owl:onProperty monet_schema:dissolved_in ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass monet_schema:QuantityValue ;
@@ -257,12 +253,16 @@ monet_schema:DissolvingProcess a owl:Class,
             owl:onProperty monet_schema:material_input ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
+            owl:onClass monet_schema:SolventEnum ;
+            owl:onProperty monet_schema:dissolution_reagent ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
             owl:onClass monet_schema:LabDevice ;
             owl:onProperty monet_schema:dissolution_aided_by ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass monet_schema:MaterialContainer ;
-            owl:onProperty monet_schema:dissolved_in ] ;
+            owl:onClass monet_schema:MaterialSample ;
+            owl:onProperty monet_schema:material_output ] ;
     skos:altLabel "dissolution-activity" ;
     skos:exactMatch CHMO:0002773 .
 
@@ -272,24 +272,24 @@ monet_schema:MaterialSamplingProcess a owl:Class,
     dcterms:title "Material sampling process" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass monet_schema:MaterialSample ;
-            owl:onProperty monet_schema:material_input ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass monet_schema:MaterialSample ;
-            owl:onProperty monet_schema:material_output ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
             owl:onClass monet_schema:MaterialContainer ;
             owl:onProperty monet_schema:collected_into ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass monet_schema:QuantityValue ;
+            owl:onProperty monet_schema:amount_collected ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass monet_schema:SamplingMethodEnum ;
             owl:onProperty monet_schema:sampling_method ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass monet_schema:QuantityValue ;
-            owl:onProperty monet_schema:amount_collected ] ;
+            owl:onClass monet_schema:MaterialSample ;
+            owl:onProperty monet_schema:material_input ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass monet_schema:MaterialSample ;
+            owl:onProperty monet_schema:material_output ] ;
     skos:altLabel "weighing-activity" ;
     skos:exactMatch OBI:0000744 .
 
@@ -312,6 +312,10 @@ monet_schema:ReactionActivity a owl:Class,
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass monet_schema:MaterialSample ;
+            owl:onProperty monet_schema:material_output ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass monet_schema:MaterialSample ;
             owl:onProperty monet_schema:material_input ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
@@ -324,11 +328,7 @@ monet_schema:ReactionActivity a owl:Class,
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass monet_schema:LabDevice ;
-            owl:onProperty monet_schema:reaction_aided_by ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass monet_schema:MaterialSample ;
-            owl:onProperty monet_schema:material_output ] ;
+            owl:onProperty monet_schema:reaction_aided_by ] ;
     skos:altLabel "reaction-activity" .
 
 monet_schema:SamplingMethodEnum a owl:Class,
@@ -376,20 +376,20 @@ monet_schema:LabDevice a owl:Class,
     dcterms:title "Lab device" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
+            owl:onClass monet_schema:DeviceTypeEnum ;
+            owl:onProperty monet_schema:device_type ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
             owl:onClass monet_schema:QuantityValue ;
-            owl:onProperty monet_schema:process_temperature ],
+            owl:onProperty monet_schema:process_time ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass monet_schema:QuantityValue ;
             owl:onProperty monet_schema:process_speed ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass monet_schema:DeviceTypeEnum ;
-            owl:onProperty monet_schema:device_type ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
             owl:onClass monet_schema:QuantityValue ;
-            owl:onProperty monet_schema:process_time ] .
+            owl:onProperty monet_schema:process_temperature ] .
 
 monet_schema:MaterialContainer a owl:Class,
         linkml:ClassDefinition ;
@@ -420,12 +420,12 @@ monet_schema:QuantityValue a owl:Class,
     dcterms:title "Quantity value" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty monet_schema:has_unit ],
+            owl:onClass linkml:Float ;
+            owl:onProperty monet_schema:has_value ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Float ;
-            owl:onProperty monet_schema:has_value ] .
+            owl:onClass linkml:String ;
+            owl:onProperty monet_schema:has_unit ] .
 
 linkml:SlotDefinition a owl:Class ;
     rdfs:label "slot_definition" .

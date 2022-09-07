@@ -1,5 +1,5 @@
 # Auto generated from schema_hackathon.yaml by pythongen.py version: 0.9.0
-# Generation date: 2022-09-07T12:05:49
+# Generation date: 2022-09-07T12:06:21
 # Schema: monet_schema
 #
 # id: http://example.com/monet_schema
