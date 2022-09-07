@@ -37,8 +37,8 @@ linkml:Nodeidentifier NONLITERAL
 <Database> CLOSED {
     (  $<Database_tes> (  &<NamedThing_tes> ;
           rdf:type [ <NamedThing> ] ? ;
-          <material_sample_set> @<MaterialSample> * ;
           <dissolving_process_set> @<DissolvingProcess> * ;
+          <material_sample_set> @<MaterialSample> * ;
           <material_sampling_process_set> @<MaterialSamplingProcess> * ;
           <reaction_activity_set> @<ReactionActivity> *
        ) ;
@@ -47,12 +47,12 @@ linkml:Nodeidentifier NONLITERAL
 }
 
 <DissolvingProcess> CLOSED {
-    (  $<DissolvingProcess_tes> (  <material_input> @<MaterialSample> ? ;
-          <material_output> @<MaterialSample> ? ;
-          <dissolution_aided_by> @<LabDevice> ? ;
+    (  $<DissolvingProcess_tes> (  <dissolution_aided_by> @<LabDevice> ? ;
           <dissolution_reagent> @<SolventEnum> ? ;
           <dissolution_volume> @<QuantityValue> ? ;
-          <dissolved_in> @<MaterialContainer> ?
+          <dissolved_in> @<MaterialContainer> ? ;
+          <material_input> @<MaterialSample> ? ;
+          <material_output> @<MaterialSample> ?
        ) ;
        rdf:type [ <http://purl.obolibrary.org/obo/CHMO_0002773> ] ?
     )
@@ -85,10 +85,10 @@ linkml:Nodeidentifier NONLITERAL
 }
 
 <MaterialSamplingProcess> CLOSED {
-    (  $<MaterialSamplingProcess_tes> (  <collected_into> @<MaterialContainer> ? ;
+    (  $<MaterialSamplingProcess_tes> (  <amount_collected> @<QuantityValue> ? ;
+          <collected_into> @<MaterialContainer> ? ;
           <material_input> @<MaterialSample> ? ;
           <material_output> @<MaterialSample> ? ;
-          <amount_collected> @<QuantityValue> ? ;
           <sampling_method> @<SamplingMethodEnum> ?
        ) ;
        rdf:type [ <http://purl.obolibrary.org/obo/OBI_0000744> ] ?
@@ -104,8 +104,8 @@ linkml:Nodeidentifier NONLITERAL
 )
 
 <QuantityValue> CLOSED {
-    (  $<QuantityValue_tes> (  <has_value> @linkml:Float ? ;
-          <has_unit> @linkml:String ?
+    (  $<QuantityValue_tes> (  <has_unit> @linkml:String ? ;
+          <has_value> @linkml:Float ?
        ) ;
        rdf:type [ <QuantityValue> ] ?
     )
@@ -114,9 +114,9 @@ linkml:Nodeidentifier NONLITERAL
 <ReactionActivity> CLOSED {
     (  $<ReactionActivity_tes> (  <material_input> @<MaterialSample> ? ;
           <material_output> @<MaterialSample> ? ;
-          <reaction_time> @<QuantityValue> ? ;
           <reaction_aided_by> @<LabDevice> ? ;
-          <reaction_temperature> @linkml:String ?
+          <reaction_temperature> @linkml:String ? ;
+          <reaction_time> @<QuantityValue> ?
        ) ;
        rdf:type [ <ReactionActivity> ] ?
     )

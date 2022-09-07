@@ -2,20 +2,20 @@ type Database
   {
     description: String
     id: String!
-    materialSampleSet: [MaterialSample]
     dissolvingProcessSet: [DissolvingProcess]
+    materialSampleSet: [MaterialSample]
     materialSamplingProcessSet: [MaterialSamplingProcess]
     reactionActivitySet: [ReactionActivity]
   }
 
 type DissolvingProcess
   {
-    materialInput: MaterialSample
-    materialOutput: MaterialSample
     dissolutionAidedBy: LabDevice
     dissolutionReagent: SolventEnum
     dissolutionVolume: QuantityValue
     dissolvedIn: MaterialContainer
+    materialInput: MaterialSample
+    materialOutput: MaterialSample
   }
 
 type LabDevice
@@ -40,10 +40,10 @@ type MaterialSample
 
 type MaterialSamplingProcess
   {
+    amountCollected: QuantityValue
     collectedInto: MaterialContainer
     materialInput: MaterialSample
     materialOutput: MaterialSample
-    amountCollected: QuantityValue
     samplingMethod: SamplingMethodEnum
   }
 
@@ -55,16 +55,16 @@ type NamedThing
 
 type QuantityValue
   {
-    hasValue: Float
     hasUnit: String
+    hasValue: Float
   }
 
 type ReactionActivity
   {
     materialInput: MaterialSample
     materialOutput: MaterialSample
-    reactionTime: QuantityValue
     reactionAidedBy: LabDevice
     reactionTemperature: String
+    reactionTime: QuantityValue
   }
 

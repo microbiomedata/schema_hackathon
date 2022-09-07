@@ -1,5 +1,5 @@
 # Auto generated from schema_hackathon.yaml by pythongen.py version: 0.9.0
-# Generation date: 2022-09-07T11:41:17
+# Generation date: 2022-09-07T12:05:49
 # Schema: monet_schema
 #
 # id: http://example.com/monet_schema
@@ -64,20 +64,14 @@ class DissolvingProcess(YAMLRoot):
     class_name: ClassVar[str] = "DissolvingProcess"
     class_model_uri: ClassVar[URIRef] = MONET_SCHEMA.DissolvingProcess
 
-    material_input: Optional[Union[str, MaterialSampleId]] = None
-    material_output: Optional[Union[str, MaterialSampleId]] = None
     dissolution_aided_by: Optional[Union[dict, "LabDevice"]] = None
     dissolution_reagent: Optional[Union[str, "SolventEnum"]] = None
     dissolution_volume: Optional[Union[dict, "QuantityValue"]] = None
     dissolved_in: Optional[Union[dict, "MaterialContainer"]] = None
+    material_input: Optional[Union[str, MaterialSampleId]] = None
+    material_output: Optional[Union[str, MaterialSampleId]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.material_input is not None and not isinstance(self.material_input, MaterialSampleId):
-            self.material_input = MaterialSampleId(self.material_input)
-
-        if self.material_output is not None and not isinstance(self.material_output, MaterialSampleId):
-            self.material_output = MaterialSampleId(self.material_output)
-
         if self.dissolution_aided_by is not None and not isinstance(self.dissolution_aided_by, LabDevice):
             self.dissolution_aided_by = LabDevice(**as_dict(self.dissolution_aided_by))
 
@@ -89,6 +83,12 @@ class DissolvingProcess(YAMLRoot):
 
         if self.dissolved_in is not None and not isinstance(self.dissolved_in, MaterialContainer):
             self.dissolved_in = MaterialContainer(**as_dict(self.dissolved_in))
+
+        if self.material_input is not None and not isinstance(self.material_input, MaterialSampleId):
+            self.material_input = MaterialSampleId(self.material_input)
+
+        if self.material_output is not None and not isinstance(self.material_output, MaterialSampleId):
+            self.material_output = MaterialSampleId(self.material_output)
 
         super().__post_init__(**kwargs)
 
@@ -154,13 +154,16 @@ class MaterialSamplingProcess(YAMLRoot):
     class_name: ClassVar[str] = "MaterialSamplingProcess"
     class_model_uri: ClassVar[URIRef] = MONET_SCHEMA.MaterialSamplingProcess
 
+    amount_collected: Optional[Union[dict, "QuantityValue"]] = None
     collected_into: Optional[Union[dict, MaterialContainer]] = None
     material_input: Optional[Union[str, MaterialSampleId]] = None
     material_output: Optional[Union[str, MaterialSampleId]] = None
-    amount_collected: Optional[Union[dict, "QuantityValue"]] = None
     sampling_method: Optional[Union[str, "SamplingMethodEnum"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.amount_collected is not None and not isinstance(self.amount_collected, QuantityValue):
+            self.amount_collected = QuantityValue(**as_dict(self.amount_collected))
+
         if self.collected_into is not None and not isinstance(self.collected_into, MaterialContainer):
             self.collected_into = MaterialContainer(**as_dict(self.collected_into))
 
@@ -169,9 +172,6 @@ class MaterialSamplingProcess(YAMLRoot):
 
         if self.material_output is not None and not isinstance(self.material_output, MaterialSampleId):
             self.material_output = MaterialSampleId(self.material_output)
-
-        if self.amount_collected is not None and not isinstance(self.amount_collected, QuantityValue):
-            self.amount_collected = QuantityValue(**as_dict(self.amount_collected))
 
         if self.sampling_method is not None and not isinstance(self.sampling_method, SamplingMethodEnum):
             self.sampling_method = SamplingMethodEnum(self.sampling_method)
@@ -213,8 +213,8 @@ class Database(NamedThing):
     class_model_uri: ClassVar[URIRef] = MONET_SCHEMA.Database
 
     id: Union[str, DatabaseId] = None
-    material_sample_set: Optional[Union[Dict[Union[str, MaterialSampleId], Union[dict, "MaterialSample"]], List[Union[dict, "MaterialSample"]]]] = empty_dict()
     dissolving_process_set: Optional[Union[Union[dict, "DissolvingProcess"], List[Union[dict, "DissolvingProcess"]]]] = empty_list()
+    material_sample_set: Optional[Union[Dict[Union[str, MaterialSampleId], Union[dict, "MaterialSample"]], List[Union[dict, "MaterialSample"]]]] = empty_dict()
     material_sampling_process_set: Optional[Union[Union[dict, "MaterialSamplingProcess"], List[Union[dict, "MaterialSamplingProcess"]]]] = empty_list()
     reaction_activity_set: Optional[Union[Union[dict, "ReactionActivity"], List[Union[dict, "ReactionActivity"]]]] = empty_list()
 
@@ -224,11 +224,11 @@ class Database(NamedThing):
         if not isinstance(self.id, DatabaseId):
             self.id = DatabaseId(self.id)
 
-        self._normalize_inlined_as_list(slot_name="material_sample_set", slot_type=MaterialSample, key_name="id", keyed=True)
-
         if not isinstance(self.dissolving_process_set, list):
             self.dissolving_process_set = [self.dissolving_process_set] if self.dissolving_process_set is not None else []
         self.dissolving_process_set = [v if isinstance(v, DissolvingProcess) else DissolvingProcess(**as_dict(v)) for v in self.dissolving_process_set]
+
+        self._normalize_inlined_as_list(slot_name="material_sample_set", slot_type=MaterialSample, key_name="id", keyed=True)
 
         if not isinstance(self.material_sampling_process_set, list):
             self.material_sampling_process_set = [self.material_sampling_process_set] if self.material_sampling_process_set is not None else []
@@ -270,15 +270,15 @@ class QuantityValue(YAMLRoot):
     class_name: ClassVar[str] = "QuantityValue"
     class_model_uri: ClassVar[URIRef] = MONET_SCHEMA.QuantityValue
 
-    has_value: Optional[float] = None
     has_unit: Optional[str] = None
+    has_value: Optional[float] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.has_value is not None and not isinstance(self.has_value, float):
-            self.has_value = float(self.has_value)
-
         if self.has_unit is not None and not isinstance(self.has_unit, str):
             self.has_unit = str(self.has_unit)
+
+        if self.has_value is not None and not isinstance(self.has_value, float):
+            self.has_value = float(self.has_value)
 
         super().__post_init__(**kwargs)
 
@@ -294,9 +294,9 @@ class ReactionActivity(YAMLRoot):
 
     material_input: Optional[Union[str, MaterialSampleId]] = None
     material_output: Optional[Union[str, MaterialSampleId]] = None
-    reaction_time: Optional[Union[dict, QuantityValue]] = None
     reaction_aided_by: Optional[Union[dict, LabDevice]] = None
     reaction_temperature: Optional[str] = None
+    reaction_time: Optional[Union[dict, QuantityValue]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.material_input is not None and not isinstance(self.material_input, MaterialSampleId):
@@ -305,14 +305,14 @@ class ReactionActivity(YAMLRoot):
         if self.material_output is not None and not isinstance(self.material_output, MaterialSampleId):
             self.material_output = MaterialSampleId(self.material_output)
 
-        if self.reaction_time is not None and not isinstance(self.reaction_time, QuantityValue):
-            self.reaction_time = QuantityValue(**as_dict(self.reaction_time))
-
         if self.reaction_aided_by is not None and not isinstance(self.reaction_aided_by, LabDevice):
             self.reaction_aided_by = LabDevice(**as_dict(self.reaction_aided_by))
 
         if self.reaction_temperature is not None and not isinstance(self.reaction_temperature, str):
             self.reaction_temperature = str(self.reaction_temperature)
+
+        if self.reaction_time is not None and not isinstance(self.reaction_time, QuantityValue):
+            self.reaction_time = QuantityValue(**as_dict(self.reaction_time))
 
         super().__post_init__(**kwargs)
 
@@ -355,23 +355,17 @@ class SolventEnum(EnumDefinitionImpl):
 class slots:
     pass
 
-slots.material_sample_set = Slot(uri=MONET_SCHEMA.material_sample_set, name="material_sample_set", curie=MONET_SCHEMA.curie('material_sample_set'),
-                   model_uri=MONET_SCHEMA.material_sample_set, domain=None, range=Optional[Union[Dict[Union[str, MaterialSampleId], Union[dict, MaterialSample]], List[Union[dict, MaterialSample]]]])
-
 slots.dissolving_process_set = Slot(uri=MONET_SCHEMA.dissolving_process_set, name="dissolving_process_set", curie=MONET_SCHEMA.curie('dissolving_process_set'),
                    model_uri=MONET_SCHEMA.dissolving_process_set, domain=None, range=Optional[Union[Union[dict, DissolvingProcess], List[Union[dict, DissolvingProcess]]]])
+
+slots.material_sample_set = Slot(uri=MONET_SCHEMA.material_sample_set, name="material_sample_set", curie=MONET_SCHEMA.curie('material_sample_set'),
+                   model_uri=MONET_SCHEMA.material_sample_set, domain=None, range=Optional[Union[Dict[Union[str, MaterialSampleId], Union[dict, MaterialSample]], List[Union[dict, MaterialSample]]]])
 
 slots.material_sampling_process_set = Slot(uri=MONET_SCHEMA.material_sampling_process_set, name="material_sampling_process_set", curie=MONET_SCHEMA.curie('material_sampling_process_set'),
                    model_uri=MONET_SCHEMA.material_sampling_process_set, domain=None, range=Optional[Union[Union[dict, MaterialSamplingProcess], List[Union[dict, MaterialSamplingProcess]]]])
 
 slots.reaction_activity_set = Slot(uri=MONET_SCHEMA.reaction_activity_set, name="reaction_activity_set", curie=MONET_SCHEMA.curie('reaction_activity_set'),
                    model_uri=MONET_SCHEMA.reaction_activity_set, domain=None, range=Optional[Union[Union[dict, ReactionActivity], List[Union[dict, ReactionActivity]]]])
-
-slots.material_input = Slot(uri=MONET_SCHEMA.material_input, name="material_input", curie=MONET_SCHEMA.curie('material_input'),
-                   model_uri=MONET_SCHEMA.material_input, domain=None, range=Optional[Union[str, MaterialSampleId]])
-
-slots.material_output = Slot(uri=MONET_SCHEMA.material_output, name="material_output", curie=MONET_SCHEMA.curie('material_output'),
-                   model_uri=MONET_SCHEMA.material_output, domain=None, range=Optional[Union[str, MaterialSampleId]])
 
 slots.dissolution_aided_by = Slot(uri=MONET_SCHEMA.dissolution_aided_by, name="dissolution_aided_by", curie=MONET_SCHEMA.curie('dissolution_aided_by'),
                    model_uri=MONET_SCHEMA.dissolution_aided_by, domain=None, range=Optional[Union[dict, LabDevice]])
@@ -384,6 +378,12 @@ slots.dissolution_volume = Slot(uri=MONET_SCHEMA.dissolution_volume, name="disso
 
 slots.dissolved_in = Slot(uri=MONET_SCHEMA.dissolved_in, name="dissolved_in", curie=MONET_SCHEMA.curie('dissolved_in'),
                    model_uri=MONET_SCHEMA.dissolved_in, domain=None, range=Optional[Union[dict, MaterialContainer]])
+
+slots.material_input = Slot(uri=MONET_SCHEMA.material_input, name="material_input", curie=MONET_SCHEMA.curie('material_input'),
+                   model_uri=MONET_SCHEMA.material_input, domain=None, range=Optional[Union[str, MaterialSampleId]])
+
+slots.material_output = Slot(uri=MONET_SCHEMA.material_output, name="material_output", curie=MONET_SCHEMA.curie('material_output'),
+                   model_uri=MONET_SCHEMA.material_output, domain=None, range=Optional[Union[str, MaterialSampleId]])
 
 slots.device_type = Slot(uri=MONET_SCHEMA.device_type, name="device_type", curie=MONET_SCHEMA.curie('device_type'),
                    model_uri=MONET_SCHEMA.device_type, domain=None, range=Optional[Union[str, "DeviceTypeEnum"]])
@@ -403,11 +403,11 @@ slots.container_size = Slot(uri=MONET_SCHEMA.container_size, name="container_siz
 slots.container_type = Slot(uri=MONET_SCHEMA.container_type, name="container_type", curie=MONET_SCHEMA.curie('container_type'),
                    model_uri=MONET_SCHEMA.container_type, domain=None, range=Optional[Union[str, "ContainerTypeEnum"]])
 
-slots.collected_into = Slot(uri=MONET_SCHEMA.collected_into, name="collected_into", curie=MONET_SCHEMA.curie('collected_into'),
-                   model_uri=MONET_SCHEMA.collected_into, domain=None, range=Optional[Union[dict, MaterialContainer]])
-
 slots.amount_collected = Slot(uri=MONET_SCHEMA.amount_collected, name="amount_collected", curie=MONET_SCHEMA.curie('amount_collected'),
                    model_uri=MONET_SCHEMA.amount_collected, domain=None, range=Optional[Union[dict, QuantityValue]])
+
+slots.collected_into = Slot(uri=MONET_SCHEMA.collected_into, name="collected_into", curie=MONET_SCHEMA.curie('collected_into'),
+                   model_uri=MONET_SCHEMA.collected_into, domain=None, range=Optional[Union[dict, MaterialContainer]])
 
 slots.sampling_method = Slot(uri=MONET_SCHEMA.sampling_method, name="sampling_method", curie=MONET_SCHEMA.curie('sampling_method'),
                    model_uri=MONET_SCHEMA.sampling_method, domain=None, range=Optional[Union[str, "SamplingMethodEnum"]])
@@ -418,17 +418,17 @@ slots.description = Slot(uri=MONET_SCHEMA.description, name="description", curie
 slots.id = Slot(uri=MONET_SCHEMA.id, name="id", curie=MONET_SCHEMA.curie('id'),
                    model_uri=MONET_SCHEMA.id, domain=None, range=URIRef)
 
-slots.has_value = Slot(uri=MONET_SCHEMA.has_value, name="has_value", curie=MONET_SCHEMA.curie('has_value'),
-                   model_uri=MONET_SCHEMA.has_value, domain=None, range=Optional[float])
-
 slots.has_unit = Slot(uri=MONET_SCHEMA.has_unit, name="has_unit", curie=MONET_SCHEMA.curie('has_unit'),
                    model_uri=MONET_SCHEMA.has_unit, domain=None, range=Optional[str])
 
-slots.reaction_time = Slot(uri=MONET_SCHEMA.reaction_time, name="reaction_time", curie=MONET_SCHEMA.curie('reaction_time'),
-                   model_uri=MONET_SCHEMA.reaction_time, domain=None, range=Optional[Union[dict, QuantityValue]])
+slots.has_value = Slot(uri=MONET_SCHEMA.has_value, name="has_value", curie=MONET_SCHEMA.curie('has_value'),
+                   model_uri=MONET_SCHEMA.has_value, domain=None, range=Optional[float])
 
 slots.reaction_aided_by = Slot(uri=MONET_SCHEMA.reaction_aided_by, name="reaction_aided_by", curie=MONET_SCHEMA.curie('reaction_aided_by'),
                    model_uri=MONET_SCHEMA.reaction_aided_by, domain=None, range=Optional[Union[dict, LabDevice]])
 
 slots.reaction_temperature = Slot(uri=MONET_SCHEMA.reaction_temperature, name="reaction_temperature", curie=MONET_SCHEMA.curie('reaction_temperature'),
                    model_uri=MONET_SCHEMA.reaction_temperature, domain=None, range=Optional[str])
+
+slots.reaction_time = Slot(uri=MONET_SCHEMA.reaction_time, name="reaction_time", curie=MONET_SCHEMA.curie('reaction_time'),
+                   model_uri=MONET_SCHEMA.reaction_time, domain=None, range=Optional[Union[dict, QuantityValue]])

@@ -1,5 +1,34 @@
 {
   "id": "monet_data:database1",
+  "dissolving_process_set": [
+    {
+      "dissolution_aided_by": {
+        "device_type": "orbital_shaker",
+        "process_speed": {
+          "has_unit": "RPM",
+          "has_value": 800.0
+        },
+        "process_time": {
+          "has_unit": "hours",
+          "has_value": 2.0
+        }
+      },
+      "dissolution_reagent": "deionized_water",
+      "dissolution_volume": {
+        "has_unit": "mL",
+        "has_value": 30.0
+      },
+      "dissolved_in": {
+        "container_size": {
+          "has_unit": "mL",
+          "has_value": 50.0
+        },
+        "container_type": "screw_top_conical"
+      },
+      "material_input": "monet_data:somextract_6",
+      "material_output": "monet_data:somextract_7"
+    }
+  ],
   "material_sample_set": [
     {
       "id": "monet_data:soil_1",
@@ -22,50 +51,21 @@
       "description": "something at the end of a reaction"
     }
   ],
-  "dissolving_process_set": [
-    {
-      "material_input": "monet_data:somextract_6",
-      "material_output": "monet_data:somextract_7",
-      "dissolution_aided_by": {
-        "device_type": "orbital_shaker",
-        "process_speed": {
-          "has_value": 800.0,
-          "has_unit": "RPM"
-        },
-        "process_time": {
-          "has_value": 2.0,
-          "has_unit": "hours"
-        }
-      },
-      "dissolution_reagent": "deionized_water",
-      "dissolution_volume": {
-        "has_value": 30.0,
-        "has_unit": "mL"
-      },
-      "dissolved_in": {
-        "container_size": {
-          "has_value": 50.0,
-          "has_unit": "mL"
-        },
-        "container_type": "screw_top_conical"
-      }
-    }
-  ],
   "material_sampling_process_set": [
     {
+      "amount_collected": {
+        "has_unit": "grams",
+        "has_value": 6.0
+      },
       "collected_into": {
         "container_size": {
-          "has_value": 50.0,
-          "has_unit": "mL"
+          "has_unit": "mL",
+          "has_value": 50.0
         },
         "container_type": "screw_top_conical"
       },
       "material_input": "monet_data:soil_1",
       "material_output": "monet_data:somextract_6",
-      "amount_collected": {
-        "has_value": 6.0,
-        "has_unit": "grams"
-      },
       "sampling_method": "weighing"
     }
   ],
@@ -76,12 +76,12 @@
       "reaction_aided_by": {
         "device_type": "thermomixer",
         "process_temperature": {
-          "has_value": 37.0,
-          "has_unit": "degrees Celsius"
+          "has_unit": "degrees Celsius",
+          "has_value": 37.0
         },
         "process_time": {
-          "has_value": 1.5,
-          "has_unit": "hours"
+          "has_unit": "hours",
+          "has_value": 1.5
         }
       }
     }

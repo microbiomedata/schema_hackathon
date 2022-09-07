@@ -30,12 +30,12 @@ URI: [CHMO:0002773](http://purl.obolibrary.org/obo/CHMO_0002773)
 
 | Name | Cardinality and Range  | Description  |
 | ---  | ---  | --- |
-| [material_input](material_input.md) | 0..1 <br/> [MaterialSample](MaterialSample.md)  |   |
-| [material_output](material_output.md) | 0..1 <br/> [MaterialSample](MaterialSample.md)  |   |
 | [dissolution_aided_by](dissolution_aided_by.md) | 0..1 <br/> [LabDevice](LabDevice.md)  |   |
 | [dissolution_reagent](dissolution_reagent.md) | 0..1 <br/> [SolventEnum](SolventEnum.md)  |   |
 | [dissolution_volume](dissolution_volume.md) | 0..1 <br/> [QuantityValue](QuantityValue.md)  |   |
 | [dissolved_in](dissolved_in.md) | 0..1 <br/> [MaterialContainer](MaterialContainer.md)  |   |
+| [material_input](material_input.md) | 0..1 <br/> [MaterialSample](MaterialSample.md)  |   |
+| [material_output](material_output.md) | 0..1 <br/> [MaterialSample](MaterialSample.md)  |   |
 
 
 ## Usages
@@ -89,12 +89,12 @@ aliases:
 - dissolution-activity
 rank: 1000
 slots:
-- material_input
-- material_output
 - dissolution_aided_by
 - dissolution_reagent
 - dissolution_volume
 - dissolved_in
+- material_input
+- material_output
 class_uri: CHMO:0002773
 
 ```
@@ -111,40 +111,6 @@ aliases:
 - dissolution-activity
 rank: 1000
 attributes:
-  material_input:
-    name: material_input
-    title: material input
-    examples:
-    - value: somextract:6
-    - value: soil:1
-    from_schema: http://example.com/monet_schema
-    aliases:
-    - weighing-activity.source_material
-    rank: 1000
-    alias: material_input
-    owner: DissolvingProcess
-    domain_of:
-    - DissolvingProcess
-    - MaterialSamplingProcess
-    - ReactionActivity
-    range: MaterialSample
-  material_output:
-    name: material_output
-    title: material output
-    examples:
-    - value: somextract:7
-    - value: somextract:6
-    from_schema: http://example.com/monet_schema
-    aliases:
-    - weighing-activity.id
-    rank: 1000
-    alias: material_output
-    owner: DissolvingProcess
-    domain_of:
-    - DissolvingProcess
-    - MaterialSamplingProcess
-    - ReactionActivity
-    range: MaterialSample
   dissolution_aided_by:
     name: dissolution_aided_by
     title: dissolution aided by
@@ -196,6 +162,40 @@ attributes:
     - DissolvingProcess
     range: MaterialContainer
     inlined: true
+  material_input:
+    name: material_input
+    title: material input
+    examples:
+    - value: somextract:6
+    - value: soil:1
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - weighing-activity.source_material
+    rank: 1000
+    alias: material_input
+    owner: DissolvingProcess
+    domain_of:
+    - DissolvingProcess
+    - MaterialSamplingProcess
+    - ReactionActivity
+    range: MaterialSample
+  material_output:
+    name: material_output
+    title: material output
+    examples:
+    - value: somextract:7
+    - value: somextract:6
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - weighing-activity.id
+    rank: 1000
+    alias: material_output
+    owner: DissolvingProcess
+    domain_of:
+    - DissolvingProcess
+    - MaterialSamplingProcess
+    - ReactionActivity
+    range: MaterialSample
 class_uri: CHMO:0002773
 
 ```

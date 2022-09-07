@@ -2,19 +2,19 @@ message Database
  {
   string description = 0
   string id = 0
- repeated  materialSample materialSampleSet = 0
  repeated  dissolvingProcess dissolvingProcessSet = 0
+ repeated  materialSample materialSampleSet = 0
  repeated  materialSamplingProcess materialSamplingProcessSet = 0
  repeated  reactionActivity reactionActivitySet = 0
  }
 message DissolvingProcess
  {
-  materialSample materialInput = 0
-  materialSample materialOutput = 0
   labDevice dissolutionAidedBy = 0
   solventEnum dissolutionReagent = 0
   quantityValue dissolutionVolume = 0
   materialContainer dissolvedIn = 0
+  materialSample materialInput = 0
+  materialSample materialOutput = 0
  }
 message LabDevice
  {
@@ -35,10 +35,10 @@ message MaterialSample
  }
 message MaterialSamplingProcess
  {
+  quantityValue amountCollected = 0
   materialContainer collectedInto = 0
   materialSample materialInput = 0
   materialSample materialOutput = 0
-  quantityValue amountCollected = 0
   samplingMethodEnum samplingMethod = 0
  }
 message NamedThing
@@ -48,14 +48,14 @@ message NamedThing
  }
 message QuantityValue
  {
-  float hasValue = 0
   string hasUnit = 0
+  float hasValue = 0
  }
 message ReactionActivity
  {
   materialSample materialInput = 0
   materialSample materialOutput = 0
-  quantityValue reactionTime = 0
   labDevice reactionAidedBy = 0
   string reactionTemperature = 0
+  quantityValue reactionTime = 0
  }

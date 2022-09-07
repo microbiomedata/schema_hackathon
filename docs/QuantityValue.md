@@ -26,8 +26,8 @@ URI: [monet_schema:QuantityValue](http://example.com/monet_schema/QuantityValue)
 
 | Name | Cardinality and Range  | Description  |
 | ---  | ---  | --- |
-| [has_value](has_value.md) | 0..1 <br/> [xsd:float](xsd:float)  |   |
 | [has_unit](has_unit.md) | 0..1 <br/> [xsd:string](xsd:string)  |   |
+| [has_value](has_value.md) | 0..1 <br/> [xsd:float](xsd:float)  |   |
 
 
 ## Usages
@@ -85,8 +85,8 @@ title: Quantity value
 from_schema: http://example.com/monet_schema
 rank: 1000
 slots:
-- has_value
 - has_unit
+- has_value
 
 ```
 </details>
@@ -100,16 +100,6 @@ title: Quantity value
 from_schema: http://example.com/monet_schema
 rank: 1000
 attributes:
-  has_value:
-    name: has_value
-    title: has value
-    from_schema: http://example.com/monet_schema
-    rank: 1000
-    alias: has_value
-    owner: QuantityValue
-    domain_of:
-    - QuantityValue
-    range: float
   has_unit:
     name: has_unit
     title: has unit
@@ -120,6 +110,16 @@ attributes:
     domain_of:
     - QuantityValue
     range: string
+  has_value:
+    name: has_value
+    title: has value
+    from_schema: http://example.com/monet_schema
+    rank: 1000
+    alias: has_value
+    owner: QuantityValue
+    domain_of:
+    - QuantityValue
+    range: float
 
 ```
 </details>

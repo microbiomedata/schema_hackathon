@@ -1,0 +1,71 @@
+@prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix monet_data: <http://example.com/monet_data/> .
+@prefix monet_schema: <http://example.com/monet_schema/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+monet_data:database1 a monet_schema:Database ;
+    monet_schema:dissolving_process_set [ a CHMO:0002773 ;
+            monet_schema:dissolution_aided_by [ a monet_schema:LabDevice ;
+                    monet_schema:device_type "orbital_shaker" ;
+                    monet_schema:process_speed [ a monet_schema:QuantityValue ;
+                            monet_schema:has_unit "RPM" ;
+                            monet_schema:has_value "800.0"^^xsd:float ] ;
+                    monet_schema:process_time [ a monet_schema:QuantityValue ;
+                            monet_schema:has_unit "hours" ;
+                            monet_schema:has_value "2.0"^^xsd:float ] ] ;
+            monet_schema:dissolution_reagent "deionized_water" ;
+            monet_schema:dissolution_volume [ a monet_schema:QuantityValue ;
+                    monet_schema:has_unit "mL" ;
+                    monet_schema:has_value "30.0"^^xsd:float ] ;
+            monet_schema:dissolved_in [ a monet_schema:MaterialContainer ;
+                    monet_schema:container_size [ a monet_schema:QuantityValue ;
+                            monet_schema:has_unit "mL" ;
+                            monet_schema:has_value "50.0"^^xsd:float ] ;
+                    monet_schema:container_type "screw_top_conical" ] ;
+            monet_schema:material_input monet_data:somextract_6 ;
+            monet_schema:material_output monet_data:somextract_7 ] ;
+    monet_schema:material_sample_set monet_data:derive_4,
+        monet_data:derive_5,
+        monet_data:soil_1,
+        monet_data:somextract_6,
+        monet_data:somextract_7 ;
+    monet_schema:material_sampling_process_set [ a OBI:0000744 ;
+            monet_schema:amount_collected [ a monet_schema:QuantityValue ;
+                    monet_schema:has_unit "grams" ;
+                    monet_schema:has_value "6.0"^^xsd:float ] ;
+            monet_schema:collected_into [ a monet_schema:MaterialContainer ;
+                    monet_schema:container_size [ a monet_schema:QuantityValue ;
+                            monet_schema:has_unit "mL" ;
+                            monet_schema:has_value "50.0"^^xsd:float ] ;
+                    monet_schema:container_type "screw_top_conical" ] ;
+            monet_schema:material_input monet_data:soil_1 ;
+            monet_schema:material_output monet_data:somextract_6 ;
+            monet_schema:sampling_method "weighing" ] ;
+    monet_schema:reaction_activity_set [ a monet_schema:ReactionActivity ;
+            monet_schema:material_input monet_data:derive_4 ;
+            monet_schema:material_output monet_data:derive_5 ;
+            monet_schema:reaction_aided_by [ a monet_schema:LabDevice ;
+                    monet_schema:device_type "thermomixer" ;
+                    monet_schema:process_temperature [ a monet_schema:QuantityValue ;
+                            monet_schema:has_unit "degrees Celsius" ;
+                            monet_schema:has_value "37.0"^^xsd:float ] ;
+                    monet_schema:process_time [ a monet_schema:QuantityValue ;
+                            monet_schema:has_unit "hours" ;
+                            monet_schema:has_value "1.5"^^xsd:float ] ] ] .
+
+monet_data:derive_4 a monet_schema:MaterialSample ;
+    monet_schema:description "something at the beginning of a reaction" .
+
+monet_data:derive_5 a monet_schema:MaterialSample ;
+    monet_schema:description "something at the end of a reaction" .
+
+monet_data:soil_1 a monet_schema:MaterialSample ;
+    monet_schema:description "a soil biosample" .
+
+monet_data:somextract_7 a monet_schema:MaterialSample ;
+    monet_schema:description "monet_data:somextract_6 dissolved in 30 mL of water" .
+
+monet_data:somextract_6 a monet_schema:MaterialSample ;
+    monet_schema:description "a 6 gram aliquot of monet_data:soil_1" .
+

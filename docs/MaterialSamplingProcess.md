@@ -29,10 +29,10 @@ URI: [OBI:0000744](http://purl.obolibrary.org/obo/OBI_0000744)
 
 | Name | Cardinality and Range  | Description  |
 | ---  | ---  | --- |
+| [amount_collected](amount_collected.md) | 0..1 <br/> [QuantityValue](QuantityValue.md)  |   |
 | [collected_into](collected_into.md) | 0..1 <br/> [MaterialContainer](MaterialContainer.md)  |   |
 | [material_input](material_input.md) | 0..1 <br/> [MaterialSample](MaterialSample.md)  |   |
 | [material_output](material_output.md) | 0..1 <br/> [MaterialSample](MaterialSample.md)  |   |
-| [amount_collected](amount_collected.md) | 0..1 <br/> [QuantityValue](QuantityValue.md)  |   |
 | [sampling_method](sampling_method.md) | 0..1 <br/> [SamplingMethodEnum](SamplingMethodEnum.md)  |   |
 
 
@@ -87,10 +87,10 @@ aliases:
 - weighing-activity
 rank: 1000
 slots:
+- amount_collected
 - collected_into
 - material_input
 - material_output
-- amount_collected
 - sampling_method
 class_uri: OBI:0000744
 
@@ -108,6 +108,19 @@ aliases:
 - weighing-activity
 rank: 1000
 attributes:
+  amount_collected:
+    name: amount_collected
+    title: amount collected
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - weighing-activity.weight
+    rank: 1000
+    alias: amount_collected
+    owner: MaterialSamplingProcess
+    domain_of:
+    - MaterialSamplingProcess
+    range: QuantityValue
+    inlined: true
   collected_into:
     name: collected_into
     title: collected into
@@ -155,19 +168,6 @@ attributes:
     - MaterialSamplingProcess
     - ReactionActivity
     range: MaterialSample
-  amount_collected:
-    name: amount_collected
-    title: amount collected
-    from_schema: http://example.com/monet_schema
-    aliases:
-    - weighing-activity.weight
-    rank: 1000
-    alias: amount_collected
-    owner: MaterialSamplingProcess
-    domain_of:
-    - MaterialSamplingProcess
-    range: QuantityValue
-    inlined: true
   sampling_method:
     name: sampling_method
     title: sampling method

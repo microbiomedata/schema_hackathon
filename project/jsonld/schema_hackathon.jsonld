@@ -269,22 +269,6 @@
   ],
   "slots": [
     {
-      "name": "material_sample_set",
-      "definition_uri": "http://example.com/monet_schema/material_sample_set",
-      "title": "material sample set",
-      "from_schema": "http://example.com/monet_schema",
-      "slot_uri": "http://example.com/monet_schema/material_sample_set",
-      "multivalued": true,
-      "owner": "Database",
-      "domain_of": [
-        "Database"
-      ],
-      "range": "MaterialSample",
-      "inlined": true,
-      "inlined_as_list": true,
-      "@type": "SlotDefinition"
-    },
-    {
       "name": "dissolving_process_set",
       "definition_uri": "http://example.com/monet_schema/dissolving_process_set",
       "title": "dissolving process set",
@@ -296,6 +280,22 @@
         "Database"
       ],
       "range": "DissolvingProcess",
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "material_sample_set",
+      "definition_uri": "http://example.com/monet_schema/material_sample_set",
+      "title": "material sample set",
+      "from_schema": "http://example.com/monet_schema",
+      "slot_uri": "http://example.com/monet_schema/material_sample_set",
+      "multivalued": true,
+      "owner": "Database",
+      "domain_of": [
+        "Database"
+      ],
+      "range": "MaterialSample",
       "inlined": true,
       "inlined_as_list": true,
       "@type": "SlotDefinition"
@@ -329,62 +329,6 @@
       "range": "ReactionActivity",
       "inlined": true,
       "inlined_as_list": true,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "material_input",
-      "definition_uri": "http://example.com/monet_schema/material_input",
-      "title": "material input",
-      "examples": [
-        {
-          "value": "somextract:6",
-          "@type": "Example"
-        },
-        {
-          "value": "soil:1",
-          "@type": "Example"
-        }
-      ],
-      "from_schema": "http://example.com/monet_schema",
-      "aliases": [
-        "weighing-activity.source_material"
-      ],
-      "slot_uri": "http://example.com/monet_schema/material_input",
-      "owner": "ReactionActivity",
-      "domain_of": [
-        "DissolvingProcess",
-        "MaterialSamplingProcess",
-        "ReactionActivity"
-      ],
-      "range": "MaterialSample",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "material_output",
-      "definition_uri": "http://example.com/monet_schema/material_output",
-      "title": "material output",
-      "examples": [
-        {
-          "value": "somextract:7",
-          "@type": "Example"
-        },
-        {
-          "value": "somextract:6",
-          "@type": "Example"
-        }
-      ],
-      "from_schema": "http://example.com/monet_schema",
-      "aliases": [
-        "weighing-activity.id"
-      ],
-      "slot_uri": "http://example.com/monet_schema/material_output",
-      "owner": "ReactionActivity",
-      "domain_of": [
-        "DissolvingProcess",
-        "MaterialSamplingProcess",
-        "ReactionActivity"
-      ],
-      "range": "MaterialSample",
       "@type": "SlotDefinition"
     },
     {
@@ -452,6 +396,62 @@
       ],
       "range": "MaterialContainer",
       "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "material_input",
+      "definition_uri": "http://example.com/monet_schema/material_input",
+      "title": "material input",
+      "examples": [
+        {
+          "value": "somextract:6",
+          "@type": "Example"
+        },
+        {
+          "value": "soil:1",
+          "@type": "Example"
+        }
+      ],
+      "from_schema": "http://example.com/monet_schema",
+      "aliases": [
+        "weighing-activity.source_material"
+      ],
+      "slot_uri": "http://example.com/monet_schema/material_input",
+      "owner": "ReactionActivity",
+      "domain_of": [
+        "DissolvingProcess",
+        "MaterialSamplingProcess",
+        "ReactionActivity"
+      ],
+      "range": "MaterialSample",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "material_output",
+      "definition_uri": "http://example.com/monet_schema/material_output",
+      "title": "material output",
+      "examples": [
+        {
+          "value": "somextract:7",
+          "@type": "Example"
+        },
+        {
+          "value": "somextract:6",
+          "@type": "Example"
+        }
+      ],
+      "from_schema": "http://example.com/monet_schema",
+      "aliases": [
+        "weighing-activity.id"
+      ],
+      "slot_uri": "http://example.com/monet_schema/material_output",
+      "owner": "ReactionActivity",
+      "domain_of": [
+        "DissolvingProcess",
+        "MaterialSamplingProcess",
+        "ReactionActivity"
+      ],
+      "range": "MaterialSample",
       "@type": "SlotDefinition"
     },
     {
@@ -548,23 +548,6 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "collected_into",
-      "definition_uri": "http://example.com/monet_schema/collected_into",
-      "title": "collected into",
-      "from_schema": "http://example.com/monet_schema",
-      "aliases": [
-        "weighing-activity.contanier"
-      ],
-      "slot_uri": "http://example.com/monet_schema/collected_into",
-      "owner": "MaterialSamplingProcess",
-      "domain_of": [
-        "MaterialSamplingProcess"
-      ],
-      "range": "MaterialContainer",
-      "inlined": true,
-      "@type": "SlotDefinition"
-    },
-    {
       "name": "amount_collected",
       "definition_uri": "http://example.com/monet_schema/amount_collected",
       "title": "amount collected",
@@ -578,6 +561,23 @@
         "MaterialSamplingProcess"
       ],
       "range": "QuantityValue",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "collected_into",
+      "definition_uri": "http://example.com/monet_schema/collected_into",
+      "title": "collected into",
+      "from_schema": "http://example.com/monet_schema",
+      "aliases": [
+        "weighing-activity.contanier"
+      ],
+      "slot_uri": "http://example.com/monet_schema/collected_into",
+      "owner": "MaterialSamplingProcess",
+      "domain_of": [
+        "MaterialSamplingProcess"
+      ],
+      "range": "MaterialContainer",
       "inlined": true,
       "@type": "SlotDefinition"
     },
@@ -622,19 +622,6 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "has_value",
-      "definition_uri": "http://example.com/monet_schema/has_value",
-      "title": "has value",
-      "from_schema": "http://example.com/monet_schema",
-      "slot_uri": "http://example.com/monet_schema/has_value",
-      "owner": "QuantityValue",
-      "domain_of": [
-        "QuantityValue"
-      ],
-      "range": "float",
-      "@type": "SlotDefinition"
-    },
-    {
       "name": "has_unit",
       "definition_uri": "http://example.com/monet_schema/has_unit",
       "title": "has unit",
@@ -648,20 +635,16 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "reaction_time",
-      "definition_uri": "http://example.com/monet_schema/reaction_time",
-      "todos": [
-        "constrain units",
-        "align with process_time"
-      ],
+      "name": "has_value",
+      "definition_uri": "http://example.com/monet_schema/has_value",
+      "title": "has value",
       "from_schema": "http://example.com/monet_schema",
-      "slot_uri": "http://example.com/monet_schema/reaction_time",
-      "owner": "ReactionActivity",
+      "slot_uri": "http://example.com/monet_schema/has_value",
+      "owner": "QuantityValue",
       "domain_of": [
-        "ReactionActivity"
+        "QuantityValue"
       ],
-      "range": "QuantityValue",
-      "inlined": true,
+      "range": "float",
       "@type": "SlotDefinition"
     },
     {
@@ -692,6 +675,23 @@
       ],
       "range": "string",
       "@type": "SlotDefinition"
+    },
+    {
+      "name": "reaction_time",
+      "definition_uri": "http://example.com/monet_schema/reaction_time",
+      "todos": [
+        "constrain units",
+        "align with process_time"
+      ],
+      "from_schema": "http://example.com/monet_schema",
+      "slot_uri": "http://example.com/monet_schema/reaction_time",
+      "owner": "ReactionActivity",
+      "domain_of": [
+        "ReactionActivity"
+      ],
+      "range": "QuantityValue",
+      "inlined": true,
+      "@type": "SlotDefinition"
     }
   ],
   "classes": [
@@ -704,8 +704,8 @@
       "slots": [
         "description",
         "id",
-        "material_sample_set",
         "dissolving_process_set",
+        "material_sample_set",
         "material_sampling_process_set",
         "reaction_activity_set"
       ],
@@ -725,12 +725,12 @@
         "CHMO:0002773"
       ],
       "slots": [
-        "material_input",
-        "material_output",
         "dissolution_aided_by",
         "dissolution_reagent",
         "dissolution_volume",
-        "dissolved_in"
+        "dissolved_in",
+        "material_input",
+        "material_output"
       ],
       "slot_usage": {},
       "class_uri": "http://purl.obolibrary.org/obo/CHMO_0002773",
@@ -793,10 +793,10 @@
         "OBI:0000744"
       ],
       "slots": [
+        "amount_collected",
         "collected_into",
         "material_input",
         "material_output",
-        "amount_collected",
         "sampling_method"
       ],
       "slot_usage": {},
@@ -821,8 +821,8 @@
       "title": "Quantity value",
       "from_schema": "http://example.com/monet_schema",
       "slots": [
-        "has_value",
-        "has_unit"
+        "has_unit",
+        "has_value"
       ],
       "slot_usage": {},
       "class_uri": "http://example.com/monet_schema/QuantityValue",
@@ -839,9 +839,9 @@
       "slots": [
         "material_input",
         "material_output",
-        "reaction_time",
         "reaction_aided_by",
-        "reaction_temperature"
+        "reaction_temperature",
+        "reaction_time"
       ],
       "slot_usage": {},
       "class_uri": "http://example.com/monet_schema/ReactionActivity",
@@ -850,9 +850,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "schema_hackathon.yaml",
-  "source_file_date": "2022-09-07T11:39:41",
+  "source_file_date": "2022-09-07T12:05:25",
   "source_file_size": 6734,
-  "generation_date": "2022-09-07T11:41:15",
+  "generation_date": "2022-09-07T12:05:43",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/schema_hackathon.context.jsonld",

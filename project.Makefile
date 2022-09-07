@@ -9,7 +9,11 @@ SOURCE_SCHEMA_PATH = $(shell sh ./utils/get-value.sh source_schema_path)
 
 .PHONY: sheets_all sheets_clean
 
-sheets_all: sheets_clean src/linkml/schema_hackathon_generated.yaml src/data/examples/weighing_data.json src/data/examples/dissolving_data.json
+sheets_all: \
+sheets_clean \
+src/linkml/schema_hackathon_generated.yaml \
+src/data/examples/multi_class_database.json \
+src/data/examples/multi_class_database.ttl
 
 sheets_clean:
 	rm -rf schemasheets-related/output/nmdc_hackathon_schema.yaml
@@ -65,13 +69,10 @@ src/data/examples/weighing_data.json: src/data/examples/weighing_data.yaml src/l
 src/data/examples/dissolving_data.json: src/data/examples/dissolving_data.yaml src/linkml/schema_hackathon_generated.yaml
 	$(RUN) linkml-convert -s src/linkml/schema_hackathon_generated.yaml -C DissolvingProcess $< -o $@
 
-#src/data/examples/named_thing_data.json: src/data/examples/named_thing_data.yaml src/linkml/schema_hackathon_generated.yaml
-#	$(RUN) linkml-convert -s src/linkml/schema_hackathon_generated.yaml -C NamedThing $< -o $@
-
-#src/data/examples/named_thing_database.json: src/data/examples/named_thing_database.yaml src/linkml/schema_hackathon_generated.yaml
-#	$(RUN) linkml-convert -s src/linkml/schema_hackathon_generated.yaml -C Database $< -o $@
-
 src/data/examples/multi_class_database.json: src/data/examples/multi_class_database.yaml src/linkml/schema_hackathon_generated.yaml
+	$(RUN) linkml-convert -s src/linkml/schema_hackathon_generated.yaml -C Database $< -o $@
+
+src/data/examples/multi_class_database.ttl: src/data/examples/multi_class_database.yaml src/linkml/schema_hackathon_generated.yaml
 	$(RUN) linkml-convert -s src/linkml/schema_hackathon_generated.yaml -C Database $< -o $@
 
 src/data/examples/reaction_data.json: src/data/examples/reaction_data.yaml src/linkml/schema_hackathon_generated.yaml
@@ -79,17 +80,7 @@ src/data/examples/reaction_data.json: src/data/examples/reaction_data.yaml src/l
 
 
 
-#src/data/examples/weigh_dissolve_database.ttl: src/data/examples/multi_class_database.yaml src/linkml/schema_hackathon_generated.yaml
-#	$(RUN) linkml-convert -s src/linkml/schema_hackathon_generated.yaml -C Database $< -o $@
-#
-#src/linkml/schema_hackathon.ttl: src/linkml/schema_hackathon.yaml
-#	$(RUN) gen-owl \
-#		--output $@ \
-#		--metadata-profile rdfs \
-#		--no-type-objects \
-#		--no-metaclasses \
-#		--no-add-ols-annotations \
-#		--no-metadata  $<
+
 
 
 schemasheets-related/output/nmdc_hackathon_schema.schema.json: schemasheets-related/output/nmdc_hackathon_schema.yaml

@@ -1,5 +1,5 @@
 {
-   "_comments": "Auto generated from schema_hackathon.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-09-07T11:41:15\n    Schema: monet_schema\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://example.com/monet_schema\n    description: A sandbox for modeling MONET sample processing activities\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
+   "_comments": "Auto generated from schema_hackathon.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-09-07T12:05:43\n    Schema: monet_schema\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://example.com/monet_schema\n    description: A sandbox for modeling MONET sample processing activities\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
    "@context": {
       "CHEBI": {
          "@id": "http://purl.obolibrary.org/obo/CHEBI_",

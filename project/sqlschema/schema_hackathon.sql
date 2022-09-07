@@ -34,33 +34,33 @@ CREATE TABLE "NamedThing" (
 );
 
 CREATE TABLE "QuantityValue" (
-	has_value FLOAT, 
 	has_unit TEXT, 
-	PRIMARY KEY (has_value, has_unit)
+	has_value FLOAT, 
+	PRIMARY KEY (has_unit, has_value)
 );
 
 CREATE TABLE "DissolvingProcess" (
-	material_input TEXT, 
-	material_output TEXT, 
 	dissolution_aided_by TEXT, 
 	dissolution_reagent VARCHAR(15), 
 	dissolution_volume TEXT, 
 	dissolved_in TEXT, 
+	material_input TEXT, 
+	material_output TEXT, 
 	"Database_id" TEXT, 
-	PRIMARY KEY (material_input, material_output, dissolution_aided_by, dissolution_reagent, dissolution_volume, dissolved_in, "Database_id"), 
+	PRIMARY KEY (dissolution_aided_by, dissolution_reagent, dissolution_volume, dissolved_in, material_input, material_output, "Database_id"), 
 	FOREIGN KEY(material_input) REFERENCES "MaterialSample" (id), 
 	FOREIGN KEY(material_output) REFERENCES "MaterialSample" (id), 
 	FOREIGN KEY("Database_id") REFERENCES "Database" (id)
 );
 
 CREATE TABLE "MaterialSamplingProcess" (
+	amount_collected TEXT, 
 	collected_into TEXT, 
 	material_input TEXT, 
 	material_output TEXT, 
-	amount_collected TEXT, 
 	sampling_method VARCHAR(8), 
 	"Database_id" TEXT, 
-	PRIMARY KEY (collected_into, material_input, material_output, amount_collected, sampling_method, "Database_id"), 
+	PRIMARY KEY (amount_collected, collected_into, material_input, material_output, sampling_method, "Database_id"), 
 	FOREIGN KEY(material_input) REFERENCES "MaterialSample" (id), 
 	FOREIGN KEY(material_output) REFERENCES "MaterialSample" (id), 
 	FOREIGN KEY("Database_id") REFERENCES "Database" (id)
@@ -69,11 +69,11 @@ CREATE TABLE "MaterialSamplingProcess" (
 CREATE TABLE "ReactionActivity" (
 	material_input TEXT, 
 	material_output TEXT, 
-	reaction_time TEXT, 
 	reaction_aided_by TEXT, 
 	reaction_temperature TEXT, 
+	reaction_time TEXT, 
 	"Database_id" TEXT, 
-	PRIMARY KEY (material_input, material_output, reaction_time, reaction_aided_by, reaction_temperature, "Database_id"), 
+	PRIMARY KEY (material_input, material_output, reaction_aided_by, reaction_temperature, reaction_time, "Database_id"), 
 	FOREIGN KEY(material_input) REFERENCES "MaterialSample" (id), 
 	FOREIGN KEY(material_output) REFERENCES "MaterialSample" (id), 
 	FOREIGN KEY("Database_id") REFERENCES "Database" (id)

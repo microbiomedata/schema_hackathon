@@ -31,9 +31,9 @@ URI: [monet_schema:ReactionActivity](http://example.com/monet_schema/ReactionAct
 | ---  | ---  | --- |
 | [material_input](material_input.md) | 0..1 <br/> [MaterialSample](MaterialSample.md)  |   |
 | [material_output](material_output.md) | 0..1 <br/> [MaterialSample](MaterialSample.md)  |   |
-| [reaction_time](reaction_time.md) | 0..1 <br/> [QuantityValue](QuantityValue.md)  |   |
 | [reaction_aided_by](reaction_aided_by.md) | 0..1 <br/> [LabDevice](LabDevice.md)  |   |
 | [reaction_temperature](reaction_temperature.md) | 0..1 <br/> [xsd:string](xsd:string)  |   |
+| [reaction_time](reaction_time.md) | 0..1 <br/> [QuantityValue](QuantityValue.md)  |   |
 
 
 ## Usages
@@ -89,9 +89,9 @@ rank: 1000
 slots:
 - material_input
 - material_output
-- reaction_time
 - reaction_aided_by
 - reaction_temperature
+- reaction_time
 
 ```
 </details>
@@ -141,19 +141,6 @@ attributes:
     - MaterialSamplingProcess
     - ReactionActivity
     range: MaterialSample
-  reaction_time:
-    name: reaction_time
-    todos:
-    - constrain units
-    - align with process_time
-    from_schema: http://example.com/monet_schema
-    rank: 1000
-    alias: reaction_time
-    owner: ReactionActivity
-    domain_of:
-    - ReactionActivity
-    range: QuantityValue
-    inlined: true
   reaction_aided_by:
     name: reaction_aided_by
     title: reaction aided by
@@ -176,6 +163,19 @@ attributes:
     domain_of:
     - ReactionActivity
     range: string
+  reaction_time:
+    name: reaction_time
+    todos:
+    - constrain units
+    - align with process_time
+    from_schema: http://example.com/monet_schema
+    rank: 1000
+    alias: reaction_time
+    owner: ReactionActivity
+    domain_of:
+    - ReactionActivity
+    range: QuantityValue
+    inlined: true
 
 ```
 </details>

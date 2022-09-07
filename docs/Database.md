@@ -36,8 +36,8 @@ URI: [monet_schema:Database](http://example.com/monet_schema/Database)
 
 | Name | Cardinality and Range  | Description  |
 | ---  | ---  | --- |
-| [material_sample_set](material_sample_set.md) | 0..* <br/> [MaterialSample](MaterialSample.md)  |   |
 | [dissolving_process_set](dissolving_process_set.md) | 0..* <br/> [DissolvingProcess](DissolvingProcess.md)  |   |
+| [material_sample_set](material_sample_set.md) | 0..* <br/> [MaterialSample](MaterialSample.md)  |   |
 | [material_sampling_process_set](material_sampling_process_set.md) | 0..* <br/> [MaterialSamplingProcess](MaterialSamplingProcess.md)  |   |
 | [reaction_activity_set](reaction_activity_set.md) | 0..* <br/> [ReactionActivity](ReactionActivity.md)  |   |
 | [description](description.md) | 0..1 <br/> [xsd:string](xsd:string)  |   |
@@ -89,8 +89,8 @@ from_schema: http://example.com/monet_schema
 rank: 1000
 is_a: NamedThing
 slots:
-- material_sample_set
 - dissolving_process_set
+- material_sample_set
 - material_sampling_process_set
 - reaction_activity_set
 
@@ -107,18 +107,6 @@ from_schema: http://example.com/monet_schema
 rank: 1000
 is_a: NamedThing
 attributes:
-  material_sample_set:
-    name: material_sample_set
-    title: material sample set
-    from_schema: http://example.com/monet_schema
-    rank: 1000
-    multivalued: true
-    alias: material_sample_set
-    owner: Database
-    domain_of:
-    - Database
-    range: MaterialSample
-    inlined_as_list: true
   dissolving_process_set:
     name: dissolving_process_set
     title: dissolving process set
@@ -130,6 +118,18 @@ attributes:
     domain_of:
     - Database
     range: DissolvingProcess
+    inlined_as_list: true
+  material_sample_set:
+    name: material_sample_set
+    title: material sample set
+    from_schema: http://example.com/monet_schema
+    rank: 1000
+    multivalued: true
+    alias: material_sample_set
+    owner: Database
+    domain_of:
+    - Database
+    range: MaterialSample
     inlined_as_list: true
   material_sampling_process_set:
     name: material_sampling_process_set
