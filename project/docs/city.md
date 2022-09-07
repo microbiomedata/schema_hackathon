@@ -4,7 +4,7 @@
 
 
 
-URI: [my_datamodel:city](https://w3id.org/my_org/my_datamodelcity)
+URI: [ks:city](https://w3id.org/linkml/tests/kitchen_sink/city)
 
 
 ## Domain and Range

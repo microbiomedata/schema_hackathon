@@ -1,11 +1,9 @@
 # Auto generated from schema_hackathon.yaml by pythongen.py version: 0.9.0
-# Generation date: 2022-08-31T18:23:36
-# Schema: kitchen_sink
+# Generation date: 2022-09-07T11:41:17
+# Schema: monet_schema
 #
-# id: https://w3id.org/linkml/tests/kitchen_sink
-# description: Kitchen Sink Schema This schema does not do anything useful. It exists to test all features of
-#              linkml. This particular text field exists to demonstrate markdown within a text field: Lists: * a *
-#              b * c And links, e.g to [Person](Person.md)
+# id: http://example.com/monet_schema
+# description: A sandbox for modeling MONET sample processing activities
 # license: https://creativecommons.org/publicdomain/zero/1.0/
 
 import dataclasses
@@ -24,8 +22,7 @@ from linkml_runtime.utils.formatutils import camelcase, underscore, sfx
 from linkml_runtime.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml_runtime.utils.curienamespace import CurieNamespace
-from linkml_runtime.linkml_model.types import Boolean, Date, Integer, String
-from linkml_runtime.utils.metamodelcore import Bool, XSDDate
+from linkml_runtime.linkml_model.types import Float, String
 
 metamodel_version = "1.7.0"
 version = None
@@ -34,553 +31,171 @@ version = None
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
-A = CurieNamespace('A', 'http://example.org/activities/')
-BFO = CurieNamespace('BFO', 'http://purl.obolibrary.org/obo/BFO_')
-CODE = CurieNamespace('CODE', 'http://example.org/code/')
-P = CurieNamespace('P', 'http://example.org/person/')
-RO = CurieNamespace('RO', 'http://purl.obolibrary.org/obo/RO_')
-ROR = CurieNamespace('ROR', 'http://example.org/ror/')
-BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/')
-CORE = CurieNamespace('core', 'https://w3id.org/linkml/tests/core/')
-DCE = CurieNamespace('dce', 'http://purl.org/dc/elements/1.1/')
-KS = CurieNamespace('ks', 'https://w3id.org/linkml/tests/kitchen_sink/')
-LEGO = CurieNamespace('lego', 'http://geneontology.org/lego/')
+CHEBI = CurieNamespace('CHEBI', 'http://purl.obolibrary.org/obo/CHEBI_')
+CHMO = CurieNamespace('CHMO', 'http://purl.obolibrary.org/obo/CHMO_')
+OBI = CurieNamespace('OBI', 'http://purl.obolibrary.org/obo/OBI_')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
-PAV = CurieNamespace('pav', 'http://purl.org/pav/')
-PROV = CurieNamespace('prov', 'http://www.w3.org/ns/prov#')
-DEFAULT_ = KS
+MONET_DATA = CurieNamespace('monet_data', 'http://example.com/monet_data/')
+MONET_SCHEMA = CurieNamespace('monet_schema', 'http://example.com/monet_schema/')
+DEFAULT_ = MONET_SCHEMA
 
 
 # Types
 
 # Class references
-class PersonId(extended_str):
+class NamedThingId(extended_str):
     pass
 
 
-class OrganizationId(extended_str):
+class DatabaseId(NamedThingId):
     pass
 
 
-class PlaceId(extended_str):
-    pass
-
-
-class ConceptId(extended_str):
-    pass
-
-
-class DiagnosisConceptId(ConceptId):
-    pass
-
-
-class ProcedureConceptId(ConceptId):
-    pass
-
-
-class CompanyId(OrganizationId):
-    pass
-
-
-class ActivityId(extended_str):
-    pass
-
-
-class AgentId(extended_str):
+class MaterialSampleId(NamedThingId):
     pass
 
 
 @dataclass
-class HasAliases(YAMLRoot):
+class DissolvingProcess(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = KS.HasAliases
-    class_class_curie: ClassVar[str] = "ks:HasAliases"
-    class_name: ClassVar[str] = "HasAliases"
-    class_model_uri: ClassVar[URIRef] = KS.HasAliases
+    class_class_uri: ClassVar[URIRef] = CHMO["0002773"]
+    class_class_curie: ClassVar[str] = "CHMO:0002773"
+    class_name: ClassVar[str] = "DissolvingProcess"
+    class_model_uri: ClassVar[URIRef] = MONET_SCHEMA.DissolvingProcess
 
-    aliases: Optional[Union[str, List[str]]] = empty_list()
+    material_input: Optional[Union[str, MaterialSampleId]] = None
+    material_output: Optional[Union[str, MaterialSampleId]] = None
+    dissolution_aided_by: Optional[Union[dict, "LabDevice"]] = None
+    dissolution_reagent: Optional[Union[str, "SolventEnum"]] = None
+    dissolution_volume: Optional[Union[dict, "QuantityValue"]] = None
+    dissolved_in: Optional[Union[dict, "MaterialContainer"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if not isinstance(self.aliases, list):
-            self.aliases = [self.aliases] if self.aliases is not None else []
-        self.aliases = [v if isinstance(v, str) else str(v) for v in self.aliases]
+        if self.material_input is not None and not isinstance(self.material_input, MaterialSampleId):
+            self.material_input = MaterialSampleId(self.material_input)
+
+        if self.material_output is not None and not isinstance(self.material_output, MaterialSampleId):
+            self.material_output = MaterialSampleId(self.material_output)
+
+        if self.dissolution_aided_by is not None and not isinstance(self.dissolution_aided_by, LabDevice):
+            self.dissolution_aided_by = LabDevice(**as_dict(self.dissolution_aided_by))
+
+        if self.dissolution_reagent is not None and not isinstance(self.dissolution_reagent, SolventEnum):
+            self.dissolution_reagent = SolventEnum(self.dissolution_reagent)
+
+        if self.dissolution_volume is not None and not isinstance(self.dissolution_volume, QuantityValue):
+            self.dissolution_volume = QuantityValue(**as_dict(self.dissolution_volume))
+
+        if self.dissolved_in is not None and not isinstance(self.dissolved_in, MaterialContainer):
+            self.dissolved_in = MaterialContainer(**as_dict(self.dissolved_in))
 
         super().__post_init__(**kwargs)
 
 
 @dataclass
-class Person(YAMLRoot):
+class LabDevice(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = KS.Person
-    class_class_curie: ClassVar[str] = "ks:Person"
-    class_name: ClassVar[str] = "Person"
-    class_model_uri: ClassVar[URIRef] = KS.Person
+    class_class_uri: ClassVar[URIRef] = MONET_SCHEMA.LabDevice
+    class_class_curie: ClassVar[str] = "monet_schema:LabDevice"
+    class_name: ClassVar[str] = "LabDevice"
+    class_model_uri: ClassVar[URIRef] = MONET_SCHEMA.LabDevice
 
-    id: Union[str, PersonId] = None
-    name: Optional[str] = None
-    has_employment_history: Optional[Union[Union[dict, "EmploymentEvent"], List[Union[dict, "EmploymentEvent"]]]] = empty_list()
-    has_familial_relationships: Optional[Union[Union[dict, "FamilialRelationship"], List[Union[dict, "FamilialRelationship"]]]] = empty_list()
-    has_medical_history: Optional[Union[Union[dict, "MedicalEvent"], List[Union[dict, "MedicalEvent"]]]] = empty_list()
-    age_in_years: Optional[int] = None
-    addresses: Optional[Union[Union[dict, "Address"], List[Union[dict, "Address"]]]] = empty_list()
-    has_birth_event: Optional[Union[dict, "BirthEvent"]] = None
-    aliases: Optional[Union[str, List[str]]] = empty_list()
+    device_type: Optional[Union[str, "DeviceTypeEnum"]] = None
+    process_speed: Optional[Union[dict, "QuantityValue"]] = None
+    process_temperature: Optional[Union[dict, "QuantityValue"]] = None
+    process_time: Optional[Union[dict, "QuantityValue"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, PersonId):
-            self.id = PersonId(self.id)
+        if self.device_type is not None and not isinstance(self.device_type, DeviceTypeEnum):
+            self.device_type = DeviceTypeEnum(self.device_type)
 
-        if self.name is not None and not isinstance(self.name, str):
-            self.name = str(self.name)
+        if self.process_speed is not None and not isinstance(self.process_speed, QuantityValue):
+            self.process_speed = QuantityValue(**as_dict(self.process_speed))
 
-        if not isinstance(self.has_employment_history, list):
-            self.has_employment_history = [self.has_employment_history] if self.has_employment_history is not None else []
-        self.has_employment_history = [v if isinstance(v, EmploymentEvent) else EmploymentEvent(**as_dict(v)) for v in self.has_employment_history]
+        if self.process_temperature is not None and not isinstance(self.process_temperature, QuantityValue):
+            self.process_temperature = QuantityValue(**as_dict(self.process_temperature))
 
-        if not isinstance(self.has_familial_relationships, list):
-            self.has_familial_relationships = [self.has_familial_relationships] if self.has_familial_relationships is not None else []
-        self.has_familial_relationships = [v if isinstance(v, FamilialRelationship) else FamilialRelationship(**as_dict(v)) for v in self.has_familial_relationships]
-
-        if not isinstance(self.has_medical_history, list):
-            self.has_medical_history = [self.has_medical_history] if self.has_medical_history is not None else []
-        self.has_medical_history = [v if isinstance(v, MedicalEvent) else MedicalEvent(**as_dict(v)) for v in self.has_medical_history]
-
-        if self.age_in_years is not None and not isinstance(self.age_in_years, int):
-            self.age_in_years = int(self.age_in_years)
-
-        if not isinstance(self.addresses, list):
-            self.addresses = [self.addresses] if self.addresses is not None else []
-        self.addresses = [v if isinstance(v, Address) else Address(**as_dict(v)) for v in self.addresses]
-
-        if self.has_birth_event is not None and not isinstance(self.has_birth_event, BirthEvent):
-            self.has_birth_event = BirthEvent(**as_dict(self.has_birth_event))
-
-        if not isinstance(self.aliases, list):
-            self.aliases = [self.aliases] if self.aliases is not None else []
-        self.aliases = [v if isinstance(v, str) else str(v) for v in self.aliases]
+        if self.process_time is not None and not isinstance(self.process_time, QuantityValue):
+            self.process_time = QuantityValue(**as_dict(self.process_time))
 
         super().__post_init__(**kwargs)
 
 
 @dataclass
-class Organization(YAMLRoot):
+class MaterialContainer(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = KS.Organization
-    class_class_curie: ClassVar[str] = "ks:Organization"
-    class_name: ClassVar[str] = "Organization"
-    class_model_uri: ClassVar[URIRef] = KS.Organization
+    class_class_uri: ClassVar[URIRef] = MONET_SCHEMA.MaterialContainer
+    class_class_curie: ClassVar[str] = "monet_schema:MaterialContainer"
+    class_name: ClassVar[str] = "MaterialContainer"
+    class_model_uri: ClassVar[URIRef] = MONET_SCHEMA.MaterialContainer
 
-    id: Union[str, OrganizationId] = None
-    name: Optional[str] = None
-    aliases: Optional[Union[str, List[str]]] = empty_list()
+    container_size: Optional[Union[dict, "QuantityValue"]] = None
+    container_type: Optional[Union[str, "ContainerTypeEnum"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, OrganizationId):
-            self.id = OrganizationId(self.id)
+        if self.container_size is not None and not isinstance(self.container_size, QuantityValue):
+            self.container_size = QuantityValue(**as_dict(self.container_size))
 
-        if self.name is not None and not isinstance(self.name, str):
-            self.name = str(self.name)
-
-        if not isinstance(self.aliases, list):
-            self.aliases = [self.aliases] if self.aliases is not None else []
-        self.aliases = [v if isinstance(v, str) else str(v) for v in self.aliases]
+        if self.container_type is not None and not isinstance(self.container_type, ContainerTypeEnum):
+            self.container_type = ContainerTypeEnum(self.container_type)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass
-class Place(YAMLRoot):
+class MaterialSamplingProcess(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = KS.Place
-    class_class_curie: ClassVar[str] = "ks:Place"
-    class_name: ClassVar[str] = "Place"
-    class_model_uri: ClassVar[URIRef] = KS.Place
+    class_class_uri: ClassVar[URIRef] = OBI["0000744"]
+    class_class_curie: ClassVar[str] = "OBI:0000744"
+    class_name: ClassVar[str] = "MaterialSamplingProcess"
+    class_model_uri: ClassVar[URIRef] = MONET_SCHEMA.MaterialSamplingProcess
 
-    id: Union[str, PlaceId] = None
-    name: Optional[str] = None
-    aliases: Optional[Union[str, List[str]]] = empty_list()
+    collected_into: Optional[Union[dict, MaterialContainer]] = None
+    material_input: Optional[Union[str, MaterialSampleId]] = None
+    material_output: Optional[Union[str, MaterialSampleId]] = None
+    amount_collected: Optional[Union[dict, "QuantityValue"]] = None
+    sampling_method: Optional[Union[str, "SamplingMethodEnum"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, PlaceId):
-            self.id = PlaceId(self.id)
+        if self.collected_into is not None and not isinstance(self.collected_into, MaterialContainer):
+            self.collected_into = MaterialContainer(**as_dict(self.collected_into))
 
-        if self.name is not None and not isinstance(self.name, str):
-            self.name = str(self.name)
+        if self.material_input is not None and not isinstance(self.material_input, MaterialSampleId):
+            self.material_input = MaterialSampleId(self.material_input)
 
-        if not isinstance(self.aliases, list):
-            self.aliases = [self.aliases] if self.aliases is not None else []
-        self.aliases = [v if isinstance(v, str) else str(v) for v in self.aliases]
+        if self.material_output is not None and not isinstance(self.material_output, MaterialSampleId):
+            self.material_output = MaterialSampleId(self.material_output)
+
+        if self.amount_collected is not None and not isinstance(self.amount_collected, QuantityValue):
+            self.amount_collected = QuantityValue(**as_dict(self.amount_collected))
+
+        if self.sampling_method is not None and not isinstance(self.sampling_method, SamplingMethodEnum):
+            self.sampling_method = SamplingMethodEnum(self.sampling_method)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass
-class Address(YAMLRoot):
+class NamedThing(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = KS.Address
-    class_class_curie: ClassVar[str] = "ks:Address"
-    class_name: ClassVar[str] = "Address"
-    class_model_uri: ClassVar[URIRef] = KS.Address
-
-    street: Optional[str] = None
-    city: Optional[str] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.street is not None and not isinstance(self.street, str):
-            self.street = str(self.street)
-
-        if self.city is not None and not isinstance(self.city, str):
-            self.city = str(self.city)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class Concept(YAMLRoot):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = KS.Concept
-    class_class_curie: ClassVar[str] = "ks:Concept"
-    class_name: ClassVar[str] = "Concept"
-    class_model_uri: ClassVar[URIRef] = KS.Concept
-
-    id: Union[str, ConceptId] = None
-    name: Optional[str] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, ConceptId):
-            self.id = ConceptId(self.id)
-
-        if self.name is not None and not isinstance(self.name, str):
-            self.name = str(self.name)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class DiagnosisConcept(Concept):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = KS.DiagnosisConcept
-    class_class_curie: ClassVar[str] = "ks:DiagnosisConcept"
-    class_name: ClassVar[str] = "DiagnosisConcept"
-    class_model_uri: ClassVar[URIRef] = KS.DiagnosisConcept
-
-    id: Union[str, DiagnosisConceptId] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, DiagnosisConceptId):
-            self.id = DiagnosisConceptId(self.id)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class ProcedureConcept(Concept):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = KS.ProcedureConcept
-    class_class_curie: ClassVar[str] = "ks:ProcedureConcept"
-    class_name: ClassVar[str] = "ProcedureConcept"
-    class_model_uri: ClassVar[URIRef] = KS.ProcedureConcept
-
-    id: Union[str, ProcedureConceptId] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, ProcedureConceptId):
-            self.id = ProcedureConceptId(self.id)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class Event(YAMLRoot):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = KS.Event
-    class_class_curie: ClassVar[str] = "ks:Event"
-    class_name: ClassVar[str] = "Event"
-    class_model_uri: ClassVar[URIRef] = KS.Event
-
-    started_at_time: Optional[Union[str, XSDDate]] = None
-    ended_at_time: Optional[Union[str, XSDDate]] = None
-    is_current: Optional[Union[bool, Bool]] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.started_at_time is not None and not isinstance(self.started_at_time, XSDDate):
-            self.started_at_time = XSDDate(self.started_at_time)
-
-        if self.ended_at_time is not None and not isinstance(self.ended_at_time, XSDDate):
-            self.ended_at_time = XSDDate(self.ended_at_time)
-
-        if self.is_current is not None and not isinstance(self.is_current, Bool):
-            self.is_current = Bool(self.is_current)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class Relationship(YAMLRoot):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = KS.Relationship
-    class_class_curie: ClassVar[str] = "ks:Relationship"
-    class_name: ClassVar[str] = "Relationship"
-    class_model_uri: ClassVar[URIRef] = KS.Relationship
-
-    started_at_time: Optional[Union[str, XSDDate]] = None
-    ended_at_time: Optional[Union[str, XSDDate]] = None
-    related_to: Optional[str] = None
-    type: Optional[str] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.started_at_time is not None and not isinstance(self.started_at_time, XSDDate):
-            self.started_at_time = XSDDate(self.started_at_time)
-
-        if self.ended_at_time is not None and not isinstance(self.ended_at_time, XSDDate):
-            self.ended_at_time = XSDDate(self.ended_at_time)
-
-        if self.related_to is not None and not isinstance(self.related_to, str):
-            self.related_to = str(self.related_to)
-
-        if self.type is not None and not isinstance(self.type, str):
-            self.type = str(self.type)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class FamilialRelationship(Relationship):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = KS.FamilialRelationship
-    class_class_curie: ClassVar[str] = "ks:FamilialRelationship"
-    class_name: ClassVar[str] = "FamilialRelationship"
-    class_model_uri: ClassVar[URIRef] = KS.FamilialRelationship
-
-    type: Union[str, "FamilialRelationshipType"] = None
-    related_to: Union[str, PersonId] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.type):
-            self.MissingRequiredField("type")
-        if not isinstance(self.type, FamilialRelationshipType):
-            self.type = FamilialRelationshipType(self.type)
-
-        if self._is_empty(self.related_to):
-            self.MissingRequiredField("related_to")
-        if not isinstance(self.related_to, PersonId):
-            self.related_to = PersonId(self.related_to)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class BirthEvent(Event):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = KS.BirthEvent
-    class_class_curie: ClassVar[str] = "ks:BirthEvent"
-    class_name: ClassVar[str] = "BirthEvent"
-    class_model_uri: ClassVar[URIRef] = KS.BirthEvent
-
-    in_location: Optional[Union[str, PlaceId]] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.in_location is not None and not isinstance(self.in_location, PlaceId):
-            self.in_location = PlaceId(self.in_location)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class EmploymentEvent(Event):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = KS.EmploymentEvent
-    class_class_curie: ClassVar[str] = "ks:EmploymentEvent"
-    class_name: ClassVar[str] = "EmploymentEvent"
-    class_model_uri: ClassVar[URIRef] = KS.EmploymentEvent
-
-    employed_at: Optional[Union[str, CompanyId]] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.employed_at is not None and not isinstance(self.employed_at, CompanyId):
-            self.employed_at = CompanyId(self.employed_at)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class MedicalEvent(Event):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = KS.MedicalEvent
-    class_class_curie: ClassVar[str] = "ks:MedicalEvent"
-    class_name: ClassVar[str] = "MedicalEvent"
-    class_model_uri: ClassVar[URIRef] = KS.MedicalEvent
-
-    in_location: Optional[Union[str, PlaceId]] = None
-    diagnosis: Optional[Union[dict, DiagnosisConcept]] = None
-    procedure: Optional[Union[dict, ProcedureConcept]] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.in_location is not None and not isinstance(self.in_location, PlaceId):
-            self.in_location = PlaceId(self.in_location)
-
-        if self.diagnosis is not None and not isinstance(self.diagnosis, DiagnosisConcept):
-            self.diagnosis = DiagnosisConcept(**as_dict(self.diagnosis))
-
-        if self.procedure is not None and not isinstance(self.procedure, ProcedureConcept):
-            self.procedure = ProcedureConcept(**as_dict(self.procedure))
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class WithLocation(YAMLRoot):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = KS.WithLocation
-    class_class_curie: ClassVar[str] = "ks:WithLocation"
-    class_name: ClassVar[str] = "WithLocation"
-    class_model_uri: ClassVar[URIRef] = KS.WithLocation
-
-    in_location: Optional[Union[str, PlaceId]] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.in_location is not None and not isinstance(self.in_location, PlaceId):
-            self.in_location = PlaceId(self.in_location)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class MarriageEvent(Event):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = KS.MarriageEvent
-    class_class_curie: ClassVar[str] = "ks:MarriageEvent"
-    class_name: ClassVar[str] = "MarriageEvent"
-    class_model_uri: ClassVar[URIRef] = KS.MarriageEvent
-
-    married_to: Optional[Union[str, PersonId]] = None
-    in_location: Optional[Union[str, PlaceId]] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.married_to is not None and not isinstance(self.married_to, PersonId):
-            self.married_to = PersonId(self.married_to)
-
-        if self.in_location is not None and not isinstance(self.in_location, PlaceId):
-            self.in_location = PlaceId(self.in_location)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class Company(Organization):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = KS.Company
-    class_class_curie: ClassVar[str] = "ks:Company"
-    class_name: ClassVar[str] = "Company"
-    class_model_uri: ClassVar[URIRef] = KS.Company
-
-    id: Union[str, CompanyId] = None
-    ceo: Optional[Union[str, PersonId]] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, CompanyId):
-            self.id = CompanyId(self.id)
-
-        if self.ceo is not None and not isinstance(self.ceo, PersonId):
-            self.ceo = PersonId(self.ceo)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class Dataset(YAMLRoot):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = KS.Dataset
-    class_class_curie: ClassVar[str] = "ks:Dataset"
-    class_name: ClassVar[str] = "Dataset"
-    class_model_uri: ClassVar[URIRef] = KS.Dataset
-
-    persons: Optional[Union[Dict[Union[str, PersonId], Union[dict, Person]], List[Union[dict, Person]]]] = empty_dict()
-    companies: Optional[Union[Dict[Union[str, CompanyId], Union[dict, Company]], List[Union[dict, Company]]]] = empty_dict()
-    activities: Optional[Union[Dict[Union[str, ActivityId], Union[dict, "Activity"]], List[Union[dict, "Activity"]]]] = empty_dict()
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        self._normalize_inlined_as_list(slot_name="persons", slot_type=Person, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="companies", slot_type=Company, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="activities", slot_type=Activity, key_name="id", keyed=True)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class Activity(YAMLRoot):
-    """
-    a provence-generating activity
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = CORE.Activity
-    class_class_curie: ClassVar[str] = "core:Activity"
-    class_name: ClassVar[str] = "activity"
-    class_model_uri: ClassVar[URIRef] = KS.Activity
-
-    id: Union[str, ActivityId] = None
-    started_at_time: Optional[Union[str, XSDDate]] = None
-    ended_at_time: Optional[Union[str, XSDDate]] = None
-    was_informed_by: Optional[Union[str, ActivityId]] = None
-    was_associated_with: Optional[Union[str, AgentId]] = None
-    used: Optional[str] = None
+    class_class_uri: ClassVar[URIRef] = MONET_SCHEMA.NamedThing
+    class_class_curie: ClassVar[str] = "monet_schema:NamedThing"
+    class_name: ClassVar[str] = "NamedThing"
+    class_model_uri: ClassVar[URIRef] = MONET_SCHEMA.NamedThing
+
+    id: Union[str, NamedThingId] = None
     description: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, ActivityId):
-            self.id = ActivityId(self.id)
-
-        if self.started_at_time is not None and not isinstance(self.started_at_time, XSDDate):
-            self.started_at_time = XSDDate(self.started_at_time)
-
-        if self.ended_at_time is not None and not isinstance(self.ended_at_time, XSDDate):
-            self.ended_at_time = XSDDate(self.ended_at_time)
-
-        if self.was_informed_by is not None and not isinstance(self.was_informed_by, ActivityId):
-            self.was_informed_by = ActivityId(self.was_informed_by)
-
-        if self.was_associated_with is not None and not isinstance(self.was_associated_with, AgentId):
-            self.was_associated_with = AgentId(self.was_associated_with)
-
-        if self.used is not None and not isinstance(self.used, str):
-            self.used = str(self.used)
+        if not isinstance(self.id, NamedThingId):
+            self.id = NamedThingId(self.id)
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
@@ -589,174 +204,231 @@ class Activity(YAMLRoot):
 
 
 @dataclass
-class Agent(YAMLRoot):
-    """
-    a provence-generating agent
-    """
+class Database(NamedThing):
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = PROV.Agent
-    class_class_curie: ClassVar[str] = "prov:Agent"
-    class_name: ClassVar[str] = "agent"
-    class_model_uri: ClassVar[URIRef] = KS.Agent
+    class_class_uri: ClassVar[URIRef] = MONET_SCHEMA.Database
+    class_class_curie: ClassVar[str] = "monet_schema:Database"
+    class_name: ClassVar[str] = "Database"
+    class_model_uri: ClassVar[URIRef] = MONET_SCHEMA.Database
 
-    id: Union[str, AgentId] = None
-    acted_on_behalf_of: Optional[Union[str, AgentId]] = None
-    was_informed_by: Optional[Union[str, ActivityId]] = None
+    id: Union[str, DatabaseId] = None
+    material_sample_set: Optional[Union[Dict[Union[str, MaterialSampleId], Union[dict, "MaterialSample"]], List[Union[dict, "MaterialSample"]]]] = empty_dict()
+    dissolving_process_set: Optional[Union[Union[dict, "DissolvingProcess"], List[Union[dict, "DissolvingProcess"]]]] = empty_list()
+    material_sampling_process_set: Optional[Union[Union[dict, "MaterialSamplingProcess"], List[Union[dict, "MaterialSamplingProcess"]]]] = empty_list()
+    reaction_activity_set: Optional[Union[Union[dict, "ReactionActivity"], List[Union[dict, "ReactionActivity"]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, AgentId):
-            self.id = AgentId(self.id)
+        if not isinstance(self.id, DatabaseId):
+            self.id = DatabaseId(self.id)
 
-        if self.acted_on_behalf_of is not None and not isinstance(self.acted_on_behalf_of, AgentId):
-            self.acted_on_behalf_of = AgentId(self.acted_on_behalf_of)
+        self._normalize_inlined_as_list(slot_name="material_sample_set", slot_type=MaterialSample, key_name="id", keyed=True)
 
-        if self.was_informed_by is not None and not isinstance(self.was_informed_by, ActivityId):
-            self.was_informed_by = ActivityId(self.was_informed_by)
+        if not isinstance(self.dissolving_process_set, list):
+            self.dissolving_process_set = [self.dissolving_process_set] if self.dissolving_process_set is not None else []
+        self.dissolving_process_set = [v if isinstance(v, DissolvingProcess) else DissolvingProcess(**as_dict(v)) for v in self.dissolving_process_set]
+
+        if not isinstance(self.material_sampling_process_set, list):
+            self.material_sampling_process_set = [self.material_sampling_process_set] if self.material_sampling_process_set is not None else []
+        self.material_sampling_process_set = [v if isinstance(v, MaterialSamplingProcess) else MaterialSamplingProcess(**as_dict(v)) for v in self.material_sampling_process_set]
+
+        if not isinstance(self.reaction_activity_set, list):
+            self.reaction_activity_set = [self.reaction_activity_set] if self.reaction_activity_set is not None else []
+        self.reaction_activity_set = [v if isinstance(v, ReactionActivity) else ReactionActivity(**as_dict(v)) for v in self.reaction_activity_set]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class MaterialSample(NamedThing):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = MONET_SCHEMA.MaterialSample
+    class_class_curie: ClassVar[str] = "monet_schema:MaterialSample"
+    class_name: ClassVar[str] = "MaterialSample"
+    class_model_uri: ClassVar[URIRef] = MONET_SCHEMA.MaterialSample
+
+    id: Union[str, MaterialSampleId] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, MaterialSampleId):
+            self.id = MaterialSampleId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class QuantityValue(YAMLRoot):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = MONET_SCHEMA.QuantityValue
+    class_class_curie: ClassVar[str] = "monet_schema:QuantityValue"
+    class_name: ClassVar[str] = "QuantityValue"
+    class_model_uri: ClassVar[URIRef] = MONET_SCHEMA.QuantityValue
+
+    has_value: Optional[float] = None
+    has_unit: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.has_value is not None and not isinstance(self.has_value, float):
+            self.has_value = float(self.has_value)
+
+        if self.has_unit is not None and not isinstance(self.has_unit, str):
+            self.has_unit = str(self.has_unit)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class ReactionActivity(YAMLRoot):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = MONET_SCHEMA.ReactionActivity
+    class_class_curie: ClassVar[str] = "monet_schema:ReactionActivity"
+    class_name: ClassVar[str] = "ReactionActivity"
+    class_model_uri: ClassVar[URIRef] = MONET_SCHEMA.ReactionActivity
+
+    material_input: Optional[Union[str, MaterialSampleId]] = None
+    material_output: Optional[Union[str, MaterialSampleId]] = None
+    reaction_time: Optional[Union[dict, QuantityValue]] = None
+    reaction_aided_by: Optional[Union[dict, LabDevice]] = None
+    reaction_temperature: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.material_input is not None and not isinstance(self.material_input, MaterialSampleId):
+            self.material_input = MaterialSampleId(self.material_input)
+
+        if self.material_output is not None and not isinstance(self.material_output, MaterialSampleId):
+            self.material_output = MaterialSampleId(self.material_output)
+
+        if self.reaction_time is not None and not isinstance(self.reaction_time, QuantityValue):
+            self.reaction_time = QuantityValue(**as_dict(self.reaction_time))
+
+        if self.reaction_aided_by is not None and not isinstance(self.reaction_aided_by, LabDevice):
+            self.reaction_aided_by = LabDevice(**as_dict(self.reaction_aided_by))
+
+        if self.reaction_temperature is not None and not isinstance(self.reaction_temperature, str):
+            self.reaction_temperature = str(self.reaction_temperature)
 
         super().__post_init__(**kwargs)
 
 
 # Enumerations
-class FamilialRelationshipType(EnumDefinitionImpl):
+class ContainerTypeEnum(EnumDefinitionImpl):
 
-    SIBLING_OF = PermissibleValue(text="SIBLING_OF")
-    PARENT_OF = PermissibleValue(text="PARENT_OF")
-    CHILD_OF = PermissibleValue(text="CHILD_OF")
+    screw_top_conical = PermissibleValue(text="screw_top_conical")
 
     _defn = EnumDefinition(
-        name="FamilialRelationshipType",
+        name="ContainerTypeEnum",
     )
 
-class DiagnosisType(EnumDefinitionImpl):
+class DeviceTypeEnum(EnumDefinitionImpl):
+
+    orbital_shaker = PermissibleValue(text="orbital_shaker")
+    thermomixer = PermissibleValue(text="thermomixer")
 
     _defn = EnumDefinition(
-        name="DiagnosisType",
+        name="DeviceTypeEnum",
+    )
+
+class SamplingMethodEnum(EnumDefinitionImpl):
+
+    weighing = PermissibleValue(text="weighing")
+
+    _defn = EnumDefinition(
+        name="SamplingMethodEnum",
+    )
+
+class SolventEnum(EnumDefinitionImpl):
+
+    deionized_water = PermissibleValue(text="deionized_water")
+
+    _defn = EnumDefinition(
+        name="SolventEnum",
     )
 
 # Slots
 class slots:
     pass
 
-slots.related_to = Slot(uri=KS.related_to, name="related_to", curie=KS.curie('related_to'),
-                   model_uri=KS.related_to, domain=None, range=Optional[str])
+slots.material_sample_set = Slot(uri=MONET_SCHEMA.material_sample_set, name="material_sample_set", curie=MONET_SCHEMA.curie('material_sample_set'),
+                   model_uri=MONET_SCHEMA.material_sample_set, domain=None, range=Optional[Union[Dict[Union[str, MaterialSampleId], Union[dict, MaterialSample]], List[Union[dict, MaterialSample]]]])
 
-slots.frenemies_with = Slot(uri=KS.frenemies_with, name="frenemies_with", curie=KS.curie('frenemies_with'),
-                   model_uri=KS.frenemies_with, domain=Person, range=Optional[Union[str, PersonId]])
+slots.dissolving_process_set = Slot(uri=MONET_SCHEMA.dissolving_process_set, name="dissolving_process_set", curie=MONET_SCHEMA.curie('dissolving_process_set'),
+                   model_uri=MONET_SCHEMA.dissolving_process_set, domain=None, range=Optional[Union[Union[dict, DissolvingProcess], List[Union[dict, DissolvingProcess]]]])
 
-slots.eye_color = Slot(uri=KS.eye_color, name="eye_color", curie=KS.curie('eye_color'),
-                   model_uri=KS.eye_color, domain=None, range=Optional[str])
+slots.material_sampling_process_set = Slot(uri=MONET_SCHEMA.material_sampling_process_set, name="material_sampling_process_set", curie=MONET_SCHEMA.curie('material_sampling_process_set'),
+                   model_uri=MONET_SCHEMA.material_sampling_process_set, domain=None, range=Optional[Union[Union[dict, MaterialSamplingProcess], List[Union[dict, MaterialSamplingProcess]]]])
 
-slots.employed_at = Slot(uri=KS.employed_at, name="employed at", curie=KS.curie('employed_at'),
-                   model_uri=KS.employed_at, domain=None, range=Optional[Union[str, CompanyId]])
+slots.reaction_activity_set = Slot(uri=MONET_SCHEMA.reaction_activity_set, name="reaction_activity_set", curie=MONET_SCHEMA.curie('reaction_activity_set'),
+                   model_uri=MONET_SCHEMA.reaction_activity_set, domain=None, range=Optional[Union[Union[dict, ReactionActivity], List[Union[dict, ReactionActivity]]]])
 
-slots.is_current = Slot(uri=KS.is_current, name="is current", curie=KS.curie('is_current'),
-                   model_uri=KS.is_current, domain=None, range=Optional[Union[bool, Bool]])
+slots.material_input = Slot(uri=MONET_SCHEMA.material_input, name="material_input", curie=MONET_SCHEMA.curie('material_input'),
+                   model_uri=MONET_SCHEMA.material_input, domain=None, range=Optional[Union[str, MaterialSampleId]])
 
-slots.has_employment_history = Slot(uri=KS.has_employment_history, name="has employment history", curie=KS.curie('has_employment_history'),
-                   model_uri=KS.has_employment_history, domain=None, range=Optional[Union[Union[dict, EmploymentEvent], List[Union[dict, EmploymentEvent]]]])
+slots.material_output = Slot(uri=MONET_SCHEMA.material_output, name="material_output", curie=MONET_SCHEMA.curie('material_output'),
+                   model_uri=MONET_SCHEMA.material_output, domain=None, range=Optional[Union[str, MaterialSampleId]])
 
-slots.has_marriage_history = Slot(uri=KS.has_marriage_history, name="has marriage history", curie=KS.curie('has_marriage_history'),
-                   model_uri=KS.has_marriage_history, domain=None, range=Optional[Union[Union[dict, MarriageEvent], List[Union[dict, MarriageEvent]]]])
+slots.dissolution_aided_by = Slot(uri=MONET_SCHEMA.dissolution_aided_by, name="dissolution_aided_by", curie=MONET_SCHEMA.curie('dissolution_aided_by'),
+                   model_uri=MONET_SCHEMA.dissolution_aided_by, domain=None, range=Optional[Union[dict, LabDevice]])
 
-slots.has_medical_history = Slot(uri=KS.has_medical_history, name="has medical history", curie=KS.curie('has_medical_history'),
-                   model_uri=KS.has_medical_history, domain=None, range=Optional[Union[Union[dict, MedicalEvent], List[Union[dict, MedicalEvent]]]])
+slots.dissolution_reagent = Slot(uri=MONET_SCHEMA.dissolution_reagent, name="dissolution_reagent", curie=MONET_SCHEMA.curie('dissolution_reagent'),
+                   model_uri=MONET_SCHEMA.dissolution_reagent, domain=None, range=Optional[Union[str, "SolventEnum"]])
 
-slots.has_familial_relationships = Slot(uri=KS.has_familial_relationships, name="has familial relationships", curie=KS.curie('has_familial_relationships'),
-                   model_uri=KS.has_familial_relationships, domain=None, range=Optional[Union[Union[dict, FamilialRelationship], List[Union[dict, FamilialRelationship]]]])
+slots.dissolution_volume = Slot(uri=MONET_SCHEMA.dissolution_volume, name="dissolution_volume", curie=MONET_SCHEMA.curie('dissolution_volume'),
+                   model_uri=MONET_SCHEMA.dissolution_volume, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.married_to = Slot(uri=KS.married_to, name="married to", curie=KS.curie('married_to'),
-                   model_uri=KS.married_to, domain=None, range=Optional[Union[str, PersonId]])
+slots.dissolved_in = Slot(uri=MONET_SCHEMA.dissolved_in, name="dissolved_in", curie=MONET_SCHEMA.curie('dissolved_in'),
+                   model_uri=MONET_SCHEMA.dissolved_in, domain=None, range=Optional[Union[dict, MaterialContainer]])
 
-slots.in_location = Slot(uri=KS.in_location, name="in location", curie=KS.curie('in_location'),
-                   model_uri=KS.in_location, domain=None, range=Optional[Union[str, PlaceId]])
+slots.device_type = Slot(uri=MONET_SCHEMA.device_type, name="device_type", curie=MONET_SCHEMA.curie('device_type'),
+                   model_uri=MONET_SCHEMA.device_type, domain=None, range=Optional[Union[str, "DeviceTypeEnum"]])
 
-slots.diagnosis = Slot(uri=KS.diagnosis, name="diagnosis", curie=KS.curie('diagnosis'),
-                   model_uri=KS.diagnosis, domain=None, range=Optional[Union[dict, DiagnosisConcept]])
+slots.process_speed = Slot(uri=MONET_SCHEMA.process_speed, name="process_speed", curie=MONET_SCHEMA.curie('process_speed'),
+                   model_uri=MONET_SCHEMA.process_speed, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.procedure = Slot(uri=KS.procedure, name="procedure", curie=KS.curie('procedure'),
-                   model_uri=KS.procedure, domain=None, range=Optional[Union[dict, ProcedureConcept]])
+slots.process_temperature = Slot(uri=MONET_SCHEMA.process_temperature, name="process_temperature", curie=MONET_SCHEMA.curie('process_temperature'),
+                   model_uri=MONET_SCHEMA.process_temperature, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.addresses = Slot(uri=KS.addresses, name="addresses", curie=KS.curie('addresses'),
-                   model_uri=KS.addresses, domain=None, range=Optional[Union[Union[dict, Address], List[Union[dict, Address]]]])
+slots.process_time = Slot(uri=MONET_SCHEMA.process_time, name="process_time", curie=MONET_SCHEMA.curie('process_time'),
+                   model_uri=MONET_SCHEMA.process_time, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.age_in_years = Slot(uri=KS.age_in_years, name="age in years", curie=KS.curie('age_in_years'),
-                   model_uri=KS.age_in_years, domain=None, range=Optional[int])
+slots.container_size = Slot(uri=MONET_SCHEMA.container_size, name="container_size", curie=MONET_SCHEMA.curie('container_size'),
+                   model_uri=MONET_SCHEMA.container_size, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.related_to = Slot(uri=KS.related_to, name="related to", curie=KS.curie('related_to'),
-                   model_uri=KS.related_to, domain=None, range=Optional[str])
+slots.container_type = Slot(uri=MONET_SCHEMA.container_type, name="container_type", curie=MONET_SCHEMA.curie('container_type'),
+                   model_uri=MONET_SCHEMA.container_type, domain=None, range=Optional[Union[str, "ContainerTypeEnum"]])
 
-slots.type = Slot(uri=KS.type, name="type", curie=KS.curie('type'),
-                   model_uri=KS.type, domain=None, range=Optional[str])
+slots.collected_into = Slot(uri=MONET_SCHEMA.collected_into, name="collected_into", curie=MONET_SCHEMA.curie('collected_into'),
+                   model_uri=MONET_SCHEMA.collected_into, domain=None, range=Optional[Union[dict, MaterialContainer]])
 
-slots.street = Slot(uri=KS.street, name="street", curie=KS.curie('street'),
-                   model_uri=KS.street, domain=None, range=Optional[str])
+slots.amount_collected = Slot(uri=MONET_SCHEMA.amount_collected, name="amount_collected", curie=MONET_SCHEMA.curie('amount_collected'),
+                   model_uri=MONET_SCHEMA.amount_collected, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.city = Slot(uri=KS.city, name="city", curie=KS.curie('city'),
-                   model_uri=KS.city, domain=None, range=Optional[str])
+slots.sampling_method = Slot(uri=MONET_SCHEMA.sampling_method, name="sampling_method", curie=MONET_SCHEMA.curie('sampling_method'),
+                   model_uri=MONET_SCHEMA.sampling_method, domain=None, range=Optional[Union[str, "SamplingMethodEnum"]])
 
-slots.has_birth_event = Slot(uri=KS.has_birth_event, name="has birth event", curie=KS.curie('has_birth_event'),
-                   model_uri=KS.has_birth_event, domain=None, range=Optional[Union[dict, BirthEvent]])
+slots.description = Slot(uri=MONET_SCHEMA.description, name="description", curie=MONET_SCHEMA.curie('description'),
+                   model_uri=MONET_SCHEMA.description, domain=None, range=Optional[str])
 
-slots.id = Slot(uri=CORE.id, name="id", curie=CORE.curie('id'),
-                   model_uri=KS.id, domain=None, range=URIRef)
+slots.id = Slot(uri=MONET_SCHEMA.id, name="id", curie=MONET_SCHEMA.curie('id'),
+                   model_uri=MONET_SCHEMA.id, domain=None, range=URIRef)
 
-slots.name = Slot(uri=CORE.name, name="name", curie=CORE.curie('name'),
-                   model_uri=KS.name, domain=None, range=Optional[str])
+slots.has_value = Slot(uri=MONET_SCHEMA.has_value, name="has_value", curie=MONET_SCHEMA.curie('has_value'),
+                   model_uri=MONET_SCHEMA.has_value, domain=None, range=Optional[float])
 
-slots.description = Slot(uri=CORE.description, name="description", curie=CORE.curie('description'),
-                   model_uri=KS.description, domain=None, range=Optional[str])
+slots.has_unit = Slot(uri=MONET_SCHEMA.has_unit, name="has_unit", curie=MONET_SCHEMA.curie('has_unit'),
+                   model_uri=MONET_SCHEMA.has_unit, domain=None, range=Optional[str])
 
-slots.started_at_time = Slot(uri=PROV.startedAtTime, name="started at time", curie=PROV.curie('startedAtTime'),
-                   model_uri=KS.started_at_time, domain=None, range=Optional[Union[str, XSDDate]])
+slots.reaction_time = Slot(uri=MONET_SCHEMA.reaction_time, name="reaction_time", curie=MONET_SCHEMA.curie('reaction_time'),
+                   model_uri=MONET_SCHEMA.reaction_time, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.ended_at_time = Slot(uri=PROV.endedAtTime, name="ended at time", curie=PROV.curie('endedAtTime'),
-                   model_uri=KS.ended_at_time, domain=None, range=Optional[Union[str, XSDDate]])
+slots.reaction_aided_by = Slot(uri=MONET_SCHEMA.reaction_aided_by, name="reaction_aided_by", curie=MONET_SCHEMA.curie('reaction_aided_by'),
+                   model_uri=MONET_SCHEMA.reaction_aided_by, domain=None, range=Optional[Union[dict, LabDevice]])
 
-slots.was_informed_by = Slot(uri=PROV.wasInformedBy, name="was informed by", curie=PROV.curie('wasInformedBy'),
-                   model_uri=KS.was_informed_by, domain=None, range=Optional[Union[str, ActivityId]])
-
-slots.was_associated_with = Slot(uri=PROV.wasAssociatedWith, name="was associated with", curie=PROV.curie('wasAssociatedWith'),
-                   model_uri=KS.was_associated_with, domain=None, range=Optional[Union[str, AgentId]])
-
-slots.acted_on_behalf_of = Slot(uri=PROV.actedOnBehalfOf, name="acted on behalf of", curie=PROV.curie('actedOnBehalfOf'),
-                   model_uri=KS.acted_on_behalf_of, domain=None, range=Optional[Union[str, AgentId]])
-
-slots.was_generated_by = Slot(uri=PROV.wasGeneratedBy, name="was generated by", curie=PROV.curie('wasGeneratedBy'),
-                   model_uri=KS.was_generated_by, domain=None, range=Optional[Union[str, ActivityId]])
-
-slots.used = Slot(uri=PROV.used, name="used", curie=PROV.curie('used'),
-                   model_uri=KS.used, domain=Activity, range=Optional[str])
-
-slots.activity_set = Slot(uri=CORE.activity_set, name="activity set", curie=CORE.curie('activity_set'),
-                   model_uri=KS.activity_set, domain=None, range=Optional[Union[Dict[Union[str, ActivityId], Union[dict, Activity]], List[Union[dict, Activity]]]])
-
-slots.agent_set = Slot(uri=CORE.agent_set, name="agent set", curie=CORE.curie('agent_set'),
-                   model_uri=KS.agent_set, domain=None, range=Optional[Union[Dict[Union[str, AgentId], Union[dict, Agent]], List[Union[dict, Agent]]]])
-
-slots.hasAliases__aliases = Slot(uri=KS.aliases, name="hasAliases__aliases", curie=KS.curie('aliases'),
-                   model_uri=KS.hasAliases__aliases, domain=None, range=Optional[Union[str, List[str]]])
-
-slots.company__ceo = Slot(uri=KS.ceo, name="company__ceo", curie=KS.curie('ceo'),
-                   model_uri=KS.company__ceo, domain=None, range=Optional[Union[str, PersonId]])
-
-slots.dataset__persons = Slot(uri=KS.persons, name="dataset__persons", curie=KS.curie('persons'),
-                   model_uri=KS.dataset__persons, domain=None, range=Optional[Union[Dict[Union[str, PersonId], Union[dict, Person]], List[Union[dict, Person]]]])
-
-slots.dataset__companies = Slot(uri=KS.companies, name="dataset__companies", curie=KS.curie('companies'),
-                   model_uri=KS.dataset__companies, domain=None, range=Optional[Union[Dict[Union[str, CompanyId], Union[dict, Company]], List[Union[dict, Company]]]])
-
-slots.dataset__activities = Slot(uri=KS.activities, name="dataset__activities", curie=KS.curie('activities'),
-                   model_uri=KS.dataset__activities, domain=None, range=Optional[Union[Dict[Union[str, ActivityId], Union[dict, Activity]], List[Union[dict, Activity]]]])
-
-slots.Person_name = Slot(uri=CORE.name, name="Person_name", curie=CORE.curie('name'),
-                   model_uri=KS.Person_name, domain=Person, range=Optional[str],
-                   pattern=re.compile(r'^\S+ \S+'))
-
-slots.FamilialRelationship_type = Slot(uri=KS.type, name="FamilialRelationship_type", curie=KS.curie('type'),
-                   model_uri=KS.FamilialRelationship_type, domain=FamilialRelationship, range=Union[str, "FamilialRelationshipType"])
-
-slots.FamilialRelationship_related_to = Slot(uri=KS.related_to, name="FamilialRelationship_related to", curie=KS.curie('related_to'),
-                   model_uri=KS.FamilialRelationship_related_to, domain=FamilialRelationship, range=Union[str, PersonId])
+slots.reaction_temperature = Slot(uri=MONET_SCHEMA.reaction_temperature, name="reaction_temperature", curie=MONET_SCHEMA.curie('reaction_temperature'),
+                   model_uri=MONET_SCHEMA.reaction_temperature, domain=None, range=Optional[str])

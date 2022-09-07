@@ -26,8 +26,8 @@ URI: [monet_schema:QuantityValue](http://example.com/monet_schema/QuantityValue)
 
 | Name | Cardinality and Range  | Description  |
 | ---  | ---  | --- |
-| [has_value](has_value.md) | 1..1 <br/> [xsd:float](xsd:float)  |   |
-| [has_unit](has_unit.md) | 1..1 <br/> [xsd:string](xsd:string)  |   |
+| [has_value](has_value.md) | 0..1 <br/> [xsd:float](xsd:float)  |   |
+| [has_unit](has_unit.md) | 0..1 <br/> [xsd:string](xsd:string)  |   |
 
 
 ## Usages
@@ -35,11 +35,13 @@ URI: [monet_schema:QuantityValue](http://example.com/monet_schema/QuantityValue)
 
 | used by | used in | type | used |
 | ---  | --- | --- | --- |
-| [MatSampProc](MatSampProc.md) | [amount](amount.md) | range | QuantityValue |
-| [Dissolving](Dissolving.md) | [volume](volume.md) | range | QuantityValue |
-| [MaterialContainer](MaterialContainer.md) | [size](size.md) | range | QuantityValue |
-| [Shaker](Shaker.md) | [shake_speed](shake_speed.md) | range | QuantityValue |
-| [Shaker](Shaker.md) | [shake_time](shake_time.md) | range | QuantityValue |
+| [DissolvingProcess](DissolvingProcess.md) | [dissolution_volume](dissolution_volume.md) | range | QuantityValue |
+| [LabDevice](LabDevice.md) | [process_speed](process_speed.md) | range | QuantityValue |
+| [LabDevice](LabDevice.md) | [process_temperature](process_temperature.md) | range | QuantityValue |
+| [LabDevice](LabDevice.md) | [process_time](process_time.md) | range | QuantityValue |
+| [MaterialContainer](MaterialContainer.md) | [container_size](container_size.md) | range | QuantityValue |
+| [MaterialSamplingProcess](MaterialSamplingProcess.md) | [amount_collected](amount_collected.md) | range | QuantityValue |
+| [ReactionActivity](ReactionActivity.md) | [reaction_time](reaction_time.md) | range | QuantityValue |
 
 
 
@@ -108,7 +110,6 @@ attributes:
     domain_of:
     - QuantityValue
     range: float
-    required: true
   has_unit:
     name: has_unit
     title: has unit
@@ -119,7 +120,6 @@ attributes:
     domain_of:
     - QuantityValue
     range: string
-    required: true
 
 ```
 </details>

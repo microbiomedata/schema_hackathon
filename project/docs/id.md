@@ -19,5 +19,6 @@ None &#8594;  <sub>1..1</sub> [String](types/String.md)
 
 ## Used by
 
- * [MaterialEntity](MaterialEntity.md)
+ * [Database](Database.md)
+ * [MaterialSample](MaterialSample.md)
  * [NamedThing](NamedThing.md)

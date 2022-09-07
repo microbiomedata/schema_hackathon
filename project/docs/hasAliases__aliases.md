@@ -4,7 +4,7 @@
 
 
 
-URI: [my_datamodel:hasAliases__aliases](https://w3id.org/my_org/my_datamodelhasAliases__aliases)
+URI: [ks:hasAliases__aliases](https://w3id.org/linkml/tests/kitchen_sink/hasAliases__aliases)
 
 
 ## Domain and Range
@@ -19,13 +19,8 @@ None &#8594;  <sub>0..\*</sub> [String](types/String.md)
 
 ## Used by
 
+ * [Company](Company.md)
  * [HasAliases](HasAliases.md)
  * [Organization](Organization.md)
  * [Person](Person.md)
-
-## Other properties
-
-|  |  |  |
-| --- | --- | --- |
-| **Exact Mappings:** | | schema:alternateName |
-
+ * [Place](Place.md)

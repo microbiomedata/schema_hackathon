@@ -8,88 +8,126 @@
          "title": "ContainerTypeEnum",
          "type": "string"
       },
-      "Dissolving": {
+      "Database": {
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "container": {
-               "$ref": "#/$defs/MaterialContainer"
+            "description": {
+               "type": "string"
             },
-            "material_input": {
-               "$ref": "#/$defs/NamedThing"
+            "dissolving_process_set": {
+               "items": {
+                  "$ref": "#/$defs/DissolvingProcess"
+               },
+               "type": "array"
             },
-            "material_output": {
-               "$ref": "#/$defs/NamedThing"
+            "id": {
+               "type": "string"
             },
-            "shaker_selection": {
-               "$ref": "#/$defs/Shaker"
+            "material_sample_set": {
+               "items": {
+                  "$ref": "#/$defs/MaterialSample"
+               },
+               "type": "array"
             },
-            "solvent": {
-               "$ref": "#/$defs/SolventEnum"
+            "material_sampling_process_set": {
+               "items": {
+                  "$ref": "#/$defs/MaterialSamplingProcess"
+               },
+               "type": "array"
             },
-            "volume": {
-               "$ref": "#/$defs/QuantityValue"
+            "reaction_activity_set": {
+               "items": {
+                  "$ref": "#/$defs/ReactionActivity"
+               },
+               "type": "array"
             }
          },
          "required": [
-            "material_input",
-            "material_output",
-            "container",
-            "shaker_selection",
-            "solvent",
-            "volume"
+            "id"
          ],
-         "title": "Dissolving",
+         "title": "Database",
          "type": "object"
       },
-      "MatSampProc": {
+      "DeviceTypeEnum": {
+         "description": "",
+         "enum": [
+            "orbital_shaker",
+            "thermomixer"
+         ],
+         "title": "DeviceTypeEnum",
+         "type": "string"
+      },
+      "DissolvingProcess": {
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "amount": {
+            "dissolution_aided_by": {
+               "$ref": "#/$defs/LabDevice"
+            },
+            "dissolution_reagent": {
+               "$ref": "#/$defs/SolventEnum"
+            },
+            "dissolution_volume": {
                "$ref": "#/$defs/QuantityValue"
             },
-            "collected_into": {
+            "dissolved_in": {
                "$ref": "#/$defs/MaterialContainer"
             },
             "material_input": {
-               "$ref": "#/$defs/NamedThing"
+               "type": "string"
             },
             "material_output": {
-               "$ref": "#/$defs/NamedThing"
+               "type": "string"
             }
          },
-         "required": [
-            "collected_into",
-            "material_input",
-            "material_output",
-            "amount"
-         ],
-         "title": "MatSampProc",
+         "required": [],
+         "title": "DissolvingProcess",
+         "type": "object"
+      },
+      "LabDevice": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "device_type": {
+               "$ref": "#/$defs/DeviceTypeEnum"
+            },
+            "process_speed": {
+               "$ref": "#/$defs/QuantityValue"
+            },
+            "process_temperature": {
+               "$ref": "#/$defs/QuantityValue"
+            },
+            "process_time": {
+               "$ref": "#/$defs/QuantityValue"
+            }
+         },
+         "required": [],
+         "title": "LabDevice",
          "type": "object"
       },
       "MaterialContainer": {
          "additionalProperties": false,
          "description": "",
          "properties": {
+            "container_size": {
+               "$ref": "#/$defs/QuantityValue"
+            },
             "container_type": {
                "$ref": "#/$defs/ContainerTypeEnum"
-            },
-            "size": {
-               "$ref": "#/$defs/QuantityValue"
             }
          },
-         "required": [
-            "container_type",
-            "size"
-         ],
+         "required": [],
          "title": "MaterialContainer",
          "type": "object"
       },
-      "MaterialEntity": {
+      "MaterialSample": {
          "additionalProperties": false,
          "description": "",
          "properties": {
+            "description": {
+               "type": "string"
+            },
             "id": {
                "type": "string"
             }
@@ -97,13 +135,40 @@
          "required": [
             "id"
          ],
-         "title": "MaterialEntity",
+         "title": "MaterialSample",
+         "type": "object"
+      },
+      "MaterialSamplingProcess": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "amount_collected": {
+               "$ref": "#/$defs/QuantityValue"
+            },
+            "collected_into": {
+               "$ref": "#/$defs/MaterialContainer"
+            },
+            "material_input": {
+               "type": "string"
+            },
+            "material_output": {
+               "type": "string"
+            },
+            "sampling_method": {
+               "$ref": "#/$defs/SamplingMethodEnum"
+            }
+         },
+         "required": [],
+         "title": "MaterialSamplingProcess",
          "type": "object"
       },
       "NamedThing": {
          "additionalProperties": false,
          "description": "",
          "properties": {
+            "description": {
+               "type": "string"
+            },
             "id": {
                "type": "string"
             }
@@ -125,37 +190,40 @@
                "type": "number"
             }
          },
-         "required": [
-            "has_value",
-            "has_unit"
-         ],
+         "required": [],
          "title": "QuantityValue",
          "type": "object"
       },
-      "Shaker": {
+      "ReactionActivity": {
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "shake_speed": {
-               "$ref": "#/$defs/QuantityValue"
+            "material_input": {
+               "type": "string"
             },
-            "shake_time": {
-               "$ref": "#/$defs/QuantityValue"
+            "material_output": {
+               "type": "string"
             },
-            "shaker_type": {
-               "$ref": "#/$defs/ShakerTypeEnum"
+            "reaction_aided_by": {
+               "$ref": "#/$defs/LabDevice"
+            },
+            "reaction_temperature": {
+               "type": "string"
+            },
+            "reaction_time": {
+               "$ref": "#/$defs/QuantityValue"
             }
          },
          "required": [],
-         "title": "Shaker",
+         "title": "ReactionActivity",
          "type": "object"
       },
-      "ShakerTypeEnum": {
+      "SamplingMethodEnum": {
          "description": "",
          "enum": [
-            "orbital"
+            "weighing"
          ],
-         "title": "ShakerTypeEnum",
+         "title": "SamplingMethodEnum",
          "type": "string"
       },
       "SolventEnum": {

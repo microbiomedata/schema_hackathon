@@ -5,118 +5,185 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-monet_schema:MaterialEntity a sh:NodeShape ;
+monet_schema:Database a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:name "Material entity" ;
-    sh:property [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 0 ;
-            sh:path monet_schema:id ] ;
-    sh:targetClass monet_schema:MaterialEntity .
-
-CHMO:0002773 a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:name "Dissolving" ;
-    sh:property [ sh:in ( "deionized_water" ) ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:name "solvent" ;
+    sh:name "database" ;
+    sh:property [ sh:class CHMO:0002773 ;
+            sh:name "dissolving process set" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 1 ;
+            sh:path monet_schema:dissolving_process_set ],
+        [ sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path monet_schema:id ],
+        [ sh:maxCount 1 ;
+            sh:name "description" ;
             sh:order 4 ;
-            sh:path monet_schema:solvent ],
-        [ sh:class monet_schema:MaterialContainer ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
+            sh:path monet_schema:description ],
+        [ sh:class monet_schema:ReactionActivity ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 3 ;
+            sh:path monet_schema:reaction_activity_set ],
+        [ sh:class monet_schema:MaterialSample ;
+            sh:name "material sample set" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path monet_schema:material_sample_set ],
+        [ sh:class OBI:0000744 ;
+            sh:name "material sampling process set" ;
             sh:nodeKind sh:BlankNode ;
             sh:order 2 ;
-            sh:path monet_schema:container ],
-        [ sh:class monet_schema:NamedThing ;
+            sh:path monet_schema:material_sampling_process_set ] ;
+    sh:targetClass monet_schema:Database .
+
+monet_schema:NamedThing a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:maxCount 1 ;
+            sh:name "description" ;
+            sh:order 0 ;
+            sh:path monet_schema:description ],
+        [ sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path monet_schema:id ] ;
+    sh:targetClass monet_schema:NamedThing .
+
+monet_schema:ReactionActivity a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:name "Reaction activity" ;
+    sh:property [ sh:class monet_schema:LabDevice ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
+            sh:name "reaction aided by" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 3 ;
+            sh:path monet_schema:reaction_aided_by ],
+        [ sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path monet_schema:reaction_temperature ],
+        [ sh:class monet_schema:MaterialSample ;
+            sh:maxCount 1 ;
             sh:name "material input" ;
             sh:nodeKind sh:IRI ;
             sh:order 0 ;
             sh:path monet_schema:material_input ],
-        [ sh:class monet_schema:QuantityValue ;
+        [ sh:class monet_schema:MaterialSample ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:name "volume" ;
-            sh:nodeKind sh:BlankNode ;
-            sh:order 5 ;
-            sh:path monet_schema:volume ],
-        [ sh:class monet_schema:NamedThing ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:name "material output" ;
             sh:nodeKind sh:IRI ;
             sh:order 1 ;
             sh:path monet_schema:material_output ],
-        [ sh:class monet_schema:Shaker ;
+        [ sh:class monet_schema:QuantityValue ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:name "shaker selection" ;
             sh:nodeKind sh:BlankNode ;
+            sh:order 2 ;
+            sh:path monet_schema:reaction_time ] ;
+    sh:targetClass monet_schema:ReactionActivity .
+
+CHMO:0002773 a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:name "Dissolving process" ;
+    sh:property [ sh:class monet_schema:QuantityValue ;
+            sh:maxCount 1 ;
+            sh:name "dissolution volume" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 4 ;
+            sh:path monet_schema:dissolution_volume ],
+        [ sh:in ( "deionized_water" ) ;
+            sh:maxCount 1 ;
+            sh:name "dissolution reagent" ;
             sh:order 3 ;
-            sh:path monet_schema:shaker_selection ] ;
+            sh:path monet_schema:dissolution_reagent ],
+        [ sh:class monet_schema:MaterialSample ;
+            sh:maxCount 1 ;
+            sh:name "material output" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path monet_schema:material_output ],
+        [ sh:class monet_schema:LabDevice ;
+            sh:maxCount 1 ;
+            sh:name "dissolution aided by" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 2 ;
+            sh:path monet_schema:dissolution_aided_by ],
+        [ sh:class monet_schema:MaterialSample ;
+            sh:maxCount 1 ;
+            sh:name "material input" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path monet_schema:material_input ],
+        [ sh:class monet_schema:MaterialContainer ;
+            sh:maxCount 1 ;
+            sh:name "dissolved in" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 5 ;
+            sh:path monet_schema:dissolved_in ] ;
     sh:targetClass CHMO:0002773 .
 
 OBI:0000744 a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Material sampling process" ;
-    sh:property [ sh:class monet_schema:NamedThing ;
+    sh:property [ sh:class monet_schema:QuantityValue ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:name "material output" ;
-            sh:nodeKind sh:IRI ;
-            sh:order 2 ;
-            sh:path monet_schema:material_output ],
-        [ sh:class monet_schema:QuantityValue ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:name "amount" ;
+            sh:name "amount collected" ;
             sh:nodeKind sh:BlankNode ;
             sh:order 3 ;
-            sh:path monet_schema:amount ],
+            sh:path monet_schema:amount_collected ],
         [ sh:class monet_schema:MaterialContainer ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:name "collected into" ;
             sh:nodeKind sh:BlankNode ;
             sh:order 0 ;
             sh:path monet_schema:collected_into ],
-        [ sh:class monet_schema:NamedThing ;
+        [ sh:class monet_schema:MaterialSample ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:name "material input" ;
             sh:nodeKind sh:IRI ;
             sh:order 1 ;
-            sh:path monet_schema:material_input ] ;
+            sh:path monet_schema:material_input ],
+        [ sh:in ( "weighing" ) ;
+            sh:maxCount 1 ;
+            sh:name "sampling method" ;
+            sh:order 4 ;
+            sh:path monet_schema:sampling_method ],
+        [ sh:class monet_schema:MaterialSample ;
+            sh:maxCount 1 ;
+            sh:name "material output" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path monet_schema:material_output ] ;
     sh:targetClass OBI:0000744 .
 
-monet_schema:Shaker a sh:NodeShape ;
+monet_schema:LabDevice a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:name "Shaker" ;
+    sh:name "Lab device" ;
     sh:property [ sh:class monet_schema:QuantityValue ;
             sh:maxCount 1 ;
-            sh:name "shake speed" ;
             sh:nodeKind sh:BlankNode ;
+            sh:order 2 ;
+            sh:path monet_schema:process_temperature ],
+        [ sh:in ( "orbital_shaker" "thermomixer" ) ;
+            sh:maxCount 1 ;
+            sh:name "device type" ;
             sh:order 0 ;
-            sh:path monet_schema:shake_speed ],
+            sh:path monet_schema:device_type ],
         [ sh:class monet_schema:QuantityValue ;
             sh:maxCount 1 ;
-            sh:name "shake time" ;
+            sh:name "process speed" ;
             sh:nodeKind sh:BlankNode ;
             sh:order 1 ;
-            sh:path monet_schema:shake_time ],
-        [ sh:in ( "orbital" ) ;
+            sh:path monet_schema:process_speed ],
+        [ sh:class monet_schema:QuantityValue ;
             sh:maxCount 1 ;
-            sh:name "shaker type" ;
-            sh:order 2 ;
-            sh:path monet_schema:shaker_type ] ;
-    sh:targetClass monet_schema:Shaker .
+            sh:name "process time" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 3 ;
+            sh:path monet_schema:process_time ] ;
+    sh:targetClass monet_schema:LabDevice .
 
 monet_schema:MaterialContainer a sh:NodeShape ;
     sh:closed true ;
@@ -124,39 +191,39 @@ monet_schema:MaterialContainer a sh:NodeShape ;
     sh:name "Material container" ;
     sh:property [ sh:in ( "screw_top_conical" ) ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:name "container type" ;
-            sh:order 0 ;
+            sh:order 1 ;
             sh:path monet_schema:container_type ],
         [ sh:class monet_schema:QuantityValue ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:name "size" ;
+            sh:name "container size" ;
             sh:nodeKind sh:BlankNode ;
-            sh:order 1 ;
-            sh:path monet_schema:size ] ;
+            sh:order 0 ;
+            sh:path monet_schema:container_size ] ;
     sh:targetClass monet_schema:MaterialContainer .
 
-monet_schema:NamedThing a sh:NodeShape ;
+monet_schema:MaterialSample a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
+    sh:name "Material sample" ;
     sh:property [ sh:maxCount 1 ;
-            sh:minCount 1 ;
+            sh:name "description" ;
             sh:order 0 ;
+            sh:path monet_schema:description ],
+        [ sh:maxCount 1 ;
+            sh:order 1 ;
             sh:path monet_schema:id ] ;
-    sh:targetClass monet_schema:NamedThing .
+    sh:targetClass monet_schema:MaterialSample .
 
 monet_schema:QuantityValue a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Quantity value" ;
     sh:property [ sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:name "has value" ;
             sh:order 0 ;
             sh:path monet_schema:has_value ],
         [ sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:name "has unit" ;
             sh:order 1 ;
             sh:path monet_schema:has_unit ] ;

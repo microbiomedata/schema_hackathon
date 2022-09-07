@@ -4,7 +4,7 @@
 
 
 
-URI: [my_datamodel:street](https://w3id.org/my_org/my_datamodelstreet)
+URI: [ks:street](https://w3id.org/linkml/tests/kitchen_sink/street)
 
 
 ## Domain and Range

@@ -4,7 +4,7 @@
 
 
 
-URI: [my_datamodel:type](https://w3id.org/my_org/my_datamodeltype)
+URI: [ks:type](https://w3id.org/linkml/tests/kitchen_sink/type)
 
 
 ## Domain and Range

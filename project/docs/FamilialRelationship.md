@@ -4,10 +4,10 @@
 
 
 
-URI: [my_datamodel:FamilialRelationship](https://w3id.org/my_org/my_datamodelFamilialRelationship)
+URI: [ks:FamilialRelationship](https://w3id.org/linkml/tests/kitchen_sink/FamilialRelationship)
 
 
-[![img](https://yuml.me/diagram/nofunky;dir:TB/class/[Relationship],[Person],[Person]<related%20to%201..1-%20[FamilialRelationship&#124;type:FamilialRelationshipType;started_at_time(i):date%20%3F;ended_at_time(i):date%20%3F;related_to(i):string%20%3F],[Person]++-%20has_familial_relationships%200..*>[FamilialRelationship],[Relationship]^-[FamilialRelationship])](https://yuml.me/diagram/nofunky;dir:TB/class/[Relationship],[Person],[Person]<related%20to%201..1-%20[FamilialRelationship&#124;type:FamilialRelationshipType;started_at_time(i):date%20%3F;ended_at_time(i):date%20%3F;related_to(i):string%20%3F],[Person]++-%20has_familial_relationships%200..*>[FamilialRelationship],[Relationship]^-[FamilialRelationship])
+[![img](https://yuml.me/diagram/nofunky;dir:TB/class/[Relationship],[Person],[Person]<related%20to%201..1-%20[FamilialRelationship&#124;type:FamilialRelationshipType;started_at_time(i):date%20%3F;ended_at_time(i):date%20%3F],[Person]++-%20has%20familial%20relationships%200..*>[FamilialRelationship],[Relationship]^-[FamilialRelationship])](https://yuml.me/diagram/nofunky;dir:TB/class/[Relationship],[Person],[Person]<related%20to%201..1-%20[FamilialRelationship&#124;type:FamilialRelationshipType;started_at_time(i):date%20%3F;ended_at_time(i):date%20%3F],[Person]++-%20has%20familial%20relationships%200..*>[FamilialRelationship],[Relationship]^-[FamilialRelationship])
 
 ## Parents
 
@@ -15,7 +15,7 @@ URI: [my_datamodel:FamilialRelationship](https://w3id.org/my_org/my_datamodelFam
 
 ## Referenced by Class
 
- *  **None** *[has_familial_relationships](has_familial_relationships.md)*  <sub>0..\*</sub>  **[FamilialRelationship](FamilialRelationship.md)**
+ *  **None** *[has familial relationships](has_familial_relationships.md)*  <sub>0..\*</sub>  **[FamilialRelationship](FamilialRelationship.md)**
 
 ## Attributes
 
@@ -29,9 +29,7 @@ URI: [my_datamodel:FamilialRelationship](https://w3id.org/my_org/my_datamodelFam
 
 ### Inherited from Relationship:
 
- * [started_at_time](started_at_time.md)  <sub>0..1</sub>
+ * [started at time](started_at_time.md)  <sub>0..1</sub>
      * Range: [Date](types/Date.md)
- * [ended_at_time](ended_at_time.md)  <sub>0..1</sub>
+ * [ended at time](ended_at_time.md)  <sub>0..1</sub>
      * Range: [Date](types/Date.md)
- * [related_to](related_to.md)  <sub>0..1</sub>
-     * Range: [String](types/String.md)

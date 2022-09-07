@@ -9,7 +9,7 @@ URI: [http://example.com/monet_schema/material_output](http://example.com/monet_
 
 ## Properties
 
- * Range: [NamedThing](NamedThing.md)
+ * Range: [MaterialSample](MaterialSample.md)
 
 
 

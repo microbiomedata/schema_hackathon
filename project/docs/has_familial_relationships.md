@@ -1,10 +1,10 @@
 
-# Slot: has_familial_relationships
+# Slot: has familial relationships
 
 
 
 
-URI: [my_datamodel:has_familial_relationships](https://w3id.org/my_org/my_datamodelhas_familial_relationships)
+URI: [ks:has_familial_relationships](https://w3id.org/linkml/tests/kitchen_sink/has_familial_relationships)
 
 
 ## Domain and Range
@@ -20,3 +20,10 @@ None &#8594;  <sub>0..\*</sub> [FamilialRelationship](FamilialRelationship.md)
 ## Used by
 
  * [Person](Person.md)
+
+## Other properties
+
+|  |  |  |
+| --- | --- | --- |
+| **In Subsets:** | | subset B |
+

@@ -4,7 +4,7 @@
 
 
 
-URI: [my_datamodel:FamilialRelationship_related_to](https://w3id.org/my_org/my_datamodelFamilialRelationship_related_to)
+URI: [ks:FamilialRelationship_related_to](https://w3id.org/linkml/tests/kitchen_sink/FamilialRelationship_related_to)
 
 
 ## Domain and Range

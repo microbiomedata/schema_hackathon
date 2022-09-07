@@ -12,40 +12,53 @@ A sandbox for modeling MONET sample processing activities
 
 ### Classes
 
- * [Dissolving](Dissolving.md)
- * [MatSampProc](MatSampProc.md)
+ * [DissolvingProcess](DissolvingProcess.md)
+ * [LabDevice](LabDevice.md)
  * [MaterialContainer](MaterialContainer.md)
+ * [MaterialSamplingProcess](MaterialSamplingProcess.md)
  * [NamedThing](NamedThing.md)
-     * [MaterialEntity](MaterialEntity.md)
+     * [Database](Database.md)
+     * [MaterialSample](MaterialSample.md)
  * [QuantityValue](QuantityValue.md)
- * [Shaker](Shaker.md)
+ * [ReactionActivity](ReactionActivity.md)
 
 ### Mixins
 
 
 ### Slots
 
- * [amount](amount.md)
+ * [amount_collected](amount_collected.md)
  * [collected_into](collected_into.md)
- * [container](container.md)
+ * [container_size](container_size.md)
  * [container_type](container_type.md)
+ * [description](description.md)
+ * [device_type](device_type.md)
+ * [dissolution_aided_by](dissolution_aided_by.md)
+ * [dissolution_reagent](dissolution_reagent.md)
+ * [dissolution_volume](dissolution_volume.md)
+ * [dissolved_in](dissolved_in.md)
+ * [dissolving_process_set](dissolving_process_set.md)
  * [has_unit](has_unit.md)
  * [has_value](has_value.md)
  * [id](id.md)
  * [material_input](material_input.md)
  * [material_output](material_output.md)
- * [shake_speed](shake_speed.md)
- * [shake_time](shake_time.md)
- * [shaker_selection](shaker_selection.md)
- * [shaker_type](shaker_type.md)
- * [size](size.md)
- * [solvent](solvent.md)
- * [volume](volume.md)
+ * [material_sample_set](material_sample_set.md)
+ * [material_sampling_process_set](material_sampling_process_set.md)
+ * [process_speed](process_speed.md)
+ * [process_temperature](process_temperature.md)
+ * [process_time](process_time.md)
+ * [reaction_activity_set](reaction_activity_set.md)
+ * [reaction_aided_by](reaction_aided_by.md)
+ * [reaction_temperature](reaction_temperature.md)
+ * [reaction_time](reaction_time.md)
+ * [sampling_method](sampling_method.md)
 
 ### Enums
 
  * [ContainerTypeEnum](ContainerTypeEnum.md)
- * [ShakerTypeEnum](ShakerTypeEnum.md)
+ * [DeviceTypeEnum](DeviceTypeEnum.md)
+ * [SamplingMethodEnum](SamplingMethodEnum.md)
  * [SolventEnum](SolventEnum.md)
 
 ### Subsets

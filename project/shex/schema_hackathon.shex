@@ -34,39 +34,62 @@ linkml:Objectidentifier IRI
 
 linkml:Nodeidentifier NONLITERAL
 
-<Dissolving> CLOSED {
-    (  $<Dissolving_tes> (  <material_input> @<NamedThing> ;
-          <material_output> @<NamedThing> ;
-          <container> @<MaterialContainer> ;
-          <shaker_selection> @<Shaker> ;
-          <solvent> @<SolventEnum> ;
-          <volume> @<QuantityValue>
+<Database> CLOSED {
+    (  $<Database_tes> (  &<NamedThing_tes> ;
+          rdf:type [ <NamedThing> ] ? ;
+          <material_sample_set> @<MaterialSample> * ;
+          <dissolving_process_set> @<DissolvingProcess> * ;
+          <material_sampling_process_set> @<MaterialSamplingProcess> * ;
+          <reaction_activity_set> @<ReactionActivity> *
+       ) ;
+       rdf:type [ <Database> ]
+    )
+}
+
+<DissolvingProcess> CLOSED {
+    (  $<DissolvingProcess_tes> (  <material_input> @<MaterialSample> ? ;
+          <material_output> @<MaterialSample> ? ;
+          <dissolution_aided_by> @<LabDevice> ? ;
+          <dissolution_reagent> @<SolventEnum> ? ;
+          <dissolution_volume> @<QuantityValue> ? ;
+          <dissolved_in> @<MaterialContainer> ?
        ) ;
        rdf:type [ <http://purl.obolibrary.org/obo/CHMO_0002773> ] ?
     )
 }
 
+<LabDevice> CLOSED {
+    (  $<LabDevice_tes> (  <device_type> @<DeviceTypeEnum> ? ;
+          <process_speed> @<QuantityValue> ? ;
+          <process_temperature> @<QuantityValue> ? ;
+          <process_time> @<QuantityValue> ?
+       ) ;
+       rdf:type [ <LabDevice> ] ?
+    )
+}
+
 <MaterialContainer> CLOSED {
-    (  $<MaterialContainer_tes> (  <container_type> @<ContainerTypeEnum> ;
-          <size> @<QuantityValue>
+    (  $<MaterialContainer_tes> (  <container_size> @<QuantityValue> ? ;
+          <container_type> @<ContainerTypeEnum> ?
        ) ;
        rdf:type [ <MaterialContainer> ] ?
     )
 }
 
-<MaterialEntity> CLOSED {
-    (  $<MaterialEntity_tes> (  &<NamedThing_tes> ;
+<MaterialSample> CLOSED {
+    (  $<MaterialSample_tes> (  &<NamedThing_tes> ;
           rdf:type [ <NamedThing> ] ?
        ) ;
-       rdf:type [ <MaterialEntity> ]
+       rdf:type [ <MaterialSample> ]
     )
 }
 
-<MatSampProc> CLOSED {
-    (  $<MatSampProc_tes> (  <collected_into> @<MaterialContainer> ;
-          <material_input> @<NamedThing> ;
-          <material_output> @<NamedThing> ;
-          <amount> @<QuantityValue>
+<MaterialSamplingProcess> CLOSED {
+    (  $<MaterialSamplingProcess_tes> (  <collected_into> @<MaterialContainer> ? ;
+          <material_input> @<MaterialSample> ? ;
+          <material_output> @<MaterialSample> ? ;
+          <amount_collected> @<QuantityValue> ? ;
+          <sampling_method> @<SamplingMethodEnum> ?
        ) ;
        rdf:type [ <http://purl.obolibrary.org/obo/OBI_0000744> ] ?
     )
@@ -74,26 +97,28 @@ linkml:Nodeidentifier NONLITERAL
 
 <NamedThing>  (
     CLOSED {
-       (  $<NamedThing_tes> rdf:type . * ;
+       (  $<NamedThing_tes> <description> @linkml:String ? ;
           rdf:type [ <NamedThing> ]
        )
-    } OR @<MaterialEntity>
+    } OR @<Database> OR @<MaterialSample>
 )
 
 <QuantityValue> CLOSED {
-    (  $<QuantityValue_tes> (  <has_value> @linkml:Float ;
-          <has_unit> @linkml:String
+    (  $<QuantityValue_tes> (  <has_value> @linkml:Float ? ;
+          <has_unit> @linkml:String ?
        ) ;
        rdf:type [ <QuantityValue> ] ?
     )
 }
 
-<Shaker> CLOSED {
-    (  $<Shaker_tes> (  <shake_speed> @<QuantityValue> ? ;
-          <shake_time> @<QuantityValue> ? ;
-          <shaker_type> @<ShakerTypeEnum> ?
+<ReactionActivity> CLOSED {
+    (  $<ReactionActivity_tes> (  <material_input> @<MaterialSample> ? ;
+          <material_output> @<MaterialSample> ? ;
+          <reaction_time> @<QuantityValue> ? ;
+          <reaction_aided_by> @<LabDevice> ? ;
+          <reaction_temperature> @linkml:String ?
        ) ;
-       rdf:type [ <Shaker> ] ?
+       rdf:type [ <ReactionActivity> ] ?
     )
 }
 

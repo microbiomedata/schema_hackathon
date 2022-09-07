@@ -1,36 +1,12 @@
-@prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
 @prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
-@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ks: <https://w3id.org/linkml/tests/kitchen_sink/> .
 @prefix linkml: <https://w3id.org/linkml/> .
-@prefix monet_schema: <http://example.com/monet_schema/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-<http://example.com/monet_schema> a owl:Ontology ;
-    rdfs:label "monet_schema" ;
-    IAO:0000700 monet_schema:Dissolving,
-        monet_schema:MatSampProc,
-        monet_schema:MaterialContainer,
-        monet_schema:NamedThing,
-        monet_schema:QuantityValue,
-        monet_schema:Shaker ;
-    dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
-    rdfs:seeAlso "https://gitlab.pnnl.gov/MoNET/analytical-processes/-/blob/main/organicmatterextraction.toml" ;
-    linkml:generation_date "2022-08-29T18:40:12" ;
-    linkml:metamodel_version "1.7.0" ;
-    linkml:source_file "schema_hackathon.yaml" ;
-    linkml:source_file_date "2022-08-29T18:38:35" ;
-    linkml:source_file_size 4392 .
-
-monet_schema:MaterialEntity a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "MaterialEntity" ;
-    dcterms:title "Material entity" ;
-    rdfs:subClassOf monet_schema:NamedThing .
 
 linkml:SubsetDefinition a owl:Class ;
     rdfs:label "subset_definition" .
@@ -38,254 +14,537 @@ linkml:SubsetDefinition a owl:Class ;
 linkml:TypeDefinition a owl:Class ;
     rdfs:label "type_definition" .
 
+<https://w3id.org/linkml/tests/core/activity_set> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "activity set" ;
+    rdfs:range <https://w3id.org/linkml/tests/core/Activity> .
+
+<https://w3id.org/linkml/tests/core/agent_set> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "agent set" ;
+    rdfs:range <https://w3id.org/linkml/tests/core/Agent> .
+
+<https://w3id.org/linkml/tests/kitchen_sink> a owl:Ontology ;
+    rdfs:label "kitchen_sink" ;
+    IAO:0000700 <https://w3id.org/linkml/tests/core/Activity>,
+        <https://w3id.org/linkml/tests/core/Agent>,
+        ks:Address,
+        ks:Concept,
+        ks:Dataset,
+        ks:Event,
+        ks:HasAliases,
+        ks:Relationship,
+        ks:WithLocation ;
+    dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
+    rdfs:seeAlso "https://example.org/" ;
+    linkml:generation_date "2022-08-31T18:23:32" ;
+    linkml:metamodel_version "1.7.0" ;
+    linkml:source_file "schema_hackathon.yaml" ;
+    linkml:source_file_date "2022-08-31T18:23:25" ;
+    linkml:source_file_size 5051 .
+
+ks:DiagnosisType a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "DiagnosisType" ;
+    owl:unionOf [ rdf:rest () ] .
+
+ks:eye_color a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "eye_color" ;
+    rdfs:range linkml:String ;
+    linkml:examples "Example(value='blue', description=None)",
+        "Example(value='brown', description=None)" .
+
+ks:frenemies_with a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "frenemies_with" ;
+    rdfs:domain ks:Person ;
+    rdfs:range ks:Person ;
+    rdfs:subPropertyOf ks:related_to .
+
+ks:has_marriage_history a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "has marriage history" ;
+    rdfs:range ks:MarriageEvent .
+
 linkml:topValue a owl:DatatypeProperty ;
     rdfs:label "value" .
 
-monet_schema:Dissolving a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "Dissolving" ;
-    dcterms:title "Dissolving" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass monet_schema:SolventEnum ;
-            owl:onProperty monet_schema:solvent ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass monet_schema:MaterialContainer ;
-            owl:onProperty monet_schema:container ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass monet_schema:Shaker ;
-            owl:onProperty monet_schema:shaker_selection ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass monet_schema:QuantityValue ;
-            owl:onProperty monet_schema:volume ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass monet_schema:NamedThing ;
-            owl:onProperty monet_schema:material_output ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass monet_schema:NamedThing ;
-            owl:onProperty monet_schema:material_input ;
-            owl:qualifiedCardinality 1 ] ;
-    skos:altLabel "dissolution-activity" ;
-    skos:exactMatch CHMO:0002773 .
-
-monet_schema:MatSampProc a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "MatSampProc" ;
-    dcterms:title "Material sampling process" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass monet_schema:NamedThing ;
-            owl:onProperty monet_schema:material_output ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass monet_schema:QuantityValue ;
-            owl:onProperty monet_schema:amount ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass monet_schema:NamedThing ;
-            owl:onProperty monet_schema:material_input ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass monet_schema:MaterialContainer ;
-            owl:onProperty monet_schema:collected_into ;
-            owl:qualifiedCardinality 1 ] ;
-    skos:altLabel "weighing-activity" ;
-    skos:exactMatch OBI:0000744 .
-
-monet_schema:amount a owl:ObjectProperty,
+<http://www.w3.org/ns/prov#wasGeneratedBy> a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "amount" ;
-    dcterms:title "amount" ;
-    rdfs:range monet_schema:QuantityValue ;
-    skos:altLabel "weighing-activity.weight" .
+    rdfs:label "was generated by" ;
+    rdfs:range <https://w3id.org/linkml/tests/core/Activity> ;
+    skos:exactMatch <http://www.w3.org/ns/prov#wasGeneratedBy> .
 
-monet_schema:collected_into a owl:ObjectProperty,
+<https://w3id.org/linkml/tests/core/description> a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "collected_into" ;
-    dcterms:title "collected into" ;
-    rdfs:range monet_schema:MaterialContainer ;
-    skos:altLabel "weighing-activity.contanier" .
-
-monet_schema:container a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "container" ;
-    rdfs:range monet_schema:MaterialContainer .
-
-monet_schema:container_type a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "container_type" ;
-    dcterms:title "container type" ;
-    rdfs:range monet_schema:ContainerTypeEnum .
-
-monet_schema:has_unit a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "has_unit" ;
-    dcterms:title "has unit" ;
+    rdfs:label "description" ;
     rdfs:range linkml:String .
 
-monet_schema:has_value a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "has_value" ;
-    dcterms:title "has value" ;
-    rdfs:range linkml:Float .
+ks:Dataset a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Dataset" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ks:Company ;
+            owl:onProperty ks:companies ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://w3id.org/linkml/tests/core/Activity> ;
+            owl:onProperty ks:activities ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ks:Person ;
+            owl:onProperty ks:persons ] .
 
-monet_schema:id a owl:ObjectProperty,
+ks:MarriageEvent a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "MarriageEvent" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass ks:Person ;
+            owl:onProperty ks:married_to ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass ks:Place ;
+            owl:onProperty ks:in_location ],
+        ks:Event,
+        ks:WithLocation .
+
+ks:Organization a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Organization" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://w3id.org/linkml/tests/core/id> ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://w3id.org/linkml/tests/core/name> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty ks:aliases ],
+        ks:HasAliases .
+
+ks:activities a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "activities" ;
+    rdfs:range <https://w3id.org/linkml/tests/core/Activity> .
+
+ks:addresses a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "addresses" ;
+    rdfs:range ks:Address .
+
+ks:age_in_years a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "age in years" ;
+    rdfs:range linkml:Integer .
+
+ks:ceo a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "ceo" ;
+    rdfs:range ks:Person .
+
+ks:city a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "city" ;
+    rdfs:range linkml:String .
+
+ks:companies a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "companies" ;
+    rdfs:range ks:Company .
+
+ks:diagnosis a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "diagnosis" ;
+    rdfs:range ks:DiagnosisConcept .
+
+ks:employed_at a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "employed at" ;
+    rdfs:range ks:Company ;
+    rdfs:subPropertyOf ks:related_to .
+
+ks:has_birth_event a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "has birth event" ;
+    rdfs:range ks:BirthEvent .
+
+ks:has_employment_history a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "has employment history" ;
+    rdfs:range ks:EmploymentEvent .
+
+ks:has_familial_relationships a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "has familial relationships" ;
+    rdfs:range ks:FamilialRelationship .
+
+ks:has_medical_history a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "has medical history" ;
+    rdfs:range ks:MedicalEvent .
+
+ks:is_current a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "is current" ;
+    rdfs:range linkml:Boolean .
+
+ks:married_to a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "married to" ;
+    rdfs:range ks:Person .
+
+ks:persons a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "persons" ;
+    rdfs:range ks:Person .
+
+ks:procedure a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "procedure" ;
+    rdfs:range ks:ProcedureConcept .
+
+ks:street a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "street" ;
+    rdfs:range linkml:String .
+
+<http://www.w3.org/ns/prov#actedOnBehalfOf> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "acted on behalf of" ;
+    rdfs:range <https://w3id.org/linkml/tests/core/Agent> ;
+    skos:exactMatch <http://www.w3.org/ns/prov#actedOnBehalfOf> .
+
+<http://www.w3.org/ns/prov#used> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "used" ;
+    rdfs:domain <https://w3id.org/linkml/tests/core/Activity> ;
+    rdfs:range linkml:String ;
+    skos:exactMatch <http://www.w3.org/ns/prov#used> .
+
+<http://www.w3.org/ns/prov#wasAssociatedWith> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "was associated with" ;
+    rdfs:range <https://w3id.org/linkml/tests/core/Agent> ;
+    skos:exactMatch <http://www.w3.org/ns/prov#wasAssociatedWith> .
+
+ks:BirthEvent a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "BirthEvent" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass ks:Place ;
+            owl:onProperty ks:in_location ],
+        ks:Event .
+
+ks:DiagnosisConcept a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "DiagnosisConcept" ;
+    rdfs:subClassOf ks:Concept .
+
+ks:EmploymentEvent a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "EmploymentEvent" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass ks:Company ;
+            owl:onProperty ks:employed_at ],
+        ks:Event .
+
+ks:FamilialRelationship a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "FamilialRelationship" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass ks:Person ;
+            owl:onProperty ks:related_to ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass ks:FamilialRelationshipType ;
+            owl:onProperty ks:type ;
+            owl:qualifiedCardinality 1 ],
+        ks:Relationship .
+
+<https://w3id.org/linkml/tests/kitchen_sink/FamilialRelationshipType#CHILD_OF> a owl:Class,
+        ks:FamilialRelationshipType ;
+    rdfs:label "CHILD_OF" .
+
+<https://w3id.org/linkml/tests/kitchen_sink/FamilialRelationshipType#PARENT_OF> a owl:Class,
+        ks:FamilialRelationshipType ;
+    rdfs:label "PARENT_OF" .
+
+<https://w3id.org/linkml/tests/kitchen_sink/FamilialRelationshipType#SIBLING_OF> a owl:Class,
+        ks:FamilialRelationshipType ;
+    rdfs:label "SIBLING_OF" .
+
+ks:MedicalEvent a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "MedicalEvent" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass ks:DiagnosisConcept ;
+            owl:onProperty ks:diagnosis ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass ks:Place ;
+            owl:onProperty ks:in_location ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass ks:ProcedureConcept ;
+            owl:onProperty ks:procedure ],
+        ks:Event .
+
+ks:ProcedureConcept a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "ProcedureConcept" ;
+    rdfs:subClassOf ks:Concept .
+
+ks:Relationship a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Relationship" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty <http://www.w3.org/ns/prov#startedAtTime> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty <http://www.w3.org/ns/prov#endedAtTime> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty ks:type ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty ks:related_to ] .
+
+ks:WithLocation a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "WithLocation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass ks:Place ;
+            owl:onProperty ks:in_location ],
+        linkml:mixin .
+
+ks:type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "type" ;
+    rdfs:range linkml:String .
+
+<http://www.w3.org/ns/prov#wasInformedBy> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "was informed by" ;
+    rdfs:range <https://w3id.org/linkml/tests/core/Activity> ;
+    skos:exactMatch <http://www.w3.org/ns/prov#wasInformedBy> .
+
+ks:Address a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Address" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty ks:street ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty ks:city ] .
+
+ks:Concept a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Concept" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://w3id.org/linkml/tests/core/name> ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://w3id.org/linkml/tests/core/id> ;
+            owl:qualifiedCardinality 1 ] .
+
+<http://www.w3.org/ns/prov#endedAtTime> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "ended at time" ;
+    rdfs:range linkml:Date ;
+    skos:exactMatch <http://www.w3.org/ns/prov#endedAtTime> .
+
+<http://www.w3.org/ns/prov#startedAtTime> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "started at time" ;
+    rdfs:range linkml:Date ;
+    skos:exactMatch <http://www.w3.org/ns/prov#startedAtTime> .
+
+<https://w3id.org/linkml/tests/core/name> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "name" ;
+    rdfs:range linkml:String .
+
+ks:Company a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Company" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass ks:Person ;
+            owl:onProperty ks:ceo ],
+        ks:Organization .
+
+ks:FamilialRelationshipType a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "FamilialRelationshipType" ;
+    owl:unionOf ( <https://w3id.org/linkml/tests/kitchen_sink/FamilialRelationshipType#SIBLING_OF> <https://w3id.org/linkml/tests/kitchen_sink/FamilialRelationshipType#PARENT_OF> <https://w3id.org/linkml/tests/kitchen_sink/FamilialRelationshipType#CHILD_OF> ) ;
+    linkml:permissible_values <https://w3id.org/linkml/tests/kitchen_sink/FamilialRelationshipType#CHILD_OF>,
+        <https://w3id.org/linkml/tests/kitchen_sink/FamilialRelationshipType#PARENT_OF>,
+        <https://w3id.org/linkml/tests/kitchen_sink/FamilialRelationshipType#SIBLING_OF> .
+
+ks:HasAliases a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "HasAliases" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty ks:aliases ],
+        linkml:mixin .
+
+ks:aliases a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "aliases" ;
+    rdfs:range linkml:String .
+
+ks:in_location a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "in location" ;
+    rdfs:range ks:Place .
+
+ks:related_to a owl:ObjectProperty,
+        linkml:SlotDefinition .
+
+ks:Event a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Event" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Boolean ;
+            owl:onProperty ks:is_current ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty <http://www.w3.org/ns/prov#startedAtTime> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty <http://www.w3.org/ns/prov#endedAtTime> ] .
+
+ks:Place a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Place" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://w3id.org/linkml/tests/core/name> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty ks:aliases ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://w3id.org/linkml/tests/core/id> ;
+            owl:qualifiedCardinality 1 ],
+        ks:HasAliases .
+
+<https://w3id.org/linkml/tests/core/Agent> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "agent" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <https://w3id.org/linkml/tests/core/Activity> ;
+            owl:onProperty <http://www.w3.org/ns/prov#wasInformedBy> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <https://w3id.org/linkml/tests/core/Agent> ;
+            owl:onProperty <http://www.w3.org/ns/prov#actedOnBehalfOf> ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://w3id.org/linkml/tests/core/id> ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "a provence-generating agent" ;
+    skos:exactMatch <http://www.w3.org/ns/prov#Agent> .
+
+<https://w3id.org/linkml/tests/core/id> a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "id" ;
     rdfs:range linkml:String .
 
-monet_schema:shake_speed a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "shake_speed" ;
-    dcterms:title "shake speed" ;
-    rdfs:range monet_schema:QuantityValue .
-
-monet_schema:shake_time a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "shake_time" ;
-    dcterms:title "shake time" ;
-    rdfs:range monet_schema:QuantityValue .
-
-monet_schema:shaker_selection a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "shaker_selection" ;
-    dcterms:title "shaker selection" ;
-    rdfs:range monet_schema:Shaker .
-
-monet_schema:shaker_type a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "shaker_type" ;
-    dcterms:title "shaker type" ;
-    rdfs:range monet_schema:ShakerTypeEnum .
-
-monet_schema:size a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "size" ;
-    dcterms:title "size" ;
-    rdfs:range monet_schema:QuantityValue .
-
-monet_schema:solvent a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "solvent" ;
-    dcterms:title "solvent" ;
-    rdfs:range monet_schema:SolventEnum .
-
-monet_schema:volume a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "volume" ;
-    dcterms:title "volume" ;
-    rdfs:range monet_schema:QuantityValue .
-
-<http://example.com/monet_schema/ContainerTypeEnum#screw_top_conical> a monet_schema:ContainerTypeEnum,
-        owl:Class ;
-    rdfs:label "screw_top_conical" ;
-    dcterms:title "Screw top conical tube" .
-
-<http://example.com/monet_schema/ShakerTypeEnum#orbital> a monet_schema:ShakerTypeEnum,
-        owl:Class ;
-    rdfs:label "orbital" ;
-    dcterms:title "Orbital" .
-
-<http://example.com/monet_schema/SolventEnum#deionized_water> a monet_schema:SolventEnum,
-        owl:Class ;
-    rdfs:label "deionized_water" ;
-    dcterms:title "Deionized water" .
-
-monet_schema:material_input a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "material_input" ;
-    dcterms:title "material input" ;
-    rdfs:range monet_schema:NamedThing ;
-    skos:altLabel "weighing-activity.source_material" ;
-    linkml:examples "Example(value='soil:1', description=None)",
-        "Example(value='somextract:6', description=None)" .
-
-monet_schema:material_output a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "material_output" ;
-    dcterms:title "material output" ;
-    rdfs:range monet_schema:NamedThing ;
-    skos:altLabel "weighing-activity.id" ;
-    linkml:examples "Example(value='somextract:6', description=None)",
-        "Example(value='somextract:7', description=None)" .
-
-monet_schema:ContainerTypeEnum a owl:Class,
-        linkml:EnumDefinition ;
-    rdfs:label "ContainerTypeEnum" ;
-    dcterms:title "Container type enumeration" ;
-    owl:unionOf ( <http://example.com/monet_schema/ContainerTypeEnum#screw_top_conical> ) ;
-    linkml:permissible_values <http://example.com/monet_schema/ContainerTypeEnum#screw_top_conical> .
-
-monet_schema:Shaker a owl:Class,
+<https://w3id.org/linkml/tests/core/Activity> a owl:Class,
         linkml:ClassDefinition ;
-    rdfs:label "Shaker" ;
-    dcterms:title "Shaker" ;
+    rdfs:label "activity" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass monet_schema:QuantityValue ;
-            owl:onProperty monet_schema:shake_speed ],
+            owl:onClass linkml:String ;
+            owl:onProperty <https://w3id.org/linkml/tests/core/description> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass monet_schema:ShakerTypeEnum ;
-            owl:onProperty monet_schema:shaker_type ],
+            owl:onClass <https://w3id.org/linkml/tests/core/Activity> ;
+            owl:onProperty <http://www.w3.org/ns/prov#wasInformedBy> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass monet_schema:QuantityValue ;
-            owl:onProperty monet_schema:shake_time ] .
-
-monet_schema:ShakerTypeEnum a owl:Class,
-        linkml:EnumDefinition ;
-    rdfs:label "ShakerTypeEnum" ;
-    dcterms:title "Shaker type enumeration" ;
-    owl:unionOf ( <http://example.com/monet_schema/ShakerTypeEnum#orbital> ) ;
-    linkml:permissible_values <http://example.com/monet_schema/ShakerTypeEnum#orbital> .
-
-monet_schema:SolventEnum a owl:Class,
-        linkml:EnumDefinition ;
-    rdfs:label "SolventEnum" ;
-    dcterms:title "Solvent enumeration" ;
-    owl:unionOf ( <http://example.com/monet_schema/SolventEnum#deionized_water> ) ;
-    linkml:permissible_values <http://example.com/monet_schema/SolventEnum#deionized_water> .
-
-monet_schema:MaterialContainer a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "MaterialContainer" ;
-    dcterms:title "Material container" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass monet_schema:QuantityValue ;
-            owl:onProperty monet_schema:size ;
+            owl:onClass linkml:String ;
+            owl:onProperty <http://www.w3.org/ns/prov#used> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <https://w3id.org/linkml/tests/core/Agent> ;
+            owl:onProperty <http://www.w3.org/ns/prov#wasAssociatedWith> ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://w3id.org/linkml/tests/core/id> ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
-            owl:onClass monet_schema:ContainerTypeEnum ;
-            owl:onProperty monet_schema:container_type ;
-            owl:qualifiedCardinality 1 ] .
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty <http://www.w3.org/ns/prov#startedAtTime> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty <http://www.w3.org/ns/prov#endedAtTime> ] ;
+    skos:definition "a provence-generating activity" ;
+    skos:exactMatch <http://www.w3.org/ns/prov#Activity> .
+
+ks:Person a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Person" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ks:Address ;
+            owl:onProperty ks:addresses ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass ks:BirthEvent ;
+            owl:onProperty ks:has_birth_event ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ks:FamilialRelationship ;
+            owl:onProperty ks:has_familial_relationships ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Integer ;
+            owl:onProperty ks:age_in_years ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ks:MedicalEvent ;
+            owl:onProperty ks:has_medical_history ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://w3id.org/linkml/tests/core/id> ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty ks:aliases ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://w3id.org/linkml/tests/core/name> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ks:EmploymentEvent ;
+            owl:onProperty ks:has_employment_history ],
+        ks:HasAliases .
 
 linkml:ClassDefinition a owl:Class ;
     rdfs:label "class_definition" .
-
-monet_schema:NamedThing a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "NamedThing" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass linkml:String ;
-            owl:onProperty monet_schema:id ;
-            owl:qualifiedCardinality 1 ] .
-
-monet_schema:QuantityValue a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "QuantityValue" ;
-    dcterms:title "Quantity value" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass linkml:String ;
-            owl:onProperty monet_schema:has_unit ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass linkml:Float ;
-            owl:onProperty monet_schema:has_value ;
-            owl:qualifiedCardinality 1 ] .
 
 linkml:SlotDefinition a owl:Class ;
     rdfs:label "slot_definition" .

@@ -9,7 +9,7 @@ URI: [monet_schema:material_output](http://example.com/monet_schema/material_out
 
 ## Domain and Range
 
-None &#8594;  <sub>1..1</sub> [NamedThing](NamedThing.md)
+None &#8594;  <sub>0..1</sub> [MaterialSample](MaterialSample.md)
 
 ## Parents
 
@@ -19,8 +19,9 @@ None &#8594;  <sub>1..1</sub> [NamedThing](NamedThing.md)
 
 ## Used by
 
- * [Dissolving](Dissolving.md)
- * [MatSampProc](MatSampProc.md)
+ * [DissolvingProcess](DissolvingProcess.md)
+ * [MaterialSamplingProcess](MaterialSamplingProcess.md)
+ * [ReactionActivity](ReactionActivity.md)
 
 ## Other properties
 

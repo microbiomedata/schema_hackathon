@@ -4,14 +4,14 @@
 
 
 
-URI: [my_datamodel:Address](https://w3id.org/my_org/my_datamodelAddress)
+URI: [ks:Address](https://w3id.org/linkml/tests/kitchen_sink/Address)
 
 
-[![img](https://yuml.me/diagram/nofunky;dir:TB/class/[Person]++-%20current_address%200..1>[Address&#124;street:string%20%3F;city:string%20%3F;postal_code:string%20%3F],[Person])](https://yuml.me/diagram/nofunky;dir:TB/class/[Person]++-%20current_address%200..1>[Address&#124;street:string%20%3F;city:string%20%3F;postal_code:string%20%3F],[Person])
+[![img](https://yuml.me/diagram/nofunky;dir:TB/class/[Person]++-%20addresses%200..*>[Address&#124;street:string%20%3F;city:string%20%3F],[Person])](https://yuml.me/diagram/nofunky;dir:TB/class/[Person]++-%20addresses%200..*>[Address&#124;street:string%20%3F;city:string%20%3F],[Person])
 
 ## Referenced by Class
 
- *  **None** *[current_address](current_address.md)*  <sub>0..1</sub>  **[Address](Address.md)**
+ *  **None** *[addresses](addresses.md)*  <sub>0..\*</sub>  **[Address](Address.md)**
 
 ## Attributes
 
@@ -22,12 +22,3 @@ URI: [my_datamodel:Address](https://w3id.org/my_org/my_datamodelAddress)
      * Range: [String](types/String.md)
  * [city](city.md)  <sub>0..1</sub>
      * Range: [String](types/String.md)
- * [postal_code](postal_code.md)  <sub>0..1</sub>
-     * Range: [String](types/String.md)
-
-## Other properties
-
-|  |  |  |
-| --- | --- | --- |
-| **Mappings:** | | schema:PostalAddress |
-

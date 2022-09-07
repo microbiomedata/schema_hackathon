@@ -11,8 +11,8 @@ URI: [monet_schema:MaterialContainer](http://example.com/monet_schema/MaterialCo
 ```mermaid
  classDiagram
     class MaterialContainer
+      MaterialContainer : container_size
       MaterialContainer : container_type
-      MaterialContainer : size
       
 ```
 
@@ -26,8 +26,8 @@ URI: [monet_schema:MaterialContainer](http://example.com/monet_schema/MaterialCo
 
 | Name | Cardinality and Range  | Description  |
 | ---  | ---  | --- |
-| [container_type](container_type.md) | 1..1 <br/> [ContainerTypeEnum](ContainerTypeEnum.md)  |   |
-| [size](size.md) | 1..1 <br/> [QuantityValue](QuantityValue.md)  |   |
+| [container_size](container_size.md) | 0..1 <br/> [QuantityValue](QuantityValue.md)  |   |
+| [container_type](container_type.md) | 0..1 <br/> [ContainerTypeEnum](ContainerTypeEnum.md)  |   |
 
 
 ## Usages
@@ -35,8 +35,8 @@ URI: [monet_schema:MaterialContainer](http://example.com/monet_schema/MaterialCo
 
 | used by | used in | type | used |
 | ---  | --- | --- | --- |
-| [MatSampProc](MatSampProc.md) | [collected_into](collected_into.md) | range | MaterialContainer |
-| [Dissolving](Dissolving.md) | [container](container.md) | range | MaterialContainer |
+| [DissolvingProcess](DissolvingProcess.md) | [dissolved_in](dissolved_in.md) | range | MaterialContainer |
+| [MaterialSamplingProcess](MaterialSamplingProcess.md) | [collected_into](collected_into.md) | range | MaterialContainer |
 
 
 
@@ -80,8 +80,8 @@ title: Material container
 from_schema: http://example.com/monet_schema
 rank: 1000
 slots:
+- container_size
 - container_type
-- size
 
 ```
 </details>
@@ -95,6 +95,17 @@ title: Material container
 from_schema: http://example.com/monet_schema
 rank: 1000
 attributes:
+  container_size:
+    name: container_size
+    title: container size
+    from_schema: http://example.com/monet_schema
+    rank: 1000
+    alias: container_size
+    owner: MaterialContainer
+    domain_of:
+    - MaterialContainer
+    range: QuantityValue
+    inlined: true
   container_type:
     name: container_type
     title: container type
@@ -105,20 +116,6 @@ attributes:
     domain_of:
     - MaterialContainer
     range: ContainerTypeEnum
-    required: true
-  size:
-    name: size
-    title: size
-    from_schema: http://example.com/monet_schema
-    rank: 1000
-    alias: size
-    owner: MaterialContainer
-    domain_of:
-    - MaterialContainer
-    range: QuantityValue
-    required: true
-    inlined: true
-    inlined_as_list: true
 
 ```
 </details>

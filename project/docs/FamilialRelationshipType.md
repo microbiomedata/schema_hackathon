@@ -4,7 +4,7 @@
 
 
 
-URI: [my_datamodel:FamilialRelationshipType](https://w3id.org/my_org/my_datamodelFamilialRelationshipType)
+URI: [ks:FamilialRelationshipType](https://w3id.org/linkml/tests/kitchen_sink/FamilialRelationshipType)
 
 
 ## Other properties
@@ -16,7 +16,7 @@ URI: [my_datamodel:FamilialRelationshipType](https://w3id.org/my_org/my_datamode
 
 | Text | Description | Meaning | Other Information |
 | :--- | :---: | :---: | ---: |
-| SIBLING_OF |  | famrel:01 |  |
-| PARENT_OF |  | famrel:02 |  |
-| CHILD_OF |  | famrel:01 |  |
+| SIBLING_OF |  |  |  |
+| PARENT_OF |  |  |  |
+| CHILD_OF |  |  |  |
 

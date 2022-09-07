@@ -9,7 +9,7 @@ URI: [monet_schema:has_unit](http://example.com/monet_schema/has_unit)
 
 ## Domain and Range
 
-None &#8594;  <sub>1..1</sub> [String](types/String.md)
+None &#8594;  <sub>0..1</sub> [String](types/String.md)
 
 ## Parents
 

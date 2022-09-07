@@ -1,10 +1,10 @@
 
-# Slot: is_current
+# Slot: is current
 
 
 
 
-URI: [my_datamodel:is_current](https://w3id.org/my_org/my_datamodelis_current)
+URI: [ks:is_current](https://w3id.org/linkml/tests/kitchen_sink/is_current)
 
 
 ## Domain and Range
@@ -19,3 +19,8 @@ None &#8594;  <sub>0..1</sub> [Boolean](types/Boolean.md)
 
 ## Used by
 
+ * [BirthEvent](BirthEvent.md)
+ * [EmploymentEvent](EmploymentEvent.md)
+ * [Event](Event.md)
+ * [MarriageEvent](MarriageEvent.md)
+ * [MedicalEvent](MedicalEvent.md)

@@ -9,7 +9,7 @@ URI: [monet_schema:collected_into](http://example.com/monet_schema/collected_int
 
 ## Domain and Range
 
-None &#8594;  <sub>1..1</sub> [MaterialContainer](MaterialContainer.md)
+None &#8594;  <sub>0..1</sub> [MaterialContainer](MaterialContainer.md)
 
 ## Parents
 
@@ -19,7 +19,7 @@ None &#8594;  <sub>1..1</sub> [MaterialContainer](MaterialContainer.md)
 
 ## Used by
 
- * [MatSampProc](MatSampProc.md)
+ * [MaterialSamplingProcess](MaterialSamplingProcess.md)
 
 ## Other properties
 

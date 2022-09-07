@@ -1,10 +1,10 @@
 
-# Slot: age_in_years
+# Slot: age in years
 
 
 
 
-URI: [my_datamodel:age_in_years](https://w3id.org/my_org/my_datamodelage_in_years)
+URI: [ks:age_in_years](https://w3id.org/linkml/tests/kitchen_sink/age_in_years)
 
 
 ## Domain and Range
@@ -20,3 +20,11 @@ None &#8594;  <sub>0..1</sub> [Integer](types/Integer.md)
 ## Used by
 
  * [Person](Person.md)
+
+## Other properties
+
+|  |  |  |
+| --- | --- | --- |
+| **In Subsets:** | | subset A |
+|  | | subset B |
+

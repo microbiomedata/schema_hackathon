@@ -1,47 +1,70 @@
-type Dissolving
+type Database
   {
-    materialInput: NamedThing!
-    materialOutput: NamedThing!
-    container: MaterialContainer!
-    shakerSelection: Shaker!
-    solvent: SolventEnum!
-    volume: QuantityValue!
+    description: String
+    id: String!
+    materialSampleSet: [MaterialSample]
+    dissolvingProcessSet: [DissolvingProcess]
+    materialSamplingProcessSet: [MaterialSamplingProcess]
+    reactionActivitySet: [ReactionActivity]
+  }
+
+type DissolvingProcess
+  {
+    materialInput: MaterialSample
+    materialOutput: MaterialSample
+    dissolutionAidedBy: LabDevice
+    dissolutionReagent: SolventEnum
+    dissolutionVolume: QuantityValue
+    dissolvedIn: MaterialContainer
+  }
+
+type LabDevice
+  {
+    deviceType: DeviceTypeEnum
+    processSpeed: QuantityValue
+    processTemperature: QuantityValue
+    processTime: QuantityValue
   }
 
 type MaterialContainer
   {
-    containerType: ContainerTypeEnum!
-    size: QuantityValue!
+    containerSize: QuantityValue
+    containerType: ContainerTypeEnum
   }
 
-type MaterialEntity
+type MaterialSample
   {
+    description: String
     id: String!
   }
 
-type MatSampProc
+type MaterialSamplingProcess
   {
-    collectedInto: MaterialContainer!
-    materialInput: NamedThing!
-    materialOutput: NamedThing!
-    amount: QuantityValue!
+    collectedInto: MaterialContainer
+    materialInput: MaterialSample
+    materialOutput: MaterialSample
+    amountCollected: QuantityValue
+    samplingMethod: SamplingMethodEnum
   }
 
 type NamedThing
   {
+    description: String
     id: String!
   }
 
 type QuantityValue
   {
-    hasValue: Float!
-    hasUnit: String!
+    hasValue: Float
+    hasUnit: String
   }
 
-type Shaker
+type ReactionActivity
   {
-    shakeSpeed: QuantityValue
-    shakeTime: QuantityValue
-    shakerType: ShakerTypeEnum
+    materialInput: MaterialSample
+    materialOutput: MaterialSample
+    reactionTime: QuantityValue
+    reactionAidedBy: LabDevice
+    reactionTemperature: String
   }
 

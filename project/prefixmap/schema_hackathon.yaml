@@ -3,11 +3,12 @@
    "CHMO": "http://purl.obolibrary.org/obo/CHMO_",
    "OBI": "http://purl.obolibrary.org/obo/OBI_",
    "linkml": "https://w3id.org/linkml/",
+   "monet_data": "http://example.com/monet_data/",
    "monet_schema": "http://example.com/monet_schema/",
-   "Dissolving": {
+   "DissolvingProcess": {
       "@id": "CHMO:0002773"
    },
-   "MatSampProc": {
+   "MaterialSamplingProcess": {
       "@id": "OBI:0000744"
    }
 }

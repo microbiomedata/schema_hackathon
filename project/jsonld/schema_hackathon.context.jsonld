@@ -1,5 +1,5 @@
 {
-   "_comments": "Auto generated from schema_hackathon.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-08-29T18:40:10\n    Schema: monet_schema\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://example.com/monet_schema\n    description: A sandbox for modeling MONET sample processing activities\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
+   "_comments": "Auto generated from schema_hackathon.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-09-07T11:41:15\n    Schema: monet_schema\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://example.com/monet_schema\n    description: A sandbox for modeling MONET sample processing activities\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
    "@context": {
       "CHEBI": {
          "@id": "http://purl.obolibrary.org/obo/CHEBI_",
@@ -14,16 +14,17 @@
          "@prefix": true
       },
       "linkml": "https://w3id.org/linkml/",
+      "monet_data": "http://example.com/monet_data/",
       "monet_schema": "http://example.com/monet_schema/",
       "skos": "http://www.w3.org/2004/02/skos/core#",
       "@vocab": "http://example.com/monet_schema/",
-      "amount": {
+      "amount_collected": {
          "@type": "@id"
       },
       "collected_into": {
          "@type": "@id"
       },
-      "container": {
+      "container_size": {
          "@type": "@id"
       },
       "container_type": {
@@ -33,6 +34,34 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          }
+      },
+      "device_type": {
+         "@context": {
+            "@vocab": "@null",
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         }
+      },
+      "dissolution_aided_by": {
+         "@type": "@id"
+      },
+      "dissolution_reagent": {
+         "@context": {
+            "@vocab": "@null",
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         }
+      },
+      "dissolution_volume": {
+         "@type": "@id"
+      },
+      "dissolved_in": {
+         "@type": "@id"
+      },
+      "dissolving_process_set": {
+         "@type": "@id"
       },
       "has_value": {
          "@type": "xsd:float"
@@ -44,16 +73,31 @@
       "material_output": {
          "@type": "@id"
       },
-      "shake_speed": {
+      "material_sample_set": {
          "@type": "@id"
       },
-      "shake_time": {
+      "material_sampling_process_set": {
          "@type": "@id"
       },
-      "shaker_selection": {
+      "process_speed": {
          "@type": "@id"
       },
-      "shaker_type": {
+      "process_temperature": {
+         "@type": "@id"
+      },
+      "process_time": {
+         "@type": "@id"
+      },
+      "reaction_activity_set": {
+         "@type": "@id"
+      },
+      "reaction_aided_by": {
+         "@type": "@id"
+      },
+      "reaction_time": {
+         "@type": "@id"
+      },
+      "sampling_method": {
          "@context": {
             "@vocab": "@null",
             "text": "skos:notation",
@@ -61,24 +105,10 @@
             "meaning": "@id"
          }
       },
-      "size": {
-         "@type": "@id"
-      },
-      "solvent": {
-         "@context": {
-            "@vocab": "@null",
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         }
-      },
-      "volume": {
-         "@type": "@id"
-      },
-      "Dissolving": {
+      "DissolvingProcess": {
          "@id": "CHMO:0002773"
       },
-      "MatSampProc": {
+      "MaterialSamplingProcess": {
          "@id": "OBI:0000744"
       }
    }

@@ -10,8 +10,10 @@ URI: [monet_schema:NamedThing](http://example.com/monet_schema/NamedThing)
 
 ```mermaid
  classDiagram
-      NamedThing <|-- MaterialEntity
+      NamedThing <|-- Database
+      NamedThing <|-- MaterialSample
       
+      NamedThing : description
       NamedThing : id
       
 ```
@@ -22,7 +24,8 @@ URI: [monet_schema:NamedThing](http://example.com/monet_schema/NamedThing)
 
 ## Inheritance
 * **NamedThing**
-    * [MaterialEntity](MaterialEntity.md)
+    * [Database](Database.md)
+    * [MaterialSample](MaterialSample.md)
 
 
 
@@ -30,18 +33,11 @@ URI: [monet_schema:NamedThing](http://example.com/monet_schema/NamedThing)
 
 | Name | Cardinality and Range  | Description  |
 | ---  | ---  | --- |
+| [description](description.md) | 0..1 <br/> [xsd:string](xsd:string)  |   |
 | [id](id.md) | 1..1 <br/> [xsd:string](xsd:string)  |   |
 
 
 ## Usages
-
-
-| used by | used in | type | used |
-| ---  | --- | --- | --- |
-| [MatSampProc](MatSampProc.md) | [material_input](material_input.md) | range | NamedThing |
-| [MatSampProc](MatSampProc.md) | [material_output](material_output.md) | range | NamedThing |
-| [Dissolving](Dissolving.md) | [material_input](material_input.md) | range | NamedThing |
-| [Dissolving](Dissolving.md) | [material_output](material_output.md) | range | NamedThing |
 
 
 
@@ -84,6 +80,7 @@ name: NamedThing
 from_schema: http://example.com/monet_schema
 rank: 1000
 slots:
+- description
 - id
 
 ```
@@ -97,6 +94,16 @@ name: NamedThing
 from_schema: http://example.com/monet_schema
 rank: 1000
 attributes:
+  description:
+    name: description
+    title: description
+    from_schema: http://example.com/monet_schema
+    rank: 1000
+    alias: description
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: string
   id:
     name: id
     from_schema: http://example.com/monet_schema
@@ -107,7 +114,6 @@ attributes:
     domain_of:
     - NamedThing
     range: string
-    required: true
 
 ```
 </details>
