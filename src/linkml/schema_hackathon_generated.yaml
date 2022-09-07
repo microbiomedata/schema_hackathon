@@ -16,6 +16,9 @@ prefixes:
   CHEBI:
     prefix_prefix: CHEBI
     prefix_reference: http://purl.obolibrary.org/obo/CHEBI_
+  monet_data:
+    prefix_prefix: monet_data
+    prefix_reference: http://example.com/monet_data/
   linkml:
     prefix_prefix: linkml
     prefix_reference: https://w3id.org/linkml/
@@ -137,16 +140,6 @@ types:
     uri: shex:nonLiteral
     repr: str
 enums:
-  SolventEnum:
-    name: SolventEnum
-    title: Solvent enumeration
-    from_schema: http://example.com/monet_schema
-    permissible_values:
-      deionized_water:
-        text: deionized_water
-        title: Deionized water
-        broad_mappings:
-        - CHEBI:15377
   ContainerTypeEnum:
     name: ContainerTypeEnum
     title: Container type enumeration
@@ -157,41 +150,61 @@ enums:
         title: Screw top conical tube
         aliases:
         - falcon tube
-  ShakerTypeEnum:
-    name: ShakerTypeEnum
+  DeviceTypeEnum:
+    name: DeviceTypeEnum
     title: Shaker type enumeration
     from_schema: http://example.com/monet_schema
     permissible_values:
-      orbital:
-        text: orbital
-        title: Orbital
+      orbital_shaker:
+        text: orbital_shaker
+        title: Orbital shaker
+      thermomixer:
+        text: thermomixer
+        title: Thermomixer
+  SamplingMethodEnum:
+    name: SamplingMethodEnum
+    from_schema: http://example.com/monet_schema
+    permissible_values:
+      weighing:
+        text: weighing
+        title: Weighing
+  SolventEnum:
+    name: SolventEnum
+    title: Solvent enumeration
+    from_schema: http://example.com/monet_schema
+    permissible_values:
+      deionized_water:
+        text: deionized_water
+        title: Deionized water
+        broad_mappings:
+        - CHEBI:15377
 slots:
-  container_type:
-    name: container_type
-    title: container type
+  material_sample_set:
+    name: material_sample_set
+    title: material sample set
     from_schema: http://example.com/monet_schema
-    range: ContainerTypeEnum
-    required: true
-  has_value:
-    name: has_value
-    title: has value
-    from_schema: http://example.com/monet_schema
-    range: float
-    required: true
-  collected_into:
-    name: collected_into
-    title: collected into
-    from_schema: http://example.com/monet_schema
-    aliases:
-    - weighing-activity.contanier
-    range: MaterialContainer
-    required: true
+    multivalued: true
+    range: MaterialSample
     inlined_as_list: true
-  container:
-    name: container
+  dissolving_process_set:
+    name: dissolving_process_set
+    title: dissolving process set
     from_schema: http://example.com/monet_schema
-    range: MaterialContainer
-    required: true
+    multivalued: true
+    range: DissolvingProcess
+    inlined_as_list: true
+  material_sampling_process_set:
+    name: material_sampling_process_set
+    title: material sampling process set
+    from_schema: http://example.com/monet_schema
+    multivalued: true
+    range: MaterialSamplingProcess
+    inlined_as_list: true
+  reaction_activity_set:
+    name: reaction_activity_set
+    from_schema: http://example.com/monet_schema
+    multivalued: true
+    range: ReactionActivity
     inlined_as_list: true
   material_input:
     name: material_input
@@ -202,9 +215,7 @@ slots:
     from_schema: http://example.com/monet_schema
     aliases:
     - weighing-activity.source_material
-    range: NamedThing
-    required: true
-    inlined_as_list: true
+    range: MaterialSample
   material_output:
     name: material_output
     title: material output
@@ -214,81 +225,186 @@ slots:
     from_schema: http://example.com/monet_schema
     aliases:
     - weighing-activity.id
-    range: NamedThing
-    required: true
-    inlined_as_list: true
-  amount:
-    name: amount
-    title: amount
+    range: MaterialSample
+  dissolution_aided_by:
+    name: dissolution_aided_by
+    title: dissolution aided by
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - shaker
+    range: LabDevice
+    inlined: true
+  dissolution_reagent:
+    name: dissolution_reagent
+    title: dissolution reagent
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - solvent
+    range: SolventEnum
+  dissolution_volume:
+    name: dissolution_volume
+    title: dissolution volume
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - volume
+    range: QuantityValue
+    inlined: true
+  dissolved_in:
+    name: dissolved_in
+    title: dissolved in
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - container
+    range: MaterialContainer
+    inlined: true
+  device_type:
+    name: device_type
+    title: device type
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - shaker type
+    range: DeviceTypeEnum
+  process_speed:
+    name: process_speed
+    title: process speed
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - shake_speed
+    range: QuantityValue
+    inlined: true
+  process_temperature:
+    name: process_temperature
+    todos:
+    - constrain units
+    from_schema: http://example.com/monet_schema
+    range: QuantityValue
+    inlined: true
+  process_time:
+    name: process_time
+    title: process time
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - shake_time
+    range: QuantityValue
+    inlined: true
+  container_size:
+    name: container_size
+    title: container size
+    from_schema: http://example.com/monet_schema
+    range: QuantityValue
+    inlined: true
+  container_type:
+    name: container_type
+    title: container type
+    from_schema: http://example.com/monet_schema
+    range: ContainerTypeEnum
+  collected_into:
+    name: collected_into
+    title: collected into
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - weighing-activity.contanier
+    range: MaterialContainer
+    inlined: true
+  amount_collected:
+    name: amount_collected
+    title: amount collected
     from_schema: http://example.com/monet_schema
     aliases:
     - weighing-activity.weight
     range: QuantityValue
-    required: true
-    inlined_as_list: true
-  shake_speed:
-    name: shake_speed
-    title: shake speed
+    inlined: true
+  sampling_method:
+    name: sampling_method
+    title: sampling method
     from_schema: http://example.com/monet_schema
-    range: QuantityValue
-  shake_time:
-    name: shake_time
-    title: shake time
+    range: SamplingMethodEnum
+  description:
+    name: description
+    title: description
     from_schema: http://example.com/monet_schema
-    range: QuantityValue
-  size:
-    name: size
-    title: size
-    from_schema: http://example.com/monet_schema
-    range: QuantityValue
-    required: true
-    inlined_as_list: true
-  volume:
-    name: volume
-    title: volume
-    from_schema: http://example.com/monet_schema
-    range: QuantityValue
-    required: true
-    inlined_as_list: true
-  shaker_selection:
-    name: shaker_selection
-    title: shaker selection
-    from_schema: http://example.com/monet_schema
-    range: Shaker
-    required: true
-    inlined_as_list: true
-  solvent:
-    name: solvent
-    title: solvent
-    from_schema: http://example.com/monet_schema
-    range: SolventEnum
-    required: true
-  has_unit:
-    name: has_unit
-    title: has unit
-    from_schema: http://example.com/monet_schema
-    range: string
-    required: true
-  shaker_type:
-    name: shaker_type
-    title: shaker type
-    from_schema: http://example.com/monet_schema
-    range: ShakerTypeEnum
   id:
     name: id
     from_schema: http://example.com/monet_schema
     identifier: true
-    required: true
+  has_value:
+    name: has_value
+    title: has value
+    from_schema: http://example.com/monet_schema
+    range: float
+  has_unit:
+    name: has_unit
+    title: has unit
+    from_schema: http://example.com/monet_schema
+  reaction_time:
+    name: reaction_time
+    todos:
+    - constrain units
+    - align with process_time
+    from_schema: http://example.com/monet_schema
+    range: QuantityValue
+    inlined: true
+  reaction_aided_by:
+    name: reaction_aided_by
+    title: reaction aided by
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - shaker
+    range: LabDevice
+    inlined: true
+  reaction_temperature:
+    name: reaction_temperature
+    from_schema: http://example.com/monet_schema
 classes:
-  QuantityValue:
-    name: QuantityValue
-    title: Quantity value
+  Database:
+    name: Database
+    title: database
+    from_schema: http://example.com/monet_schema
+    is_a: NamedThing
+    slots:
+    - material_sample_set
+    - dissolving_process_set
+    - material_sampling_process_set
+    - reaction_activity_set
+  DissolvingProcess:
+    name: DissolvingProcess
+    title: Dissolving process
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - dissolution-activity
+    slots:
+    - material_input
+    - material_output
+    - dissolution_aided_by
+    - dissolution_reagent
+    - dissolution_volume
+    - dissolved_in
+    class_uri: CHMO:0002773
+  LabDevice:
+    name: LabDevice
+    title: Lab device
     from_schema: http://example.com/monet_schema
     slots:
-    - has_value
-    - has_unit
-  MatSampProc:
-    name: MatSampProc
+    - device_type
+    - process_speed
+    - process_temperature
+    - process_time
+  MaterialContainer:
+    name: MaterialContainer
+    title: Material container
+    from_schema: http://example.com/monet_schema
+    slots:
+    - container_size
+    - container_type
+  MaterialSample:
+    name: MaterialSample
+    title: Material sample
+    from_schema: http://example.com/monet_schema
+    aliases:
+    - Material entity
+    is_a: NamedThing
+  MaterialSamplingProcess:
+    name: MaterialSamplingProcess
     title: Material sampling process
     from_schema: http://example.com/monet_schema
     aliases:
@@ -297,46 +413,33 @@ classes:
     - collected_into
     - material_input
     - material_output
-    - amount
+    - amount_collected
+    - sampling_method
     class_uri: OBI:0000744
-  Dissolving:
-    name: Dissolving
-    title: Dissolving
-    from_schema: http://example.com/monet_schema
-    aliases:
-    - dissolution-activity
-    slots:
-    - material_input
-    - material_output
-    - container
-    - shaker_selection
-    - solvent
-    - volume
-    class_uri: CHMO:0002773
-  MaterialContainer:
-    name: MaterialContainer
-    title: Material container
-    from_schema: http://example.com/monet_schema
-    slots:
-    - container_type
-    - size
   NamedThing:
     name: NamedThing
     from_schema: http://example.com/monet_schema
     slots:
+    - description
     - id
-  Shaker:
-    name: Shaker
-    title: Shaker
+  QuantityValue:
+    name: QuantityValue
+    title: Quantity value
     from_schema: http://example.com/monet_schema
     slots:
-    - shake_speed
-    - shake_time
-    - shaker_type
-  MaterialEntity:
-    name: MaterialEntity
-    title: Material entity
+    - has_value
+    - has_unit
+  ReactionActivity:
+    name: ReactionActivity
+    title: Reaction activity
     from_schema: http://example.com/monet_schema
-    is_a: NamedThing
+    aliases:
+    - reaction-activity
+    slots:
+    - material_input
+    - material_output
+    - reaction_time
+    - reaction_aided_by
+    - reaction_temperature
 source_file: src/linkml/schema_hackathon.yaml
 

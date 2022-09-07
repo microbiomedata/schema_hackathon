@@ -1,21 +1,24 @@
-material_input:
-  id: somextract:6
-material_output:
-  id: somextract:7
-solvent: deionized_water
-container:
-  size:
+material_input: monet_data:somextract_6
+
+dissolution_reagent: deionized_water
+
+dissolution_volume:
+  has_value: 30
+  has_unit: mL
+
+dissolved_in:
+  container_size:
     has_value: 50
     has_unit: mL
   container_type: screw_top_conical
-volume:
-  has_value: 30
-  has_unit: mL
-shaker_selection:
-  shake_time:
+
+dissolution_aided_by:
+  process_time:
     has_value: 2
     has_unit: hours
-  shake_speed:
+  process_speed:
     has_value: 800
     has_unit: RPM
-  shaker_type: orbital
+  device_type: orbital_shaker
+
+material_output: monet_data:somextract_7

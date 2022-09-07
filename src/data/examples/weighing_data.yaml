@@ -1,12 +1,15 @@
+material_input: monet_data:soil_1
+
+sampling_method: weighing
+
+amount_collected:
+  has_value: 6
+  has_unit: grams
+
 collected_into:
-  size:
+  container_size:
     has_value: 50
     has_unit: mL
   container_type: screw_top_conical
-amount:
-  has_value: 6
-  has_unit: grams
-material_input:
-  id: soil:1
-material_output:
-  id: somextract:6
+
+material_output: monet_data:somextract_6

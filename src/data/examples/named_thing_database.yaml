@@ -1,0 +1,7 @@
+material_entity_set:
+  - id: monet_data:soil_1
+    description: description1
+  - id: monet_data:somextract_6
+    description: description2
+  - id: monet_data:somextract_7
+    description: description3

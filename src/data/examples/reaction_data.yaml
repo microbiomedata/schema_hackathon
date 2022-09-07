@@ -1,0 +1,12 @@
+material_input: monet_data:derive_4
+
+reaction_aided_by:
+  process_temperature:
+    has_value: 37
+    has_unit: degrees Celsius
+  process_time:
+    has_value: 1.5
+    has_unit: hours
+  device_type: thermomixer
+
+material_output: monet_data:derive_5

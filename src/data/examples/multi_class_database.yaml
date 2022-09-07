@@ -1,0 +1,66 @@
+id: monet_data:database1
+
+material_sampling_process_set:
+  - material_input: monet_data:soil_1
+    sampling_method: weighing
+    amount_collected:
+      has_value: 6
+      has_unit: grams
+    collected_into:
+      container_size:
+        has_value: 50
+        has_unit: mL
+      container_type: screw_top_conical
+    material_output: monet_data:somextract_6
+
+material_sample_set:
+  - id: monet_data:soil_1
+    description: a soil biosample
+  - id: monet_data:somextract_6
+    description: a 6 gram aliquot of monet_data:soil_1
+  - id: monet_data:somextract_7
+    description: monet_data:somextract_6 dissolved in 30 mL of water
+  - id: monet_data:derive_4
+    description: something at the beginning of a reaction
+  - id: monet_data:derive_5
+    description: something at the end of a reaction
+
+dissolving_process_set:
+  - material_input: monet_data:somextract_6
+
+    dissolution_reagent: deionized_water
+
+    dissolution_volume:
+      has_value: 30
+      has_unit: mL
+
+    dissolved_in:
+      container_size:
+        has_value: 50
+        has_unit: mL
+      container_type: screw_top_conical
+
+    dissolution_aided_by:
+      process_time:
+        has_value: 2
+        has_unit: hours
+      process_speed:
+        has_value: 800
+        has_unit: RPM
+      device_type: orbital_shaker
+
+    material_output: monet_data:somextract_7
+
+reaction_activity_set:
+  - material_input: monet_data:derive_4
+
+    reaction_aided_by:
+      process_temperature:
+        has_value: 37
+        has_unit: degrees Celsius
+      process_time:
+        has_value: 1.5
+        has_unit: hours
+      device_type: thermomixer
+
+    material_output: monet_data:derive_5
